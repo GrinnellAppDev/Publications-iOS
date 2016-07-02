@@ -1,0 +1,16 @@
+platform :ios, '8.0'
+
+target 'Publications' do
+
+  pod 'Fabric'
+
+  target 'PublicationsTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'PublicationsUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
