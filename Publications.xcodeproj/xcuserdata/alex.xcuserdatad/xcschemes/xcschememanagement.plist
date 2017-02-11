@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SPARCore.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>7463DD4B1DC3EE5A00A5F77A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA7DCC5D1E4F75F300C84A73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA7DCC651E4F75F300C84A73</key>
 		<dict>
 			<key>primary</key>
 			<true/>

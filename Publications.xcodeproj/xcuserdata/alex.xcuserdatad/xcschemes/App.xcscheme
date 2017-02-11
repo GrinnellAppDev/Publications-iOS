@@ -48,6 +48,16 @@
                ReferencedContainer = "container:Publications.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA7DCC651E4F75F300C84A73"
+               BuildableName = "SPARCoreTests.xctest"
+               BlueprintName = "SPARCoreTests"
+               ReferencedContainer = "container:Publications.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
