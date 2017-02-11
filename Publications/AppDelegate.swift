@@ -1,13 +1,6 @@
-//
-//  AppDelegate.swift
-//  test4
-//
-//  Created by comp on 28/10/2016.
-//  Copyright © 2016 comp. All rights reserved.
-//
-
 import UIKit
 import CoreData
+import SPARCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +9,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SPARCDemo.screenPrint(nil)
+        SPARCDemo.screenPrint("Application did finish launching with options")
+      
         // Override point for customization after application launch.
         return true
     }
