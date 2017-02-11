@@ -1,11 +1,3 @@
-//
-//  NewsTableViewController.swift
-//  test4
-//
-//  Created by comp on 28/10/2016.
-//  Copyright © 2016 comp. All rights reserved.
-//
-
 import UIKit
 
 class NewsTableViewController: UITableViewController {
@@ -21,7 +13,7 @@ class NewsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         if revealViewController() != nil {
             menuButton.target = revealViewController()
-            menuButton.action = "revealToggle:"
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             revealViewController().rearViewRevealWidth = 220
             

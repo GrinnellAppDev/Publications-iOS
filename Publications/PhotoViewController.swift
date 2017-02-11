@@ -1,11 +1,3 @@
-//
-//  PhotoViewController.swift
-//  test4
-//
-//  Created by comp on 28/10/2016.
-//  Copyright © 2016 comp. All rights reserved.
-//
-
 import UIKit
 
 class PhotoViewController: UIViewController {
@@ -15,7 +7,7 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
         if revealViewController() != nil {
             menuButton.target = revealViewController()
-            menuButton.action = "revealToggle:"
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         // Do any additional setup after loading the view.

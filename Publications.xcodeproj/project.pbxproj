@@ -19,7 +19,6 @@
 		FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */; };
 		FA7DCC521E4F730D00C84A73 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCF1DC67663009D0256 /* SettingViewController.swift */; };
 		FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */; };
-		FA7DCC541E4F731D00C84A73 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD3C1DC3EE5900A5F77A /* Info.plist */; };
 		FA7DCC551E4F732B00C84A73 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD611DC3EEAE00A5F77A /* SWRevealViewController.m */; };
 		FA7DCC561E4F733000C84A73 /* Publications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA6BF14B1E4F653D008FB165 /* Publications.xcdatamodeld */; };
 		FA7DCC581E4F739900C84A73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DCC571E4F739900C84A73 /* AppDelegate.swift */; };
@@ -326,7 +325,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA7DCC541E4F731D00C84A73 /* Info.plist in Resources */,
 				7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */,
 				FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */,
 				7463DD331DC3EE5900A5F77A /* Main.storyboard in Resources */,

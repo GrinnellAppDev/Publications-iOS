@@ -1,6 +1,6 @@
-import UIKit
 import CoreData
 import SPARCore
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
