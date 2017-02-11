@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -83,7 +83,7 @@
         <!--Menu Controller-->
         <scene sceneID="j7v-Rg-Td3">
             <objects>
-                <tableViewController id="PEc-in-A8d" customClass="MenuController" customModule="test4" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="PEc-in-A8d" customClass="MenuController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="H6y-DB-GXH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -250,17 +250,17 @@
         <!--News Feed-->
         <scene sceneID="vKT-Lc-Wv1">
             <objects>
-                <tableViewController id="aEb-5O-79k" customClass="NewsTableViewController" customModule="test4" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="aEb-5O-79k" customClass="NewsTableViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="243" sectionHeaderHeight="22" sectionFooterHeight="22" id="z3h-wQ-ABR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="243" id="XfP-n9-NSF" customClass="NewsTableViewCell" customModule="test4" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="243" id="XfP-n9-NSF" customClass="NewsTableViewCell" customModule="Publications" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="375" height="243"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XfP-n9-NSF" id="drA-Bz-0eD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="242"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="242.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6mf-G2-nIa">
@@ -345,7 +345,7 @@
         <!--Article View Controller-->
         <scene sceneID="tIa-Nv-dcf">
             <objects>
-                <viewController storyboardIdentifier="ArticleViewController" id="Upy-rz-E8E" customClass="ArticleViewController" customModule="test4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArticleViewController" id="Upy-rz-E8E" customClass="ArticleViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GHh-HY-Oun"/>
                         <viewControllerLayoutGuide type="bottom" id="ZWM-S2-yl5"/>
@@ -412,7 +412,7 @@
         <!--Publications-->
         <scene sceneID="LNS-fs-oFA">
             <objects>
-                <viewController id="2D5-hb-ASS" customClass="PublicationsViewController" customModule="test4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2D5-hb-ASS" customClass="PublicationsViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QgM-Rd-JDn"/>
                         <viewControllerLayoutGuide type="bottom" id="GIz-q0-G6I"/>
@@ -436,7 +436,7 @@
         <!--Profile-->
         <scene sceneID="BCQ-Zl-MBc">
             <objects>
-                <viewController id="lKF-Mt-TCz" customClass="ProfileViewController" customModule="test4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lKF-Mt-TCz" customClass="ProfileViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N6g-N1-Mzs"/>
                         <viewControllerLayoutGuide type="bottom" id="gHo-eS-81F"/>
@@ -503,7 +503,7 @@
         <!--Bookmark-->
         <scene sceneID="SFL-89-YRX">
             <objects>
-                <viewController id="lrh-nA-FrX" customClass="BookmarkViewController" customModule="test4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lrh-nA-FrX" customClass="BookmarkViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3iW-Z3-1WS"/>
                         <viewControllerLayoutGuide type="bottom" id="Dxy-ID-QTp"/>
@@ -538,7 +538,7 @@
         <!--Setting-->
         <scene sceneID="sjK-Lg-r41">
             <objects>
-                <viewController id="PVe-4G-7RR" customClass="SettingViewController" customModule="test4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PVe-4G-7RR" customClass="SettingViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="za4-aR-RR7"/>
                         <viewControllerLayoutGuide type="bottom" id="JfY-PD-Ql8"/>
