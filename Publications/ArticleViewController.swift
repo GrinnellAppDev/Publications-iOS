@@ -9,21 +9,29 @@ import Foundation
 import UIKit
 class ArticleViewController: UIViewController {
     
-    let text = "afsafsadfasdfasdfas asf asfas fasdf asdf asdf adsf adfas fasdf asdf asdf sadf asd fasd fasd fasdf sadf sadf asdf sad fasd fasdf asdf asdf sa fsad fasd fasd fasd fasdfasdf sad fas fsad fasd fasd fasdfsa fsdf dsafasdfas fsa fsadfasdfsa fsa fsadfa fsd fas fasfsadf as fsdf as fasd fasfs fsa /n adsf asf asf asf asfaf sa fsa fsaf sa f /n asdf afasf asd fasdf asdf asdf adsf asdf asf asf asf sa fsdf saf sadf asdf sad f/n asdf asdf af saf sa sf s."
+    var text = "The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010. The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010.The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010.The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010.The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010.The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010.The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010.The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010.The Grinnell College Libraries are excited to announce the release of the new digital archive of the Scarlet & Black student newspaper. This online archive provides free access to the College's archive of the Scarlet & Black newspaper from the first issue in 1894 through May 2010."
     
-    @IBOutlet var lblText: UILabel!
+
+    @IBOutlet weak var articlePic: UIImageView!
+    @IBOutlet weak var articleName: UILabel!
+    @IBOutlet weak var lblText: UITextView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        articleName.text = "Welcome to the all-new SPARC App"
         lblText.text = self.text
+        lblText.isEditable = false
+        articlePic.image = #imageLiteral(resourceName: "JRC")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.title = "Article"
     }
     
     override func didReceiveMemoryWarning() {
