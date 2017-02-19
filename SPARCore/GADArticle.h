@@ -16,6 +16,6 @@
 @property (nonatomic, strong) NSString *issue;
 @property (nonatomic, strong) NSString *articleId;
 
-+ (NSArray <GADArticle *> *) loadArticles;
++ (NSArray <GADArticle *> *) loadDummyArticles;
 
 @end

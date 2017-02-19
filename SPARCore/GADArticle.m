@@ -2,7 +2,7 @@
 
 @implementation GADArticle
 
-+ (NSArray <GADArticle *> *) loadArticles {
++ (NSArray <GADArticle *> *) loadDummyArticles {
 
     NSMutableArray <GADArticle *> *articleArray = [[NSMutableArray alloc] init];
     NSArray <NSString *> *authorNames = @[@"Alex", @"Mitchell", @"Addi", @"Gould", @"Garrett", @"Wang", @"Alex2", @"French", @"Nathan", @"Gifford"];
@@ -24,8 +24,6 @@
         [articleArray addObject:article];
     }
     return articleArray;
-    
 }
-
 
 @end
