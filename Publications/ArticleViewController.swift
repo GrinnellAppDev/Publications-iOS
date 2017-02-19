@@ -16,11 +16,8 @@ class ArticleViewController: UIViewController {
     @IBOutlet weak var articleName: UILabel!
     @IBOutlet weak var lblText: UITextView!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         articleName.text = "Welcome to the all-new SPARC App"
         lblText.text = self.text
@@ -36,6 +33,7 @@ class ArticleViewController: UIViewController {
        
     }
     
+    /* ScrollView Layout
     override func viewDidLayoutSubviews() {
         let contentSize = lblText.sizeThatFits(lblText.bounds.size)
         var frame = lblText.frame
@@ -44,8 +42,8 @@ class ArticleViewController: UIViewController {
         
         let aspectRatioTextViewConstraint = NSLayoutConstraint(item: lblText, attribute: .height, relatedBy: .equal, toItem: lblText, attribute: .width, multiplier: lblText.bounds.height/lblText.bounds.width, constant: 1)
         lblText.addConstraint(aspectRatioTextViewConstraint)
-        
     }
+    */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
