@@ -2,30 +2,6 @@
 
 @implementation GADArticle
 
-//- (Array of GADArticle) populateArticles: (NSString* publicationId) { } //pid is going to be S&B
-
-//-
-
-- (GADArticle *) initWithDictionary: (NSDictionary*) dict {
-    
-    GADArticle *article = [[GADArticle alloc] init];
- 
-    article.publicationId = [dict valueForKey:@"publication"];
-    article.authors = [dict valueForKey:@"authors"];
-    //article.url = [dict valueForKey:@"publication"];
-    //article.pictureSize = [dict valueForKey:@"publication"];
-    //TODO: Finish property filling
-    return article;
-    
-}
-
-- (GADArticle *) updateArticleWithContent: (GADArticle*) articleStub {
-    
-    //DO the thing, add the stuff
-    
-    return articleStub;
-}
-
 + (NSArray <GADArticle *> *) loadArticles {
 
     NSMutableArray <GADArticle *> *articleArray = [[NSMutableArray alloc] init];
