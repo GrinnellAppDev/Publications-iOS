@@ -16,10 +16,6 @@
 @property (nonatomic, strong) NSString *issue;
 @property (nonatomic, strong) NSString *articleId;
 
-- (GADArticle *) initWithDictionary: (NSDictionary*) dict;
-
-- (GADArticle *) updateArticleWithContent: (GADArticle*) articleStub;
-
 + (NSArray <GADArticle *> *) loadArticles;
 
 @end
