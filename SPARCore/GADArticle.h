@@ -19,3 +19,4 @@
 + (NSArray <GADArticle *> *) loadDummyArticles;
 
 @end
+
