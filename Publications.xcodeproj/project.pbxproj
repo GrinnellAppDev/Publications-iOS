@@ -31,6 +31,7 @@
 		FA7DCC741E4F75F300C84A73 /* SPARCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA7DCC5E1E4F75F300C84A73 /* SPARCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA7DCC7E1E4F765200C84A73 /* SPARCDemo.h in Headers */ = {isa = PBXBuildFile; fileRef = FA7DCC7C1E4F765200C84A73 /* SPARCDemo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA7DCC7F1E4F765200C84A73 /* SPARCDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7DCC7D1E4F765200C84A73 /* SPARCDemo.m */; };
+		FADEDE131E5396B500048D80 /* TextNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEDE121E5396B500048D80 /* TextNewsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		FA7DCC6F1E4F75F300C84A73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7DCC7C1E4F765200C84A73 /* SPARCDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPARCDemo.h; sourceTree = "<group>"; };
 		FA7DCC7D1E4F765200C84A73 /* SPARCDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPARCDemo.m; sourceTree = "<group>"; };
+		FADEDE121E5396B500048D80 /* TextNewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextNewsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */,
+				FADEDE121E5396B500048D80 /* TextNewsTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -351,7 +354,7 @@
 				TargetAttributes = {
 					7463DD291DC3EE5900A5F77A = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = H69TS4DPUJ;
+						DevelopmentTeam = FC7CAU5645;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -554,6 +557,7 @@
 				FA7DCC4E1E4F730D00C84A73 /* PhotoViewController.swift in Sources */,
 				FA7DCC4B1E4F730D00C84A73 /* MenuController.swift in Sources */,
 				FA7DCC4D1E4F730D00C84A73 /* NewsTableViewCell.swift in Sources */,
+				FADEDE131E5396B500048D80 /* TextNewsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,7 +718,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = H69TS4DPUJ;
+				DEVELOPMENT_TEAM = FC7CAU5645;
 				INFOPLIST_FILE = Publications/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
@@ -731,7 +735,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = H69TS4DPUJ;
+				DEVELOPMENT_TEAM = FC7CAU5645;
 				INFOPLIST_FILE = Publications/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
