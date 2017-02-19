@@ -12,6 +12,8 @@
 		7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD391DC3EE5900A5F77A /* LaunchScreen.storyboard */; };
 		8BF28F5C9F4B74E08F59801B /* Pods_Publications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */; };
 		ABE7CF946E928AFCB09C7477 /* Pods_SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */; };
+		C788AD041E50F06700738844 /* GADArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* GADArticle.h */; };
+		C788AD051E50F06700738844 /* GADArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* GADArticle.m */; };
 		FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD371DC3EE5900A5F77A /* Assets.xcassets */; };
 		FA7DCC4B1E4F730D00C84A73 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD631DC3F3CB00A5F77A /* MenuController.swift */; };
 		FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */; };
@@ -96,6 +98,8 @@
 		9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPARCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B7F5996606B3C5D5769CB5 /* Pods-Publications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.release.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.release.xcconfig"; sourceTree = "<group>"; };
 		AEAC1733BFDE505F1BFFBEE0 /* Pods-Publications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.debug.xcconfig"; sourceTree = "<group>"; };
+		C788AD021E50F06700738844 /* GADArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADArticle.h; sourceTree = "<group>"; };
+		C788AD031E50F06700738844 /* GADArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADArticle.m; sourceTree = "<group>"; };
 		F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Publications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6BF14C1E4F653D008FB165 /* Publications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Publications.xcdatamodel; sourceTree = "<group>"; };
 		FA7DCC571E4F739900C84A73 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				FA7DCC7C1E4F765200C84A73 /* SPARCDemo.h */,
 				FA7DCC7D1E4F765200C84A73 /* SPARCDemo.m */,
 				FA7DCC611E4F75F300C84A73 /* Info.plist */,
+				C788AD021E50F06700738844 /* GADArticle.h */,
+				C788AD031E50F06700738844 /* GADArticle.m */,
 			);
 			path = SPARCore;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7DCC701E4F75F300C84A73 /* SPARCore.h in Headers */,
+				C788AD041E50F06700738844 /* GADArticle.h in Headers */,
 				FA7DCC7E1E4F765200C84A73 /* SPARCDemo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7DCC7F1E4F765200C84A73 /* SPARCDemo.m in Sources */,
+				C788AD051E50F06700738844 /* GADArticle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
