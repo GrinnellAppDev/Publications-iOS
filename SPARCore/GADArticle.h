@@ -1,11 +1,3 @@
-//
-//  GADArticle.h
-//  Publications
-//
-//  Created by Alex French on 2/12/17.
-//  Copyright © 2017 comp. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 @interface GADArticle : NSObject
@@ -22,6 +14,6 @@
 //@property (nonatomic, strong) NSSOMETHING *headerImage;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *issue;
-@property (nonatomic, strong) NSString *id;
+@property (nonatomic, strong) NSString *articleId;
 
 @end
