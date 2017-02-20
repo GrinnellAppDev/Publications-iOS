@@ -2,6 +2,31 @@
 
 @implementation GADArticle
 
++ (NSArray <GADArticle *> *) articlesFromJSON: (NSData *)json {
+    
+    NSMutableArray <GADArticle *> *articles = [[NSMutableArray alloc] init];
+    NSError *error = nil;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:json options:kNilOptions error:&error];
+    
+    if (error != nil) {
+        NSLog(@"Error parsing JSON.");
+    }
+    
+    for (NSDictionary *element in jsonArray) {
+        GADArticle *article = [[GADArticle alloc] init];
+        //Map fields of element to fields of article
+        article.datePublished = element[@"datePublished"];
+        article.brief = element[@"brief"];
+        article.headerImage = element[@"headerImage"];
+        article.publicationId = element[@"publication"];
+        article.articleId = element[@"id"];
+        article.title = element[@"title"];
+        [articles addObject:article];
+    }
+    
+    return articles;
+}
+
 + (NSArray <GADArticle *> *) loadDummyArticles {
 
     NSMutableArray <GADArticle *> *articleArray = [[NSMutableArray alloc] init];
