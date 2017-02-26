@@ -2,8 +2,12 @@
 
 @interface GADArticle : NSObject
 
+//var publicationId: [String]
+//var authors: [Any]
+//var etc
+
 @property (nonatomic, strong) NSString *publicationId;
-@property (nonatomic, strong) NSArray *authors;
+@property (nonatomic, strong) NSString* author;
 @property (nonatomic, strong) NSURL *url;
 //@property (nonatomic, strong) NSInteger *pictureSize;
 @property (nonatomic, strong) NSString *series;
