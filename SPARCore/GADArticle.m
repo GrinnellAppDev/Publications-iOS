@@ -23,7 +23,6 @@
         article.title = element[@"title"];
         [articles addObject:article];
     }
-    
     return articles;
 }
 
