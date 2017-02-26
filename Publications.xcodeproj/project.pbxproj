@@ -14,6 +14,7 @@
 		ABE7CF946E928AFCB09C7477 /* Pods_SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */; };
 		C788AD041E50F06700738844 /* GADArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* GADArticle.h */; };
 		C788AD051E50F06700738844 /* GADArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* GADArticle.m */; };
+		C7EC49CE1E5E4A2B00730C67 /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = C7EC49CD1E5E4A2B00730C67 /* testArticles.json */; };
 		FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD371DC3EE5900A5F77A /* Assets.xcassets */; };
 		FA7DCC4B1E4F730D00C84A73 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD631DC3F3CB00A5F77A /* MenuController.swift */; };
 		FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */; };
@@ -100,6 +101,7 @@
 		AEAC1733BFDE505F1BFFBEE0 /* Pods-Publications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.debug.xcconfig"; sourceTree = "<group>"; };
 		C788AD021E50F06700738844 /* GADArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADArticle.h; sourceTree = "<group>"; };
 		C788AD031E50F06700738844 /* GADArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADArticle.m; sourceTree = "<group>"; };
+		C7EC49CD1E5E4A2B00730C67 /* testArticles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testArticles.json; sourceTree = "<group>"; };
 		F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Publications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6BF14C1E4F653D008FB165 /* Publications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Publications.xcdatamodel; sourceTree = "<group>"; };
 		FA7DCC571E4F739900C84A73 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				FA7DCC611E4F75F300C84A73 /* Info.plist */,
 				C788AD021E50F06700738844 /* GADArticle.h */,
 				C788AD031E50F06700738844 /* GADArticle.m */,
+				C7EC49CD1E5E4A2B00730C67 /* testArticles.json */,
 			);
 			path = SPARCore;
 			sourceTree = "<group>";
@@ -361,7 +364,6 @@
 				TargetAttributes = {
 					7463DD291DC3EE5900A5F77A = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = FC7CAU5645;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -413,6 +415,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7EC49CE1E5E4A2B00730C67 /* testArticles.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,7 +729,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = FC7CAU5645;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Publications/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
@@ -734,6 +737,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -743,13 +747,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = FC7CAU5645;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Publications/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
