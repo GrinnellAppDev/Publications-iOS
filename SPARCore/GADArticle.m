@@ -11,7 +11,7 @@
         GADArticle *article = [[GADArticle alloc] init];
         article.publicationId = @"8e031545-ba66-11e6-8193-a0999b05c023";
         article.title = [NSString stringWithFormat:@"Testarticle %i", i];
-        article.authors = [NSArray arrayWithObjects:@{@"name": authorNames[i], @"email": @"addisemail.edu"}, nil];
+        article.authors = authorNames[i];
         article.series = @"ada28c7d-a49f-11e6-b9d3-a0999b05c023";
         article.url = [NSURL URLWithString:@"http://www.thesandb.com/news/shacs-to-offer-funds-for-students-in-need.html"];
         article.tags = [NSArray arrayWithObjects:@"amazing!", @"fantastic!", @"Computer science!", nil];
