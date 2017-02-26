@@ -3,7 +3,7 @@
 @interface GADArticle : NSObject
 
 @property (nonatomic, strong) NSString *publicationId;
-@property (nonatomic, strong) NSString *authors;
+@property (nonatomic, strong) NSString* author;
 @property (nonatomic, strong) NSURL *url;
 //@property (nonatomic, strong) NSInteger *pictureSize;
 @property (nonatomic, strong) NSString *series;
