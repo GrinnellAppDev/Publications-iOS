@@ -2,7 +2,7 @@
 
 @interface GADArticle : NSObject
 
-@property (nonatomic, strong) NSDate *datePublished;
+@property (nonatomic, strong) NSString *datePublished;
 @property (nonatomic, strong) NSString *brief;
 @property (nonatomic, strong) NSString *headerImage;
 @property (nonatomic, strong) NSString *publicationId;
@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSString *issue;
 
 + (NSArray <GADArticle *> *) loadDummyArticles;
+
++ (NSArray <GADArticle *> *) articlesFromJSON:(NSData *)json;
 
 @end
 
