@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D783EC8ECDF7A3D315F4310 /* Pods_SPARCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */; };
+		68CCEE0E1E6372B300A7C330 /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = C7EC49CD1E5E4A2B00730C67 /* testArticles.json */; };
 		7463DD331DC3EE5900A5F77A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD311DC3EE5900A5F77A /* Main.storyboard */; };
 		7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD391DC3EE5900A5F77A /* LaunchScreen.storyboard */; };
 		8BF28F5C9F4B74E08F59801B /* Pods_Publications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */; };
@@ -405,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68CCEE0E1E6372B300A7C330 /* testArticles.json in Resources */,
 				7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */,
 				FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */,
 				7463DD331DC3EE5900A5F77A /* Main.storyboard in Resources */,
