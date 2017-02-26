@@ -20,11 +20,15 @@ struct newsData {
 class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    var arrayOfArticle = [newsData]()
+    //var arrayOfArticle = [newsData]()
+    var arr = [GADArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        arr = GADArticle.loadDummyArticles()
+        
+        /*
         arrayOfArticle = [newsData(cell: 1, author: "Mike Zou", title: "Building apps is fun, all the cool kids are doing it.", articleImage: #imageLiteral(resourceName: "westworld"), userImage: #imageLiteral(resourceName: "article"), time: "2 hours ago"),
                           newsData(cell: 1, author: "Mike Zou", title: "Populating data on a TableViewCell is easy!", articleImage: #imageLiteral(resourceName: "siliconvalley"), userImage: #imageLiteral(resourceName: "article"), time: "12 hours ago"),
                           newsData(cell: 2, author: "Mike Zou", title: "What am I doing on a Friday night LMAO", articleImage: nil, userImage: #imageLiteral(resourceName: "article"), time: "5 hours ago"),
@@ -32,7 +36,7 @@ class NewsTableViewController: UITableViewController {
                           newsData(cell: 2, author: "Mike Zou", title: "I finally made this work!", articleImage: nil, userImage: #imageLiteral(resourceName: "article"), time: "6 hours ago"),
                           newsData(cell: 1, author: "Mike Zou", title: "Snow storm hits Grinnell and school is cancelled, again.", articleImage: #imageLiteral(resourceName: "himym"), userImage: #imageLiteral(resourceName: "article"), time: "12 hours ago")
         ]
-        
+        */
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -62,11 +66,21 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return arrayOfArticle.count
+        return arr.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NewsTableViewCell
+            let authorArr = arr[indexPath.row].authors
+            
+            cell.authorLabel.text = authorArr
+            cell.postTitleLabel.text = arr[indexPath.row].title
+            cell.postImageView.image = #imageLiteral(resourceName: "article")
+            //cell.timeStamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
+            return cell
         
+        /*
         if arrayOfArticle[indexPath.row].cell == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NewsTableViewCell
             cell.authorLabel.text = arrayOfArticle[indexPath.row].author
@@ -96,9 +110,10 @@ class NewsTableViewController: UITableViewController {
             
             return cell
         }
-        
+        */
     }
     
+    /*
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if arrayOfArticle[indexPath.row].cell == 1 {
             return 243
@@ -107,6 +122,6 @@ class NewsTableViewController: UITableViewController {
         } else {
             return 243
         }
-    }
+    } */
     
 }
