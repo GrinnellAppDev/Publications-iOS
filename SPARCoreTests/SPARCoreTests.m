@@ -36,11 +36,17 @@
     expectedArticle.articleId = @"049bd2c4-ec0d-11e6-a0f4-5e7d89de32e6";
     expectedArticle.title = @"Top 10 Tragedies the Jedi Won't Tell You!";
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"testArticles" ofType:@"json"];
-    NSData *jsonData = [NSData dataWithContentsOfFile:path];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"testArticles" ofType:@"json"];
+    NSData *jsonData = [[NSFileManager defaultManager] contentsAtPath:path];
+    NSLog(@"Debuggg: %@", path);
     NSArray <GADArticle *> *returnValues = [GADArticle articlesFromJSON:jsonData];
-    XCTAssertEqualObjects(expectedArticle, returnValues[0]);
+
+    XCTAssertEqualObjects(expectedArticle.datePublished, returnValues[0].datePublished);
+    XCTAssertEqualObjects(expectedArticle.brief, returnValues[0].brief);
+    XCTAssertEqualObjects(expectedArticle.headerImage, returnValues[0].headerImage);
+    XCTAssertEqualObjects(expectedArticle.publicationId, returnValues[0].publicationId);
+    XCTAssertEqualObjects(expectedArticle.articleId, returnValues[0].articleId);
+    XCTAssertEqualObjects(expectedArticle.title, returnValues[0].title);
 }
 
 - (void)testPerformanceExample {
