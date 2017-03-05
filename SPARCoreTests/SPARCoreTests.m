@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "GADArticle.h"
+#import "GADRemoteModel.h"
 
 @interface SPARCoreTests : XCTestCase
 
@@ -48,6 +49,18 @@
     XCTAssertEqualObjects(expectedArticle.articleId, returnValues[0].articleId);
     XCTAssertEqualObjects(expectedArticle.title, returnValues[0].title);
 }
+
+- (void)testBackendRequest {
+    NSMutableArray <GADArticle*> *returnValues = [[NSMutableArray <GADArticle*> alloc] init];
+    [GADRemoteModel fetchArticlesFromPublication: @"8e031545-ba66-11e6-8193-a0999b05c023" completionHandler:^(NSData * _Nullable data) {
+        if(data == NULL){
+            XCFail(@"test has failed, null data");
+            return;
+        }
+    }];
+}
+
+
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.

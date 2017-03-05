@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
+#import "GADRemoteModel.h"
 
-@interface GADArticle : NSObject
+@interface GADArticle : GADRemoteModel
 
 @property (nonatomic, strong) NSString *datePublished;
 @property (nonatomic, strong) NSString *brief;

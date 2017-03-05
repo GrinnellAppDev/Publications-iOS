@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07DBC69B1E6CA477005CECDB /* GADRemoteModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DBC6991E6CA477005CECDB /* GADRemoteModel.h */; };
+		07DBC69C1E6CA477005CECDB /* GADRemoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DBC69A1E6CA477005CECDB /* GADRemoteModel.m */; };
 		3D783EC8ECDF7A3D315F4310 /* Pods_SPARCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */; };
 		68CCEE0E1E6372B300A7C330 /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = C7EC49CD1E5E4A2B00730C67 /* testArticles.json */; };
 		7463DD331DC3EE5900A5F77A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD311DC3EE5900A5F77A /* Main.storyboard */; };
@@ -77,6 +79,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07DBC6991E6CA477005CECDB /* GADRemoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRemoteModel.h; sourceTree = "<group>"; };
+		07DBC69A1E6CA477005CECDB /* GADRemoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADRemoteModel.m; sourceTree = "<group>"; };
 		0A0C2C1A6E9AFB8CAE0C2C35 /* Pods-SPARCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPARCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SPARCoreTests/Pods-SPARCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPARCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E556C7C718DC75C6BB785C /* Pods-SPARCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPARCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SPARCoreTests/Pods-SPARCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 				FA7DCC611E4F75F300C84A73 /* Info.plist */,
 				C788AD021E50F06700738844 /* GADArticle.h */,
 				C788AD031E50F06700738844 /* GADArticle.m */,
+				07DBC6991E6CA477005CECDB /* GADRemoteModel.h */,
+				07DBC69A1E6CA477005CECDB /* GADRemoteModel.m */,
 			);
 			path = SPARCore;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 				FA7DCC701E4F75F300C84A73 /* SPARCore.h in Headers */,
 				C788AD041E50F06700738844 /* GADArticle.h in Headers */,
 				FA7DCC7E1E4F765200C84A73 /* SPARCDemo.h in Headers */,
+				07DBC69B1E6CA477005CECDB /* GADRemoteModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +586,7 @@
 			files = (
 				FA7DCC7F1E4F765200C84A73 /* SPARCDemo.m in Sources */,
 				C788AD051E50F06700738844 /* GADArticle.m in Sources */,
+				07DBC69C1E6CA477005CECDB /* GADRemoteModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
