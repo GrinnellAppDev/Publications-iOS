@@ -71,14 +71,18 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NewsTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextNewsTableViewCell
             let authorArr = arr[indexPath.row].authors
             
-            cell.authorLabel.text = authorArr
-            cell.postTitleLabel.text = arr[indexPath.row].title
-            cell.postImageView.image = #imageLiteral(resourceName: "article")
+            cell.userName.text = authorArr
+            cell.articleLabel.text = arr[indexPath.row].title
+            cell.profilePic.image = #imageLiteral(resourceName: "article")
             //cell.timeStamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
-            return cell
+            cell.preservesSuperviewLayoutMargins = false
+            cell.separatorInset = UIEdgeInsets.zero
+            cell.layoutMargins = UIEdgeInsets.zero
+        
+        return cell
         
         /*
         if arrayOfArticle[indexPath.row].cell == 1 {
