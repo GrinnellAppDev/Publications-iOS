@@ -2,7 +2,7 @@
 
 @implementation GADArticle
 
-+ (void) fetchArticlesWithPublication: (NSDictionary *)parameters
++ (void) fetchArticlesWithPublication: (NSString *)publicationId
                                         completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *>
                                                                            *_Nullable models,
                                                             NSError *_Nullable error))completion {
@@ -11,7 +11,7 @@
 
 }
 
-+ (void) populateArticleWithId: (NSDictionary *)parameters
+- (void) populateArticleWithId: (NSString *)articleId
                                         completionHandler:(void(^_Nonnull)(GADRemoteModel *
                                                                            *_Nullable models,
                                                             NSError *_Nullable error))completion {
