@@ -13,9 +13,17 @@
 static NSString *apiURL = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/devstable/publications";
 const NSTimeInterval timeoutInterval = 60.0;
 
-+ (void) fetchArticlesFromPublication: (NSString *)publicationId completionHandler:(void(^_Nonnull)(NSData*))completion {
++ (void) fetchModelsWithParams: (NSDictionary * _Nonnull)queryParams
+              modelTransformer:(NSArray<GADRemoteModel *>*_Nonnull(^_Nonnull)
+                                (NSData* _Nonnull jsonData))modelTransformer
+             completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *> *_Nullable models,
+                                                NSError *_Nullable error))completion {
+    
     NSMutableArray *queryItems = [NSMutableArray<NSURLQueryItem *> new];
-    [queryItems addObject:[NSURLQueryItem queryItemWithName:@"publication" value:publicationId]];
+    
+    for (NSString *key in queryParams) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:queryParams[key]]];
+    }
     
     NSURLComponents *components = [NSURLComponents componentsWithString:apiURL];
     components.queryItems = queryItems;
@@ -28,9 +36,12 @@ const NSTimeInterval timeoutInterval = 60.0;
     NSURLSessionDataTask *task = [[NSURLSession sharedSession]dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Error: %@", error);
+            completion(nil, error);
             return;
         }
-        completion(data);
+        NSArray<GADRemoteModel *> *modelObjects = modelTransformer(data);
+        completion(modelObjects, nil);
+        return;
     }];
     [task resume];
 }

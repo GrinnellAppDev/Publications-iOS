@@ -10,6 +10,10 @@
 
 @interface GADRemoteModel : NSObject
 
-+ (void) fetchArticlesFromPublication: (NSString *)publicationId completionHandler:(void(^_Nonnull)(NSData*))completion;
++ (void) fetchModelsWithParams: (NSDictionary * _Nonnull)queryParams
+            modelTransformer:(NSArray<GADRemoteModel *>*_Nonnull(^_Nonnull)
+                              (NSData* _Nonnull jsonData))modeltransformer
+           completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *> *_Nullable models,
+                                              NSError *_Nullable error))completion;
 
 @end
