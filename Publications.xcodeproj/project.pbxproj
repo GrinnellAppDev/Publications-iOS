@@ -10,6 +10,7 @@
 		3D783EC8ECDF7A3D315F4310 /* Pods_SPARCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */; };
 		7463DD331DC3EE5900A5F77A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD311DC3EE5900A5F77A /* Main.storyboard */; };
 		7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD391DC3EE5900A5F77A /* LaunchScreen.storyboard */; };
+		7CD707111E705B59009D592C /* ArticleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD707101E705B59009D592C /* ArticleViewCell.swift */; };
 		8BF28F5C9F4B74E08F59801B /* Pods_Publications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */; };
 		ABE7CF946E928AFCB09C7477 /* Pods_SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */; };
 		C788AD041E50F06700738844 /* GADArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* GADArticle.h */; };
@@ -19,8 +20,6 @@
 		FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */; };
 		FA7DCC4D1E4F730D00C84A73 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */; };
 		FA7DCC4E1E4F730D00C84A73 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */; };
-		FA7DCC4F1E4F730D00C84A73 /* PublicationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDC91DC6762B009D0256 /* PublicationsViewController.swift */; };
-		FA7DCC501E4F730D00C84A73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCB1DC6763A009D0256 /* ProfileViewController.swift */; };
 		FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */; };
 		FA7DCC521E4F730D00C84A73 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCF1DC67663009D0256 /* SettingViewController.swift */; };
 		FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */; };
@@ -91,10 +90,9 @@
 		7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
-		74B0BDC91DC6762B009D0256 /* PublicationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicationsViewController.swift; sourceTree = "<group>"; };
-		74B0BDCB1DC6763A009D0256 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		74B0BDCF1DC67663009D0256 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		7CD707101E705B59009D592C /* ArticleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewCell.swift; sourceTree = "<group>"; };
 		9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPARCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B7F5996606B3C5D5769CB5 /* Pods-Publications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.release.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.release.xcconfig"; sourceTree = "<group>"; };
 		AEAC1733BFDE505F1BFFBEE0 /* Pods-Publications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.debug.xcconfig"; sourceTree = "<group>"; };
@@ -226,12 +224,11 @@
 			children = (
 				7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */,
 				7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */,
-				74B0BDC91DC6762B009D0256 /* PublicationsViewController.swift */,
-				74B0BDCB1DC6763A009D0256 /* ProfileViewController.swift */,
 				74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */,
 				74B0BDCF1DC67663009D0256 /* SettingViewController.swift */,
 				7463DD631DC3F3CB00A5F77A /* MenuController.swift */,
 				7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */,
+				7CD707101E705B59009D592C /* ArticleViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -362,7 +359,7 @@
 					7463DD291DC3EE5900A5F77A = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = FC7CAU5645;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					FA7DCC5D1E4F75F300C84A73 = {
@@ -373,6 +370,7 @@
 					FA7DCC651E4F75F300C84A73 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = H69TS4DPUJ;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 7463DD291DC3EE5900A5F77A;
 					};
@@ -554,12 +552,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7DCC581E4F739900C84A73 /* AppDelegate.swift in Sources */,
-				FA7DCC501E4F730D00C84A73 /* ProfileViewController.swift in Sources */,
-				FA7DCC4F1E4F730D00C84A73 /* PublicationsViewController.swift in Sources */,
 				FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */,
 				FA7DCC561E4F733000C84A73 /* Publications.xcdatamodeld in Sources */,
 				FA7DCC521E4F730D00C84A73 /* SettingViewController.swift in Sources */,
 				FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */,
+				7CD707111E705B59009D592C /* ArticleViewCell.swift in Sources */,
 				FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */,
 				FA7DCC4E1E4F730D00C84A73 /* PhotoViewController.swift in Sources */,
 				FA7DCC4B1E4F730D00C84A73 /* MenuController.swift in Sources */,
@@ -813,6 +810,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications.SPARCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Publications.app/Publications";
 			};
 			name = Debug;
@@ -829,6 +827,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications.SPARCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Publications.app/Publications";
 			};
 			name = Release;
