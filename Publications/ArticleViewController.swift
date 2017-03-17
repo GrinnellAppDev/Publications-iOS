@@ -65,7 +65,7 @@ class ArticleViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 800
+        return 1200
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -90,6 +90,8 @@ class ArticleViewController: UITableViewController {
         cell.articleTxt.sizeToFit()
         cell.articleTxt.frame = CGRect(x: cell.articleTxt.frame.origin.x, y: cell.articleTxt.frame.origin.y, width: 330, height: cell.articleTxt.frame.height)
         
+        cell.username.text = "Mike Zou"
+        cell.dateLabel.text = "03/17/2017"
     //    let rowData = data.postArray[indexPath.row]
    //     cell.dateLabel.text = rowData["date"]
     //    cell.usernameLabel.text = rowData["name"]
