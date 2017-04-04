@@ -2,9 +2,9 @@
 
 @implementation GADArticle
 
-+ (void) fetchArticlesWithPublication: (NSString *)publicationId
-                                        completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *>
-                                                                           *_Nullable models,
++ (void) articlesFromPublication: (NSString *)publicationId
+                                        completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
+                                                                           *_Nullable articles,
                                                             NSError *_Nullable error))completion {
     //Should we create NSDictionary parameters within each method and just request the publicationId
     //from the front end?
@@ -15,8 +15,8 @@
                                         completionHandler:(void(^_Nonnull)(GADRemoteModel *
                                                                            *_Nullable models,
                                                             NSError *_Nullable error))completion {
-    //Similarly, should we create NSDictionary parameters within each method and just request the articleId
-    //from the front end?
+    //Similarly, should we create NSDictionary parameters within each method and just request the
+    //articleId from the front end?
     
 }
 
@@ -24,7 +24,8 @@
     
     NSMutableArray <GADArticle *> *articles = [[NSMutableArray alloc] init];
     NSError *error = nil;
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:json options:kNilOptions error:&error];
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:json
+                                                         options:kNilOptions error:&error];
     
     if (error != nil) {
         NSLog(@"Error parsing JSON.");
