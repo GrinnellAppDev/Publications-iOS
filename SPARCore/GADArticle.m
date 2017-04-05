@@ -2,6 +2,13 @@
 
 @implementation GADArticle
 
+static NSString *const API_ARTICLE_ID = @"id";
+static NSString *const API_BRIEF = @"brief";
+static NSString *const API_DATE_PUBLISHED = @"datePublished";
+static NSString *const API_HEADER_IMAGE = @"headerImage";
+static NSString *const API_PUBLICATION_ID = @"publication";
+static NSString *const API_TITLE = @"title";
+
 + (void) articlesFromPublication: (NSString *)publicationId
                                         completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
                                                                            *_Nullable articles,
@@ -11,10 +18,8 @@
 
 }
 
-- (void) populateArticleWithId: (NSString *)articleId
-                                        completionHandler:(void(^_Nonnull)(GADRemoteModel *
-                                                                           *_Nullable models,
-                                                            NSError *_Nullable error))completion {
+- (void) populateArticleWithId: (void(^_Nonnull)(GADRemoteModel * *_Nullable models,
+                                                NSError *_Nullable error))completion {
     //Similarly, should we create NSDictionary parameters within each method and just request the
     //articleId from the front end?
     
@@ -32,14 +37,16 @@
     }
     
     for (NSDictionary *element in jsonArray) {
-        GADArticle *article = [[GADArticle alloc] init];
         //Map fields of element to fields of article
-        article.datePublished = element[@"datePublished"];
-        article.brief = element[@"brief"];
-        article.headerImage = element[@"headerImage"];
-        article.publicationId = element[@"publication"];
-        article.articleId = element[@"id"];
-        article.title = element[@"title"];
+        GADArticle *article = [[GADArticle alloc] init];
+        //datePublished field is a UNIX Timestamp number - converting to NSDate here
+        int timeStamp = (int)element[API_DATE_PUBLISHED];
+        article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
+        article.brief = element[API_BRIEF];
+        article.headerImage = element[API_HEADER_IMAGE];
+        article.publicationId = element[API_PUBLICATION_ID];
+        article.articleId = element[API_ARTICLE_ID];
+        article.title = element[API_TITLE];
         [articles addObject:article];
     }
     return articles;
@@ -60,7 +67,7 @@
         article.tags = [NSArray arrayWithObjects:@"amazing!", @"fantastic!", @"Computer science!", nil];
         article.brief = [NSString stringWithFormat:@"This is very brief %i", i];
         article.content = @"This is much less brief because it should be longer than the brief";
-        //article.datePublished = [NSDate date];
+        article.datePublished = [NSDate date];
         article.issue = @"ae2f3b54-a49f-11e6-b1ab-a0999b05c023";
         article.articleId = @"db7bc676-ba7d-11e6-8de8-a20f19d048b3";
     
