@@ -14,6 +14,7 @@
 		8BF28F5C9F4B74E08F59801B /* Pods_Publications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */; };
 		AA1A84081E97EA2200C11887 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */; };
 		AA1A840A1E97EDC900C11887 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */; };
+		AA1A840C1E9808A900C11887 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A840B1E9808A900C11887 /* AboutViewController.swift */; };
 		ABE7CF946E928AFCB09C7477 /* Pods_SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */; };
 		C788AD041E50F06700738844 /* GADArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* GADArticle.h */; };
 		C788AD051E50F06700738844 /* GADArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* GADArticle.m */; };
@@ -97,6 +98,7 @@
 		A1B7F5996606B3C5D5769CB5 /* Pods-Publications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.release.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.release.xcconfig"; sourceTree = "<group>"; };
 		AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		AA1A840B1E9808A900C11887 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		AEAC1733BFDE505F1BFFBEE0 /* Pods-Publications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.debug.xcconfig"; sourceTree = "<group>"; };
 		C788AD021E50F06700738844 /* GADArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADArticle.h; sourceTree = "<group>"; };
 		C788AD031E50F06700738844 /* GADArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADArticle.m; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		FA34ED2E1E4F7C60003651E1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AA1A840B1E9808A900C11887 /* AboutViewController.swift */,
 				AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */,
 				7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */,
 				7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */,
@@ -361,7 +364,6 @@
 				TargetAttributes = {
 					7463DD291DC3EE5900A5F77A = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = FC7CAU5645;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -565,6 +567,7 @@
 				FA7DCC4E1E4F730D00C84A73 /* PhotoViewController.swift in Sources */,
 				FA7DCC4B1E4F730D00C84A73 /* MenuController.swift in Sources */,
 				FA7DCC4D1E4F730D00C84A73 /* NewsTableViewCell.swift in Sources */,
+				AA1A840C1E9808A900C11887 /* AboutViewController.swift in Sources */,
 				FADEDE131E5396B500048D80 /* TextNewsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -727,11 +730,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = FC7CAU5645;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Publications/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -744,11 +749,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = FC7CAU5645;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Publications/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
