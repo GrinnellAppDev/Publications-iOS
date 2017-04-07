@@ -12,6 +12,7 @@
 		7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD391DC3EE5900A5F77A /* LaunchScreen.storyboard */; };
 		7CD707111E705B59009D592C /* ArticleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD707101E705B59009D592C /* ArticleViewCell.swift */; };
 		8BF28F5C9F4B74E08F59801B /* Pods_Publications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */; };
+		AA1A84081E97EA2200C11887 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */; };
 		ABE7CF946E928AFCB09C7477 /* Pods_SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */; };
 		C788AD041E50F06700738844 /* GADArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* GADArticle.h */; };
 		C788AD051E50F06700738844 /* GADArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* GADArticle.m */; };
@@ -21,7 +22,6 @@
 		FA7DCC4D1E4F730D00C84A73 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */; };
 		FA7DCC4E1E4F730D00C84A73 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */; };
 		FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */; };
-		FA7DCC521E4F730D00C84A73 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCF1DC67663009D0256 /* SettingViewController.swift */; };
 		FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */; };
 		FA7DCC561E4F733000C84A73 /* Publications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA6BF14B1E4F653D008FB165 /* Publications.xcdatamodeld */; };
 		FA7DCC581E4F739900C84A73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DCC571E4F739900C84A73 /* AppDelegate.swift */; };
@@ -91,10 +91,10 @@
 		7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
-		74B0BDCF1DC67663009D0256 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		7CD707101E705B59009D592C /* ArticleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewCell.swift; sourceTree = "<group>"; };
 		9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPARCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B7F5996606B3C5D5769CB5 /* Pods-Publications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.release.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.release.xcconfig"; sourceTree = "<group>"; };
+		AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		AEAC1733BFDE505F1BFFBEE0 /* Pods-Publications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.debug.xcconfig"; sourceTree = "<group>"; };
 		C788AD021E50F06700738844 /* GADArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADArticle.h; sourceTree = "<group>"; };
 		C788AD031E50F06700738844 /* GADArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADArticle.m; sourceTree = "<group>"; };
@@ -222,10 +222,10 @@
 		FA34ED2E1E4F7C60003651E1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */,
 				7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */,
 				7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */,
 				74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */,
-				74B0BDCF1DC67663009D0256 /* SettingViewController.swift */,
 				7463DD631DC3F3CB00A5F77A /* MenuController.swift */,
 				7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */,
 				7CD707101E705B59009D592C /* ArticleViewCell.swift */,
@@ -554,7 +554,7 @@
 				FA7DCC581E4F739900C84A73 /* AppDelegate.swift in Sources */,
 				FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */,
 				FA7DCC561E4F733000C84A73 /* Publications.xcdatamodeld in Sources */,
-				FA7DCC521E4F730D00C84A73 /* SettingViewController.swift in Sources */,
+				AA1A84081E97EA2200C11887 /* SettingsTableViewController.swift in Sources */,
 				FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */,
 				7CD707111E705B59009D592C /* ArticleViewCell.swift in Sources */,
 				FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */,
