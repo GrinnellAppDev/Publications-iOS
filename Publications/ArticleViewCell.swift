@@ -24,3 +24,4 @@ class ArticleViewCell: UITableViewCell {
     }
 
 }
+
