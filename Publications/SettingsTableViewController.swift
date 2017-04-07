@@ -1,17 +1,25 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
+
+    var rowSelected = -1;
+    var numSections = 1;
+    var cellIds = ["aboutSPARCCell", "aboutAppdevCell", "aboutFontsCell"]
+    var settingsLabels = ["About SPARC", "About AppDev", "Change article font size"];
     
-    var settingsLabels = ["Change article font size", "About SPARC", "About AppDev"];
+    var cellDequeueCount = 0;
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.tableView.allowsSelection = true
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,28 +29,23 @@ class SettingsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+    override func numberOfSections(in settingsTableView: UITableView) -> Int {
+        return numSections
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 3
+    override func tableView(_ settingsTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settingsLabels.count
     }
     
-
-    
-
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> SettingsTableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell", for: indexPath) as! SettingsTableViewCell
+    override func tableView(_ settingsTableView: UITableView, cellForRowAt indexPath: IndexPath) -> SettingsTableViewCell {
+        let identifier = cellIds[cellDequeueCount%3];
+        print (identifier)
+        let cell = settingsTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SettingsTableViewCell
 
         cell.settingLabel.text = settingsLabels[indexPath.row];
-
+        cellDequeueCount += 1
         return cell
     }
- 
 
     /*
     // Override to support conditional editing of the table view.
@@ -79,14 +82,33 @@ class SettingsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
+    /*
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.rowSelected = indexPath.row
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    }*/ //this function is not working
+
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showAboutSPARC"
+        {
+            //print(tableView.indexPathsForSelectedRows)
+            if let destinationVC = segue.destination as? AboutViewController {
+                destinationVC.pageType = 0
+            }
+        }
+        else if segue.identifier == "showAboutAppdev"
+        {
+            if let destinationVC = segue.destination as? AboutViewController {
+                destinationVC.pageType = 1
+                print ("HERE")
+            }
+        }
     }
-    */
 
 }
