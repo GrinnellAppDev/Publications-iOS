@@ -13,6 +13,7 @@
 		7CD707111E705B59009D592C /* ArticleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD707101E705B59009D592C /* ArticleViewCell.swift */; };
 		8BF28F5C9F4B74E08F59801B /* Pods_Publications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */; };
 		AA1A84081E97EA2200C11887 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */; };
+		AA1A840A1E97EDC900C11887 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */; };
 		ABE7CF946E928AFCB09C7477 /* Pods_SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */; };
 		C788AD041E50F06700738844 /* GADArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* GADArticle.h */; };
 		C788AD051E50F06700738844 /* GADArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* GADArticle.m */; };
@@ -95,6 +96,7 @@
 		9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPARCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B7F5996606B3C5D5769CB5 /* Pods-Publications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.release.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.release.xcconfig"; sourceTree = "<group>"; };
 		AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		AEAC1733BFDE505F1BFFBEE0 /* Pods-Publications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.debug.xcconfig"; sourceTree = "<group>"; };
 		C788AD021E50F06700738844 /* GADArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADArticle.h; sourceTree = "<group>"; };
 		C788AD031E50F06700738844 /* GADArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADArticle.m; sourceTree = "<group>"; };
@@ -228,7 +230,6 @@
 				74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */,
 				7463DD631DC3F3CB00A5F77A /* MenuController.swift */,
 				7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */,
-				7CD707101E705B59009D592C /* ArticleViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -236,7 +237,9 @@
 		FA34ED2F1E4F7C7D003651E1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7CD707101E705B59009D592C /* ArticleViewCell.swift */,
 				7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */,
+				AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */,
 				FADEDE121E5396B500048D80 /* TextNewsTableViewCell.swift */,
 			);
 			name = Cells;
@@ -553,6 +556,7 @@
 			files = (
 				FA7DCC581E4F739900C84A73 /* AppDelegate.swift in Sources */,
 				FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */,
+				AA1A840A1E97EDC900C11887 /* SettingsTableViewCell.swift in Sources */,
 				FA7DCC561E4F733000C84A73 /* Publications.xcdatamodeld in Sources */,
 				AA1A84081E97EA2200C11887 /* SettingsTableViewController.swift in Sources */,
 				FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */,
