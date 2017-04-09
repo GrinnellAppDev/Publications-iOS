@@ -5,7 +5,7 @@
 //static NSString *apiURL = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/devstable/publications";
 const NSTimeInterval timeoutInterval = 60.0;
 
-+ (void) fetchModelsWithParams:(NSString * _Nonnull)baseURL
++ (void) fetchModelsWithParams:(NSURL * _Nonnull)baseURL
                queryParameters:(NSDictionary * _Nonnull)queryParams
               modelTransformer:(NSArray<GADRemoteModel *>*_Nonnull(^_Nonnull)
                                 (NSData* _Nonnull jsonData))modelTransformer
@@ -18,7 +18,7 @@ const NSTimeInterval timeoutInterval = 60.0;
         [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:queryParams[key]]];
     }
     
-    NSURLComponents *components = [NSURLComponents componentsWithString:baseURL];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:baseURL resolvingAgainstBaseURL:false];
     components.queryItems = queryItems;
     NSURL *url = components.URL;
     

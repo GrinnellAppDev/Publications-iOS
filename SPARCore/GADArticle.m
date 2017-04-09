@@ -10,13 +10,18 @@ static NSString *const API_HEADER_IMAGE = @"headerImage";
 static NSString *const API_PUBLICATION_ID = @"publication";
 static NSString *const API_TITLE = @"title";
 
-static NSString *const API_PUBLICATION_BASEURL = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/devstable/publications";
+static NSString *const API_HOSTNAME = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/";
+static NSString *const API_PREFIX = @"devstable";
+static NSString *const API_PUBLICATION_PATH = @"publications";
+static NSString *const API_ARTICLE_PATH = @"articles";
 
 + (void) articlesFromPublication: (NSString *)publicationId
                                         completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
                                                                            *_Nullable articles,
                                                             NSError *_Nullable error))completion {
-    [GADRemoteModel fetchModelsWithParams:API_PUBLICATION_BASEURL
+    NSURL *queryURL = [GADArticle createURLWithPublication:publicationId];
+    
+    [GADRemoteModel fetchModelsWithParams:queryURL
                           queryParameters:@{}
                          modelTransformer:^(NSData *jsonData) {
                             return [GADArticle articlesFromJSON:jsonData];
@@ -29,6 +34,14 @@ static NSString *const API_PUBLICATION_BASEURL = @"https://g2j7qs2xs7.execute-ap
 
 - (void) populateArticleWithId: (void(^_Nonnull)(GADRemoteModel * *_Nullable models,
                                                 NSError *_Nullable error))completion {
+    NSURL *queryURL = [GADArticle createURLWithArticle:self.articleId publication:self.publicationId];
+    
+    [GADRemoteModel fetchModelsWithParams:queryURL
+                          queryParameters:@{}
+                         modelTransformer:^(NSData *jsonData){
+                             //Do the thing
+                         }
+                        completionHandler:completion];
     //Similarly, should we create NSDictionary parameters within each method and just request the
     //articleId from the front end?
     
@@ -60,6 +73,27 @@ static NSString *const API_PUBLICATION_BASEURL = @"https://g2j7qs2xs7.execute-ap
     }
     return articles;
 }
+
++ (NSURL *) createBaseURL {
+    NSURL *queryURL = [NSURL URLWithString:API_HOSTNAME];
+    queryURL = [NSURL URLWithString:API_PREFIX relativeToURL:queryURL];
+    return queryURL;
+}
+
++ (NSURL *) createURLWithPublication: (NSString *)publicationId{
+    NSURL *queryURL = [GADArticle createBaseURL];
+    queryURL = [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:queryURL];
+    queryURL = [NSURL URLWithString:publicationId relativeToURL:queryURL];
+    queryURL = [NSURL URLWithString:API_ARTICLE_PATH relativeToURL:queryURL];
+    return queryURL;
+}
+
++ (NSURL *) createURLWithArticle: (NSString *)articleId publication:(NSString *)publicationId{
+    NSURL *queryURL = [GADArticle createURLWithPublication:publicationId];
+    queryURL = [NSURL URLWithString:articleId relativeToURL:queryURL];
+    return queryURL;
+}
+
 
 + (NSArray <GADArticle *> *) loadDummyArticles {
 

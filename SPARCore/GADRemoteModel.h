@@ -2,7 +2,7 @@
 
 @interface GADRemoteModel : NSObject
 
-+ (void) fetchModelsWithParams:(NSString * _Nonnull)baseURL
++ (void) fetchModelsWithParams:(NSURL * _Nonnull)baseURL
                queryParameters:(NSDictionary * _Nonnull)queryParams
               modelTransformer:(NSArray<GADRemoteModel *>*_Nonnull(^_Nonnull)
                                 (NSData* _Nonnull jsonData))modelTransformer
