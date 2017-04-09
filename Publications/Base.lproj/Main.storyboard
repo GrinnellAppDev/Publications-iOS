@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3gj-dd-ajm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3gj-dd-ajm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -409,27 +410,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZ2-bt-nFn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZ2-bt-nFn">
                                 <rect key="frame" x="16" y="72" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="EtG-Ld-cJh"/>
+                                    <constraint firstAttribute="width" secondItem="cZ2-bt-nFn" secondAttribute="height" multiplier="1:1" id="uCM-0J-hDr"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TITLE" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzN-Hu-nW3">
-                                <rect key="frame" x="174" y="72" width="197" height="125"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzN-Hu-nW3">
+                                <rect key="frame" x="174" y="114" width="197" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ltp-Og-DK4"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="[email]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4R-wb-X6e">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[email]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4R-wb-X6e">
                                 <rect key="frame" x="174" y="201" width="185" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XQQ-GR-zfk">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XQQ-GR-zfk">
                                 <rect key="frame" x="16" y="244" width="343" height="374"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -437,6 +441,21 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y4R-wb-X6e" firstAttribute="top" secondItem="CzN-Hu-nW3" secondAttribute="bottom" constant="43" id="32A-6h-yOx"/>
+                            <constraint firstItem="cZ2-bt-nFn" firstAttribute="leading" secondItem="5ot-QD-24N" secondAttribute="leadingMargin" id="FMO-QI-wDK"/>
+                            <constraint firstItem="cZ2-bt-nFn" firstAttribute="leading" secondItem="XQQ-GR-zfk" secondAttribute="leading" id="Qpb-C4-CSk"/>
+                            <constraint firstItem="XQQ-GR-zfk" firstAttribute="bottom" secondItem="sbd-zR-wOn" secondAttribute="top" id="SkH-uw-b6N"/>
+                            <constraint firstItem="CzN-Hu-nW3" firstAttribute="top" secondItem="UxC-Gq-779" secondAttribute="bottom" constant="50" id="UeF-Yn-qvl"/>
+                            <constraint firstItem="y4R-wb-X6e" firstAttribute="trailing" secondItem="XQQ-GR-zfk" secondAttribute="trailing" id="ZsD-Yq-BFx"/>
+                            <constraint firstItem="CzN-Hu-nW3" firstAttribute="leading" secondItem="cZ2-bt-nFn" secondAttribute="trailing" constant="8" symbolic="YES" id="aVs-s7-wVM"/>
+                            <constraint firstItem="cZ2-bt-nFn" firstAttribute="top" secondItem="UxC-Gq-779" secondAttribute="bottom" constant="8" symbolic="YES" id="cts-hM-Ifv"/>
+                            <constraint firstItem="CzN-Hu-nW3" firstAttribute="leading" secondItem="y4R-wb-X6e" secondAttribute="leading" id="gpq-l0-akB"/>
+                            <constraint firstItem="cZ2-bt-nFn" firstAttribute="bottom" secondItem="y4R-wb-X6e" secondAttribute="bottom" id="jYk-jN-LM7"/>
+                            <constraint firstItem="XQQ-GR-zfk" firstAttribute="top" secondItem="cZ2-bt-nFn" secondAttribute="bottom" constant="22" id="l78-RF-B8Z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CzN-Hu-nW3" secondAttribute="trailing" constant="-12" id="mCU-Wr-6vw"/>
+                            <constraint firstItem="y4R-wb-X6e" firstAttribute="trailing" secondItem="5ot-QD-24N" secondAttribute="trailingMargin" id="uX7-7o-og2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="e3M-FL-F1E"/>
                     <connections>
@@ -448,7 +467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yon-8a-spk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3932" y="1174"/>
+            <point key="canvasLocation" x="3932" y="1173.4632683658172"/>
         </scene>
         <!--Newsfeed-->
         <scene sceneID="Xar-3n-f64">
@@ -473,7 +492,7 @@
         <scene sceneID="gQV-ku-O0B">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="agT-dF-HRa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" selectedImage="Settings" id="Zhn-eI-J1X"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" selectedImage="Settings" id="Zhn-eI-J1X"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Gl-Mr-Ywb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
