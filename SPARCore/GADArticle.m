@@ -1,4 +1,5 @@
 #import "GADArticle.h"
+#import "GADRemoteModel.h"
 
 @implementation GADArticle
 
@@ -9,10 +10,18 @@ static NSString *const API_HEADER_IMAGE = @"headerImage";
 static NSString *const API_PUBLICATION_ID = @"publication";
 static NSString *const API_TITLE = @"title";
 
+static NSString *const API_PUBLICATION_BASEURL = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/devstable/publications";
+
 + (void) articlesFromPublication: (NSString *)publicationId
                                         completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
                                                                            *_Nullable articles,
                                                             NSError *_Nullable error))completion {
+    [GADRemoteModel fetchModelsWithParams:API_PUBLICATION_BASEURL
+                          queryParameters:@{}
+                         modelTransformer:^(NSData *jsonData) {
+                            return [GADArticle articlesFromJSON:jsonData];
+                         }
+                        completionHandler:completion];
     //Should we create NSDictionary parameters within each method and just request the publicationId
     //from the front end?
 
