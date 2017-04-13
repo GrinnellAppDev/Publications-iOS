@@ -4,7 +4,9 @@
 @implementation GADArticle
 
 static NSString *const API_ARTICLE_ID = @"id";
+static NSString *const API_AUTHORS = @"authors";
 static NSString *const API_BRIEF = @"brief";
+static NSString *const API_CONTENT = @"content";
 static NSString *const API_DATE_PUBLISHED = @"datePublished";
 static NSString *const API_HEADER_IMAGE = @"headerImage";
 static NSString *const API_PUBLICATION_ID = @"publication";
@@ -27,23 +29,24 @@ static NSString *const API_ARTICLE_PATH = @"articles";
                             return [GADArticle articlesFromJSON:jsonData];
                          }
                         completionHandler:completion];
-    //Should we create NSDictionary parameters within each method and just request the publicationId
-    //from the front end?
 
 }
 
-- (void) populateArticleWithId: (void(^_Nonnull)(GADRemoteModel * *_Nullable models,
+- (void) populateArticleWithId: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
                                                 NSError *_Nullable error))completion {
     NSURL *queryURL = [GADArticle createURLWithArticle:self.articleId publication:self.publicationId];
     
     [GADRemoteModel fetchModelsWithParams:queryURL
                           queryParameters:@{}
                          modelTransformer:^(NSData *jsonData){
-                             //Do the thing
+                             return [GADArticle articlesFromJSON:jsonData];
                          }
-                        completionHandler:completion];
-    //Similarly, should we create NSDictionary parameters within each method and just request the
-    //articleId from the front end?
+                        completionHandler:^(NSArray <GADArticle *> *_Nullable model, NSError *_Nullable error){
+                            GADArticle *fullArticle = model[0];
+                            self.content = fullArticle.content;
+                            self.authors = fullArticle.authors;
+                            //completion(); --How should we call the completion handler here?
+                        }];
     
 }
 
@@ -69,6 +72,10 @@ static NSString *const API_ARTICLE_PATH = @"articles";
         article.publicationId = element[API_PUBLICATION_ID];
         article.articleId = element[API_ARTICLE_ID];
         article.title = element[API_TITLE];
+        if (element[API_CONTENT]) {
+            article.content = element[API_CONTENT];
+            article.authors = element[API_AUTHORS];
+        }
         [articles addObject:article];
     }
     return articles;
