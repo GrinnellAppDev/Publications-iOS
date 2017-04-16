@@ -1,10 +1,4 @@
-//
-//  SPARCoreTests.m
-//  SPARCoreTests
-//
-//  Created by Alex Mitchell on 2/11/17.
-//  Copyright © 2017 comp. All rights reserved.
-//
+
 
 #import <XCTest/XCTest.h>
 #import "GADArticle.h"

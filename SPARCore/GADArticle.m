@@ -21,7 +21,7 @@ static NSString *const API_ARTICLE_PATH = @"articles";
                                         completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
                                                                            *_Nullable articles,
                                                             NSError *_Nullable error))completion {
-    NSURL *queryURL = [GADArticle createURLWithPublication:publicationId];
+    NSURL *queryURL = [GADArticle urlForArticlesFromPublication:publicationId];
     
     [GADRemoteModel fetchModelsWithParams:queryURL
                           queryParameters:@{}
@@ -82,14 +82,14 @@ static NSString *const API_ARTICLE_PATH = @"articles";
     return articles;
 }
 
-+ (NSURL *) createBaseURL {
++ (NSURL *) baseURL {
     NSURL *queryURL = [NSURL URLWithString:API_HOSTNAME];
     queryURL = [NSURL URLWithString:API_PREFIX relativeToURL:queryURL];
     return queryURL;
 }
 
-+ (NSURL *) createURLWithPublication: (NSString *)publicationId{
-    NSURL *queryURL = [GADArticle createBaseURL];
++ (NSURL *) urlForArticlesFromPublication: (NSString *)publicationId{
+    NSURL *queryURL = [GADArticle baseURL];
     queryURL = [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:queryURL];
     queryURL = [NSURL URLWithString:publicationId relativeToURL:queryURL];
     queryURL = [NSURL URLWithString:API_ARTICLE_PATH relativeToURL:queryURL];
@@ -97,18 +97,16 @@ static NSString *const API_ARTICLE_PATH = @"articles";
 }
 
 + (NSURL *) createURLWithArticle: (NSString *)articleId publication:(NSString *)publicationId{
-    NSURL *queryURL = [GADArticle createURLWithPublication:publicationId];
+    NSURL *queryURL = [GADArticle urlForArticlesFromPublication:publicationId];
     queryURL = [NSURL URLWithString:articleId relativeToURL:queryURL];
     return queryURL;
 }
-
 
 + (NSArray <GADArticle *> *) loadDummyArticles {
 
     NSMutableArray <GADArticle *> *articleArray = [[NSMutableArray alloc] init];
     NSArray <NSString *> *authorNames = @[@"Alex", @"Mitchell", @"Addi", @"Gould", @"Garrett", @"Wang", @"Alex2", @"French", @"Nathan", @"Gifford"];
     
-    //make ten articles at a time. How do we make it so we aren't loading the same ten articles each time we scroll down?
     for (int i = 0; i < 10; i++) {
         GADArticle *article = [[GADArticle alloc] init];
         article.publicationId = @"8e031545-ba66-11e6-8193-a0999b05c023";
