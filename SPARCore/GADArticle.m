@@ -32,7 +32,8 @@ static NSString *const API_ARTICLE_PATH = @"articles";
 
 }
 
-- (void) populateArticleWithId: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
+
+- (void) fetchFulltextWithCompletion: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
                                                 NSError *_Nullable error))completion {
     NSURL *queryURL = [GADArticle createURLWithArticle:self.articleId publication:self.publicationId];
     
@@ -107,12 +108,14 @@ static NSString *const API_ARTICLE_PATH = @"articles";
     NSMutableArray <GADArticle *> *articleArray = [[NSMutableArray alloc] init];
     NSArray <NSString *> *authorNames = @[@"Alex", @"Mitchell", @"Addi", @"Gould", @"Garrett", @"Wang", @"Alex2", @"French", @"Nathan", @"Gifford"];
     
+    //make ten articles at a time. How do we make it so we aren't loading the same ten articles each time we scroll down?
     for (int i = 0; i < 10; i++) {
         GADArticle *article = [[GADArticle alloc] init];
         article.publicationId = @"8e031545-ba66-11e6-8193-a0999b05c023";
         article.title = [NSString stringWithFormat:@"Testarticle %i", i];
         article.authors = [NSArray arrayWithObjects:@{@"name": authorNames[i], @"email": @"addisemail.edu"}, nil];
         article.series = @"ada28c7d-a49f-11e6-b9d3-a0999b05c023";
+        //URL needs to change for each article
         article.url = [NSURL URLWithString:@"http://www.thesandb.com/news/shacs-to-offer-funds-for-students-in-need.html"];
         article.tags = [NSArray arrayWithObjects:@"amazing!", @"fantastic!", @"Computer science!", nil];
         article.brief = [NSString stringWithFormat:@"This is very brief %i", i];
