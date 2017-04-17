@@ -15,8 +15,8 @@
 		7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD391DC3EE5900A5F77A /* LaunchScreen.storyboard */; };
 		8BF28F5C9F4B74E08F59801B /* Pods_Publications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */; };
 		ABE7CF946E928AFCB09C7477 /* Pods_SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */; };
-		BF1932E41EA465A800E5D911 /* GADPublication.h in Headers */ = {isa = PBXBuildFile; fileRef = BF1932E21EA465A800E5D911 /* GADPublication.h */; };
-		BF1932E51EA465A800E5D911 /* GADPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1932E31EA465A800E5D911 /* GADPublication.m */; };
+		BF1932E81EA47A8800E5D911 /* GADPublication.h in Headers */ = {isa = PBXBuildFile; fileRef = BF1932E61EA47A8800E5D911 /* GADPublication.h */; };
+		BF1932E91EA47A8800E5D911 /* GADPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1932E71EA47A8800E5D911 /* GADPublication.m */; };
 		C788AD041E50F06700738844 /* GADArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* GADArticle.h */; };
 		C788AD051E50F06700738844 /* GADArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* GADArticle.m */; };
 		C7EC49CE1E5E4A2B00730C67 /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = C7EC49CD1E5E4A2B00730C67 /* testArticles.json */; };
@@ -106,8 +106,8 @@
 		9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPARCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B7F5996606B3C5D5769CB5 /* Pods-Publications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.release.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.release.xcconfig"; sourceTree = "<group>"; };
 		AEAC1733BFDE505F1BFFBEE0 /* Pods-Publications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.debug.xcconfig"; sourceTree = "<group>"; };
-		BF1932E21EA465A800E5D911 /* GADPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADPublication.h; path = SPARCoreTests/GADPublication.h; sourceTree = SOURCE_ROOT; };
-		BF1932E31EA465A800E5D911 /* GADPublication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GADPublication.m; path = SPARCoreTests/GADPublication.m; sourceTree = SOURCE_ROOT; };
+		BF1932E61EA47A8800E5D911 /* GADPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADPublication.h; sourceTree = "<group>"; };
+		BF1932E71EA47A8800E5D911 /* GADPublication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADPublication.m; sourceTree = "<group>"; };
 		C788AD021E50F06700738844 /* GADArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADArticle.h; sourceTree = "<group>"; };
 		C788AD031E50F06700738844 /* GADArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADArticle.m; sourceTree = "<group>"; };
 		C7EC49CD1E5E4A2B00730C67 /* testArticles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testArticles.json; path = ../SPARCore/testArticles.json; sourceTree = "<group>"; };
@@ -260,12 +260,12 @@
 			isa = PBXGroup;
 			children = (
 				FA7DCC6C1E4F75F300C84A73 /* Tests */,
+				BF1932E61EA47A8800E5D911 /* GADPublication.h */,
+				BF1932E71EA47A8800E5D911 /* GADPublication.m */,
 				FA7DCC601E4F75F300C84A73 /* SPARCore.h */,
 				FA7DCC7C1E4F765200C84A73 /* SPARCDemo.h */,
 				FA7DCC7D1E4F765200C84A73 /* SPARCDemo.m */,
 				FA7DCC611E4F75F300C84A73 /* Info.plist */,
-				BF1932E21EA465A800E5D911 /* GADPublication.h */,
-				BF1932E31EA465A800E5D911 /* GADPublication.m */,
 				C788AD021E50F06700738844 /* GADArticle.h */,
 				C788AD031E50F06700738844 /* GADArticle.m */,
 				07DBC6991E6CA477005CECDB /* GADRemoteModel.h */,
@@ -293,7 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7DCC701E4F75F300C84A73 /* SPARCore.h in Headers */,
-				BF1932E41EA465A800E5D911 /* GADPublication.h in Headers */,
+				BF1932E81EA47A8800E5D911 /* GADPublication.h in Headers */,
 				C788AD041E50F06700738844 /* GADArticle.h in Headers */,
 				FA7DCC7E1E4F765200C84A73 /* SPARCDemo.h in Headers */,
 				07DBC69B1E6CA477005CECDB /* GADRemoteModel.h in Headers */,
@@ -592,7 +592,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7DCC7F1E4F765200C84A73 /* SPARCDemo.m in Sources */,
-				BF1932E51EA465A800E5D911 /* GADPublication.m in Sources */,
+				BF1932E91EA47A8800E5D911 /* GADPublication.m in Sources */,
 				C788AD051E50F06700738844 /* GADArticle.m in Sources */,
 				07DBC69C1E6CA477005CECDB /* GADRemoteModel.m in Sources */,
 			);
