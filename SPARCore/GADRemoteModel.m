@@ -23,7 +23,7 @@ const NSTimeInterval timeoutInterval = 60.0;
     NSURL *url = components.URL;
     
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:timeoutInterval];
-    [req setHTTPMethod:@"POST"];
+    [req setHTTPMethod:@"GET"];
     [req setValue:@"application/json" forHTTPHeaderField: @"Content-Type"];
     
     NSURLSessionDataTask *task = [[NSURLSession sharedSession]dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
