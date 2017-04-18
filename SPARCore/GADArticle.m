@@ -29,7 +29,6 @@ static NSString *const API_ARTICLE_PATH = @"articles";
 
 }
 
-
 - (void) fetchFulltextWithCompletion: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
                                                 NSError *_Nullable error))completion {
     NSURL *queryURL = [GADArticle createURLWithArticle:self.articleId publication:self.publicationId];

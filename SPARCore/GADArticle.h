@@ -22,7 +22,6 @@
                                                   *_Nullable articles,
                                                   NSError *_Nullable error))completion;
 
-
 + (NSArray <GADArticle *> *) loadDummyArticles;
 
 + (NSArray <GADArticle *> *) articlesFromJSON:(NSData *)json;
