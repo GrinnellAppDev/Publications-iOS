@@ -2,16 +2,14 @@
 
 @implementation GADPublication
 
-static NSString *const API_HOSTNAME = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/";
-static NSString *const API_PREFIX = @"devstable";
 static NSString *const API_PUBLICATION_PATH = @"publications";
 
 static NSString *const API_PUBLICATION_ID = @"id";
 static NSString *const API_PUBLICATION_NAME = @"name";
 
-+ (void) fetchPublicationsWithCompletionHandler:(void(^_Nonnull)(NSArray<GADPublication *> *_Nullable publications, NSError *_Nullable error))completion {
++ (void) fetchAllWithCompletion:(void(^_Nonnull)(NSArray<GADPublication *> *_Nullable publications, NSError *_Nullable error))completion {
 
-    NSURL *queryURL = [GADPublication urlForPublications];
+    NSURL *queryURL = [GADPublication baseURL];
     
     [GADRemoteModel fetchModelsWithParams:queryURL
                           queryParameters:@{}
@@ -24,13 +22,9 @@ static NSString *const API_PUBLICATION_NAME = @"name";
 + (NSArray <GADPublication *> *) publicationsFromJSON:(NSData *)json {
 
     NSMutableArray <GADPublication *> *publications = [[NSMutableArray alloc] init];
-    NSError *error = nil;
+    NSError *JSONParsingError;
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:json
-                                                         options:kNilOptions error:&error];
-    
-    if (error != nil) {
-        NSLog(@"Error parsing JSON.");
-    }
+                                                         options:kNilOptions error:&JSONParsingError];
     
     NSArray *jsonArray = [jsonDict valueForKey:@"items"];
     
@@ -43,16 +37,8 @@ static NSString *const API_PUBLICATION_NAME = @"name";
     return publications;
 }
 
-+ (NSURL *) baseURL {
-    NSURL *queryURL = [NSURL URLWithString:API_HOSTNAME];
-    queryURL = [NSURL URLWithString:API_PREFIX relativeToURL:queryURL];
-    return queryURL;
-}
-
-+ (NSURL *) urlForPublications {
-    NSURL *queryURL = [GADPublication baseURL];
-    queryURL = [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:queryURL];
-    return queryURL;
++ (NSURL *)baseURL {
+    return [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:[super baseURL]];
 }
 
 @end

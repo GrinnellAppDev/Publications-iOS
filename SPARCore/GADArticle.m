@@ -12,8 +12,6 @@ static NSString *const API_HEADER_IMAGE = @"headerImage";
 static NSString *const API_PUBLICATION_ID = @"publication";
 static NSString *const API_TITLE = @"title";
 
-static NSString *const API_HOSTNAME = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/";
-static NSString *const API_PREFIX = @"devstable";
 static NSString *const API_PUBLICATION_PATH = @"publications";
 static NSString *const API_ARTICLE_PATH = @"articles";
 
@@ -54,13 +52,9 @@ static NSString *const API_ARTICLE_PATH = @"articles";
 + (NSArray <GADArticle *> *) articlesFromJSON: (NSData *)json {
     
     NSMutableArray <GADArticle *> *articles = [[NSMutableArray alloc] init];
-    NSError *error = nil;
+    NSError *JSONParsingError;
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:json
-                                                         options:kNilOptions error:&error];
-    
-    if (error != nil) {
-        NSLog(@"Error parsing JSON.");
-    }
+                                                         options:kNilOptions error:&JSONParsingError];
     
     for (NSDictionary *element in jsonArray) {
         //Map fields of element to fields of article
@@ -82,14 +76,8 @@ static NSString *const API_ARTICLE_PATH = @"articles";
     return articles;
 }
 
-+ (NSURL *) baseURL {
-    NSURL *queryURL = [NSURL URLWithString:API_HOSTNAME];
-    queryURL = [NSURL URLWithString:API_PREFIX relativeToURL:queryURL];
-    return queryURL;
-}
-
 + (NSURL *) urlForArticlesFromPublication: (NSString *)publicationId{
-    NSURL *queryURL = [GADArticle baseURL];
+    NSURL *queryURL = [GADRemoteModel baseURL];
     queryURL = [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:queryURL];
     queryURL = [NSURL URLWithString:publicationId relativeToURL:queryURL];
     queryURL = [NSURL URLWithString:API_ARTICLE_PATH relativeToURL:queryURL];
