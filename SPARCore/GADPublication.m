@@ -11,12 +11,12 @@ static NSString *const API_PUBLICATION_NAME = @"name";
 
     NSURL *queryURL = [GADPublication baseURL];
     
-    [GADRemoteModel fetchModelsWithParams:queryURL
-                          queryParameters:@{}
-                         modelTransformer:^(NSData *jsonData) {
-                             return [GADPublication publicationsFromJSON:jsonData];
-                         }
-                        completionHandler:completion];
+    [super fetchModelsWithParams:queryURL
+                 queryParameters:@{}
+                modelTransformer:^(NSData *jsonData) {
+                    return [GADPublication publicationsFromJSON:jsonData];
+                }
+               completionHandler:completion];
 }
 
 + (NSArray <GADPublication *> *) publicationsFromJSON:(NSData *)json {

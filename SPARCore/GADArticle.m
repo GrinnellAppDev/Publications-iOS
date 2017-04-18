@@ -1,5 +1,4 @@
 #import "GADArticle.h"
-#import "GADRemoteModel.h"
 
 @implementation GADArticle
 
@@ -16,15 +15,15 @@ static NSString *const API_PUBLICATION_PATH = @"publications";
 static NSString *const API_ARTICLE_PATH = @"articles";
 
 + (void) articlesFromPublication: (NSString *)publicationId
-                                        completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
-                                                                           *_Nullable articles,
-                                                            NSError *_Nullable error))completion {
-    NSURL *queryURL = [GADArticle urlForArticlesFromPublication:publicationId];
+               completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
+                                                  *_Nullable articles,
+                                                  NSError *_Nullable error))completion {
+    NSURL *queryURL = [self urlForArticlesFromPublication:publicationId];
     
-    [GADRemoteModel fetchModelsWithParams:queryURL
+    [super fetchModelsWithParams:queryURL
                           queryParameters:@{}
                          modelTransformer:^(NSData *jsonData) {
-                            return [GADArticle articlesFromJSON:jsonData];
+                            return [self articlesFromJSON:jsonData];
                          }
                         completionHandler:completion];
 
@@ -57,27 +56,32 @@ static NSString *const API_ARTICLE_PATH = @"articles";
                                                          options:kNilOptions error:&JSONParsingError];
     
     for (NSDictionary *element in jsonArray) {
-        //Map fields of element to fields of article
-        GADArticle *article = [[GADArticle alloc] init];
-        //datePublished field is a UNIX Timestamp number - converting to NSDate here
-        int timeStamp = (int)element[API_DATE_PUBLISHED];
-        article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-        article.brief = element[API_BRIEF];
-        article.headerImage = element[API_HEADER_IMAGE];
-        article.publicationId = element[API_PUBLICATION_ID];
-        article.articleId = element[API_ARTICLE_ID];
-        article.title = element[API_TITLE];
-        if (element[API_CONTENT]) {
-            article.content = element[API_CONTENT];
-            article.authors = element[API_AUTHORS];
-        }
+        GADArticle *article = [self articleFromDictionary:element];
         [articles addObject:article];
     }
     return articles;
 }
 
++ (GADArticle *)articleFromDictionary:(NSDictionary*)dict {
+    //Map fields of element to fields of article
+    GADArticle *article = [[GADArticle alloc] init];
+    //datePublished field is a UNIX Timestamp number - converting to NSDate here
+    int timeStamp = (int)dict[API_DATE_PUBLISHED];
+    article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
+    article.brief = dict[API_BRIEF];
+    article.headerImage = dict[API_HEADER_IMAGE];
+    article.publicationId = dict[API_PUBLICATION_ID];
+    article.articleId = dict[API_ARTICLE_ID];
+    article.title = dict[API_TITLE];
+    if (dict[API_CONTENT]) {
+        article.content = dict[API_CONTENT];
+        article.authors = dict[API_AUTHORS];
+    }
+    return article;
+}
+
 + (NSURL *) urlForArticlesFromPublication: (NSString *)publicationId{
-    NSURL *queryURL = [GADRemoteModel baseURL];
+    NSURL *queryURL = [super baseURL];
     queryURL = [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:queryURL];
     queryURL = [NSURL URLWithString:publicationId relativeToURL:queryURL];
     queryURL = [NSURL URLWithString:API_ARTICLE_PATH relativeToURL:queryURL];
