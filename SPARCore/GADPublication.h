@@ -7,4 +7,6 @@
 
 + (void) fetchAllWithCompletion:(void(^_Nonnull)(NSArray<GADPublication *> *_Nullable publications, NSError *_Nullable error))completion;
 
+- (NSURL *) urlForArticles;
+
 @end

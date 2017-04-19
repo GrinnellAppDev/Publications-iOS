@@ -3,6 +3,7 @@
 @implementation GADPublication
 
 static NSString *const API_PUBLICATION_PATH = @"publications";
+static NSString *const API_ARTICLE_PATH = @"articles";
 
 static NSString *const API_PUBLICATION_ID = @"id";
 static NSString *const API_PUBLICATION_NAME = @"name";
@@ -35,6 +36,14 @@ static NSString *const API_PUBLICATION_NAME = @"name";
         [publications addObject:publication];
     }
     return publications;
+}
+
+- (NSURL *) urlForArticles{
+    NSURL *queryURL = [GADPublication baseURL];
+    queryURL = [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:queryURL];
+    queryURL = [NSURL URLWithString:self.publicationId relativeToURL:queryURL];
+    queryURL = [NSURL URLWithString:API_ARTICLE_PATH relativeToURL:queryURL];
+    return queryURL;
 }
 
 + (NSURL *)baseURL {
