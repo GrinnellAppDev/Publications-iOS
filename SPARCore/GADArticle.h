@@ -25,7 +25,7 @@
                                                    NSString *_Nullable token,
                                                    NSError *_Nullable error))completion;
 
-- (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
+- (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADArticle *_Nullable article,
                                                        NSError *_Nullable error))completion;
 
 + (NSArray <GADArticle *> *) loadDummyArticles;

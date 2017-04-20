@@ -15,14 +15,14 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
     NSURL *queryURL = [GADPublication baseURL];
     
-    NSMutableDictionary *token=[NSMutableDictionary new];
+    NSMutableDictionary *params=[NSMutableDictionary new];
     if (nextPageToken) {
-        [token setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
+        [params setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
     }
     
     [super fetchModelsWithParams:queryURL
-                 queryParameters:token
-                modelTransformer:^(NSArray *jsonArray) {
+                 queryParameters:params
+                modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
                     return [self publicationsFromArray:jsonArray];
                 }
                completionHandler:completion];
