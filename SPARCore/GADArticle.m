@@ -97,7 +97,6 @@ static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
     return queryURL;
 }
 
-// needs to be changed
 + (NSArray <GADArticle *> *) loadDummyArticles {
 
     NSMutableArray <GADArticle *> *articleArray = [[NSMutableArray alloc] init];
