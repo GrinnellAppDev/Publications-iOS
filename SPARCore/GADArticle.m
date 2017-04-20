@@ -71,7 +71,7 @@ static NSString *const API_ARTICLE_PATH = @"articles";
     return article;
 }
 
-- (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
+- (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADArticle *_Nullable article,
                                                        NSError *_Nullable error))completion {
     NSURL *queryURL = [self urlForFullArticle];
     
@@ -84,7 +84,7 @@ static NSString *const API_ARTICLE_PATH = @"articles";
                             GADArticle *fullArticle = model[0];
                             self.content = fullArticle.content;
                             self.authors = fullArticle.authors;
-                            //completion(); --How should we call the completion handler here?
+                            completion(self,nil);
                         }];
     
 }
