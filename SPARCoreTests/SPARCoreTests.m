@@ -1,8 +1,6 @@
-
-
 #import <XCTest/XCTest.h>
+
 #import "GADArticle.h"
-#import "GADRemoteModel.h"
 
 @interface SPARCoreTests : XCTestCase
 

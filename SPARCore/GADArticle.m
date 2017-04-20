@@ -1,5 +1,4 @@
 #import "GADArticle.h"
-#import "GADRemoteModel.h"
 
 @implementation GADArticle
 
@@ -12,35 +11,74 @@ static NSString *const API_HEADER_IMAGE = @"headerImage";
 static NSString *const API_PUBLICATION_ID = @"publication";
 static NSString *const API_TITLE = @"title";
 
-static NSString *const API_HOSTNAME = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/";
-static NSString *const API_PREFIX = @"devstable";
+static NSString *const API_ITMES = @"items";
+static NSString *const API_NEXT_PAGE_TOKEN = @"nextPageToken";
+
 static NSString *const API_PUBLICATION_PATH = @"publications";
 static NSString *const API_ARTICLE_PATH = @"articles";
 
-+ (void) articlesFromPublication: (NSString *)publicationId
-                                        completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
-                                                                           *_Nullable articles,
-                                                            NSError *_Nullable error))completion {
-    NSURL *queryURL = [GADArticle urlForArticlesFromPublication:publicationId];
++ (void) articlesForPublicationId: (NSString *)publicationId
+                   withCompletion:(void(^_Nonnull)(NSArray<GADArticle *>
+                                                   *_Nullable articles,
+                                                   NSError *_Nullable error))completion {
+    GADPublication *pub = [GADPublication new];
+    pub.publicationId=publicationId;
+    NSURL *queryURL = [pub urlForArticles];
     
-    [GADRemoteModel fetchModelsWithParams:queryURL
+    [super fetchModelsWithParams:queryURL
                           queryParameters:@{}
                          modelTransformer:^(NSData *jsonData) {
-                            return [GADArticle articlesFromJSON:jsonData];
+                            return [self articlesFromJSON:jsonData];
                          }
                         completionHandler:completion];
 
 }
 
++ (NSArray <GADArticle *> *) articlesFromJSON: (NSData *)json {
+    
+    NSDictionary* jsonDict=[NSDictionary new];
+    NSArray *jsonArray=[NSArray new];
+    NSMutableArray <GADArticle *> *articles = [NSMutableArray new];
+    
+    NSError *JSONParsingError;
+    jsonDict = [NSJSONSerialization JSONObjectWithData:json
+                                                         options:kNilOptions error:&JSONParsingError];
+    
+    jsonArray=[jsonDict valueForKey:API_ITMES];
+    
+    //get next page token here, but don't know how to return it yet
+    NSString *nextPageToken = [jsonDict valueForKey:API_NEXT_PAGE_TOKEN];
+    
+    for (NSDictionary *element in jsonArray) {
+        GADArticle *article = [self articleFromDictionary:element];
+        [articles addObject:article];
+    }
+    return articles;
+}
 
-- (void) fetchFulltextWithCompletion: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
-                                                NSError *_Nullable error))completion {
-    NSURL *queryURL = [GADArticle createURLWithArticle:self.articleId publication:self.publicationId];
++ (GADArticle *) articleFromDictionary: (NSDictionary*)dict {
+    //Map fields of element to fields of article
+    GADArticle *article = [[GADArticle alloc] init];
+    //datePublished field is a UNIX Timestamp number - converting to NSDate here
+    int timeStamp = (int)dict[API_DATE_PUBLISHED];
+    article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
+    article.headerImage = [NSURL URLWithString:dict[API_HEADER_IMAGE]];
+    article.publicationId = dict[API_PUBLICATION_ID];
+    article.articleId = dict[API_ARTICLE_ID];
+    article.title = dict[API_TITLE];
+    article.authors = dict[API_AUTHORS];
+    
+    return article;
+}
+
+- (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
+                                                       NSError *_Nullable error))completion {
+    NSURL *queryURL = [self urlForFullArticle];
     
     [GADRemoteModel fetchModelsWithParams:queryURL
                           queryParameters:@{}
                          modelTransformer:^(NSData *jsonData){
-                             return [GADArticle articlesFromJSON:jsonData];
+                             return [GADArticle fullArticleFromJsonData:jsonData];
                          }
                         completionHandler:^(NSArray <GADArticle *> *_Nullable model, NSError *_Nullable error){
                             GADArticle *fullArticle = model[0];
@@ -51,57 +89,40 @@ static NSString *const API_ARTICLE_PATH = @"articles";
     
 }
 
-+ (NSArray <GADArticle *> *) articlesFromJSON: (NSData *)json {
++ (NSArray *) fullArticleFromJsonData: (NSData *)json {
+    NSDictionary *jsonDict=[NSDictionary new];
+    NSError *JSONParsingError;
+    jsonDict = [NSJSONSerialization JSONObjectWithData:json
+                                               options:kNilOptions error:&JSONParsingError];
     
-    NSMutableArray <GADArticle *> *articles = [[NSMutableArray alloc] init];
-    NSError *error = nil;
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:json
-                                                         options:kNilOptions error:&error];
-    
-    if (error != nil) {
-        NSLog(@"Error parsing JSON.");
+    GADArticle *article = [[GADArticle alloc] init];
+    int timeStamp = (int)jsonDict[API_DATE_PUBLISHED];
+    article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
+    article.brief = jsonDict[API_BRIEF];
+    article.headerImage = [NSURL URLWithString:jsonDict[API_HEADER_IMAGE]];
+    article.publicationId = jsonDict[API_PUBLICATION_ID];
+    article.articleId = jsonDict[API_ARTICLE_ID];
+    article.title = jsonDict[API_TITLE];
+    article.authors = jsonDict[API_AUTHORS];
+    if (jsonDict[API_CONTENT]) {
+        article.content = jsonDict[API_CONTENT];
     }
     
-    for (NSDictionary *element in jsonArray) {
-        //Map fields of element to fields of article
-        GADArticle *article = [[GADArticle alloc] init];
-        //datePublished field is a UNIX Timestamp number - converting to NSDate here
-        int timeStamp = (int)element[API_DATE_PUBLISHED];
-        article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-        article.brief = element[API_BRIEF];
-        article.headerImage = element[API_HEADER_IMAGE];
-        article.publicationId = element[API_PUBLICATION_ID];
-        article.articleId = element[API_ARTICLE_ID];
-        article.title = element[API_TITLE];
-        if (element[API_CONTENT]) {
-            article.content = element[API_CONTENT];
-            article.authors = element[API_AUTHORS];
-        }
-        [articles addObject:article];
-    }
-    return articles;
+    NSMutableArray *wrapper = [NSMutableArray new];
+    [wrapper addObject:article];
+    
+    return wrapper;
 }
 
-+ (NSURL *) baseURL {
-    NSURL *queryURL = [NSURL URLWithString:API_HOSTNAME];
-    queryURL = [NSURL URLWithString:API_PREFIX relativeToURL:queryURL];
+- (NSURL *) urlForFullArticle{
+    GADPublication *pub = [GADPublication new];
+    pub.publicationId=self.publicationId;
+    NSURL *queryURL = [pub urlForArticles];
+    queryURL = [NSURL URLWithString:[self articleId] relativeToURL:queryURL];
     return queryURL;
 }
 
-+ (NSURL *) urlForArticlesFromPublication: (NSString *)publicationId{
-    NSURL *queryURL = [GADArticle baseURL];
-    queryURL = [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:queryURL];
-    queryURL = [NSURL URLWithString:publicationId relativeToURL:queryURL];
-    queryURL = [NSURL URLWithString:API_ARTICLE_PATH relativeToURL:queryURL];
-    return queryURL;
-}
-
-+ (NSURL *) createURLWithArticle: (NSString *)articleId publication:(NSString *)publicationId{
-    NSURL *queryURL = [GADArticle urlForArticlesFromPublication:publicationId];
-    queryURL = [NSURL URLWithString:articleId relativeToURL:queryURL];
-    return queryURL;
-}
-
+// needs to be changed
 + (NSArray <GADArticle *> *) loadDummyArticles {
 
     NSMutableArray <GADArticle *> *articleArray = [[NSMutableArray alloc] init];

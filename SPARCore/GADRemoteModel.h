@@ -9,4 +9,6 @@
              completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *> *_Nullable models,
                                                 NSError *_Nullable error))completion;
 
++ (NSURL *) baseURL;
+
 @end

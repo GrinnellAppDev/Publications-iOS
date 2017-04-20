@@ -1,9 +1,11 @@
 #import "GADRemoteModel.h"
 
-@implementation GADRemoteModel
+static NSString *const API_HOSTNAME = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/";
+static NSString *const API_PREFIX = @"devstable";
 
-//static NSString *apiURL = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/devstable/publications";
 const NSTimeInterval timeoutInterval = 60.0;
+
+@implementation GADRemoteModel
 
 + (void) fetchModelsWithParams:(NSURL * _Nonnull)baseURL
                queryParameters:(NSDictionary * _Nonnull)queryParams
@@ -23,7 +25,7 @@ const NSTimeInterval timeoutInterval = 60.0;
     NSURL *url = components.URL;
     
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:timeoutInterval];
-    [req setHTTPMethod:@"POST"];
+    [req setHTTPMethod:@"GET"];
     [req setValue:@"application/json" forHTTPHeaderField: @"Content-Type"];
     
     NSURLSessionDataTask *task = [[NSURLSession sharedSession]dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -37,6 +39,12 @@ const NSTimeInterval timeoutInterval = 60.0;
         return;
     }];
     [task resume];
+}
+
++ (NSURL *) baseURL {
+    NSURL *queryURL = [NSURL URLWithString:API_HOSTNAME];
+    queryURL = [NSURL URLWithString:API_PREFIX relativeToURL:queryURL];
+    return queryURL;
 }
 
 @end
