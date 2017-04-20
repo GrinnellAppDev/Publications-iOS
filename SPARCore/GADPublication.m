@@ -8,26 +8,29 @@ static NSString *const API_ARTICLE_PATH = @"articles";
 static NSString *const API_PUBLICATION_ID = @"id";
 static NSString *const API_PUBLICATION_NAME = @"name";
 
-+ (void) fetchAllWithCompletion:(void(^_Nonnull)(NSArray<GADPublication *> *_Nullable publications, NSError *_Nullable error))completion {
+static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
+
++ (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
+                        Completion:(void(^_Nonnull)(NSArray<GADPublication *> *_Nullable publications, NSString *_Nullable token, NSError *_Nullable error))completion {
 
     NSURL *queryURL = [GADPublication baseURL];
     
+    NSMutableDictionary *token=[NSMutableDictionary new];
+    if (nextPageToken) {
+        [token setObject:nextPageToken forKey:API_PAGE_TOKEN_QUERY];
+    }
+    
     [super fetchModelsWithParams:queryURL
-                 queryParameters:@{}
-                modelTransformer:^(NSData *jsonData) {
-                    return [GADPublication publicationsFromJSON:jsonData];
+                 queryParameters:token
+                modelTransformer:^(NSArray *jsonArray) {
+                    return [self publicationsFromArray:jsonArray];
                 }
                completionHandler:completion];
 }
 
-+ (NSArray <GADPublication *> *) publicationsFromJSON:(NSData *)json {
++ (NSArray <GADPublication *> *) publicationsFromArray:(NSArray *)jsonArray {
 
     NSMutableArray <GADPublication *> *publications = [[NSMutableArray alloc] init];
-    NSError *JSONParsingError;
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:json
-                                                         options:kNilOptions error:&JSONParsingError];
-    
-    NSArray *jsonArray = [jsonDict valueForKey:@"items"];
     
     for (NSDictionary *element in jsonArray) {
         GADPublication *publication = [[GADPublication alloc] init];

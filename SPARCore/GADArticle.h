@@ -19,8 +19,10 @@
 @property (nonatomic, strong) NSURL *url;
 
 + (void) articlesForPublicationId: (NSString *)publicationId
+                    nextPageToken: (NSString * _Nullable)nextPageToken
                    withCompletion:(void(^_Nonnull)(NSArray<GADArticle *>
                                                    *_Nullable articles,
+                                                   NSString *_Nullable token,
                                                    NSError *_Nullable error))completion;
 
 - (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,

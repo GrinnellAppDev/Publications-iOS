@@ -1,5 +1,7 @@
 #import "GADArticle.h"
 
+const NSTimeInterval timeoutInterval = 60.0;
+
 @implementation GADArticle
 
 static NSString *const API_ARTICLE_ID = @"id";
@@ -11,43 +13,34 @@ static NSString *const API_HEADER_IMAGE = @"headerImage";
 static NSString *const API_PUBLICATION_ID = @"publication";
 static NSString *const API_TITLE = @"title";
 
-static NSString *const API_ITMES = @"items";
-static NSString *const API_NEXT_PAGE_TOKEN = @"nextPageToken";
-
-static NSString *const API_PUBLICATION_PATH = @"publications";
-static NSString *const API_ARTICLE_PATH = @"articles";
+static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
 
 + (void) articlesForPublicationId: (NSString *)publicationId
+                    nextPageToken: (NSString * _Nullable)nextPageToken
                    withCompletion:(void(^_Nonnull)(NSArray<GADArticle *>
                                                    *_Nullable articles,
+                                                   NSString *_Nullable token,
                                                    NSError *_Nullable error))completion {
     GADPublication *pub = [GADPublication new];
     pub.publicationId=publicationId;
     NSURL *queryURL = [pub urlForArticles];
     
+    NSMutableDictionary *token=[NSMutableDictionary new];
+    if (nextPageToken) {
+        [token setObject:nextPageToken forKey:API_PAGE_TOKEN_QUERY];
+    }
+    
     [super fetchModelsWithParams:queryURL
-                          queryParameters:@{}
-                         modelTransformer:^(NSData *jsonData) {
-                            return [self articlesFromJSON:jsonData];
+                          queryParameters:token
+                         modelTransformer:^(NSArray *jsonArray) {
+                            return [self articlesFromArray:jsonArray];
                          }
                         completionHandler:completion];
-
 }
 
-+ (NSArray <GADArticle *> *) articlesFromJSON: (NSData *)json {
++ (NSArray <GADArticle *> *) articlesFromArray: (NSArray *)jsonArray {
     
-    NSDictionary* jsonDict=[NSDictionary new];
-    NSArray *jsonArray=[NSArray new];
     NSMutableArray <GADArticle *> *articles = [NSMutableArray new];
-    
-    NSError *JSONParsingError;
-    jsonDict = [NSJSONSerialization JSONObjectWithData:json
-                                                         options:kNilOptions error:&JSONParsingError];
-    
-    jsonArray=[jsonDict valueForKey:API_ITMES];
-    
-    //get next page token here, but don't know how to return it yet
-    NSString *nextPageToken = [jsonDict valueForKey:API_NEXT_PAGE_TOKEN];
     
     for (NSDictionary *element in jsonArray) {
         GADArticle *article = [self articleFromDictionary:element];
@@ -75,43 +68,25 @@ static NSString *const API_ARTICLE_PATH = @"articles";
                                                        NSError *_Nullable error))completion {
     NSURL *queryURL = [self urlForFullArticle];
     
-    [GADRemoteModel fetchModelsWithParams:queryURL
-                          queryParameters:@{}
-                         modelTransformer:^(NSData *jsonData){
-                             return [GADArticle fullArticleFromJsonData:jsonData];
-                         }
-                        completionHandler:^(NSArray <GADArticle *> *_Nullable model, NSError *_Nullable error){
-                            GADArticle *fullArticle = model[0];
-                            self.content = fullArticle.content;
-                            self.authors = fullArticle.authors;
-                            completion(self,nil);
-                        }];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:queryURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:timeoutInterval];
+    [req setHTTPMethod:@"GET"];
+    [req setValue:@"application/json" forHTTPHeaderField: @"Content-Type"];
     
-}
-
-+ (NSArray *) fullArticleFromJsonData: (NSData *)json {
-    NSDictionary *jsonDict=[NSDictionary new];
-    NSError *JSONParsingError;
-    jsonDict = [NSJSONSerialization JSONObjectWithData:json
-                                               options:kNilOptions error:&JSONParsingError];
-    
-    GADArticle *article = [[GADArticle alloc] init];
-    int timeStamp = (int)jsonDict[API_DATE_PUBLISHED];
-    article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-    article.brief = jsonDict[API_BRIEF];
-    article.headerImage = [NSURL URLWithString:jsonDict[API_HEADER_IMAGE]];
-    article.publicationId = jsonDict[API_PUBLICATION_ID];
-    article.articleId = jsonDict[API_ARTICLE_ID];
-    article.title = jsonDict[API_TITLE];
-    article.authors = jsonDict[API_AUTHORS];
-    if (jsonDict[API_CONTENT]) {
-        article.content = jsonDict[API_CONTENT];
-    }
-    
-    NSMutableArray *wrapper = [NSMutableArray new];
-    [wrapper addObject:article];
-    
-    return wrapper;
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession]dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+            completion(nil, error);
+            return;
+        }
+        NSDictionary *jsonDict = [NSDictionary new];
+        NSError *JSONParsingError;
+        jsonDict = [NSJSONSerialization JSONObjectWithData:data
+                                                   options:kNilOptions error:&JSONParsingError];
+        
+        self.content = [jsonDict valueForKey:API_CONTENT];
+        completion(self, nil);
+    }];
+    [task resume];
 }
 
 - (NSURL *) urlForFullArticle{
