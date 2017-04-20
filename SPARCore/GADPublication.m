@@ -5,10 +5,10 @@
 static NSString *const API_PUBLICATION_SUFFIX = @"publications";
 static NSString *const API_ARTICLE_SUFFIX = @"articles";
 
-static NSString *const API_PUBLICATION_ID = @"id";
-static NSString *const API_PUBLICATION_NAME = @"name";
+static NSString *const API_KEY_PUBLICATION_ID = @"id";
+static NSString *const API_KEY_PUBLICATION_NAME = @"name";
 
-static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
+static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 + (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
                         Completion:(void(^_Nonnull)(NSArray<GADPublication *> *_Nullable publications, NSString *_Nullable token, NSError *_Nullable error))completion {
@@ -17,7 +17,7 @@ static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
     
     NSMutableDictionary *token=[NSMutableDictionary new];
     if (nextPageToken) {
-        [token setObject:nextPageToken forKey:API_PAGE_TOKEN_QUERY];
+        [token setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
     }
     
     [super fetchModelsWithParams:queryURL
@@ -34,8 +34,8 @@ static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
     
     for (NSDictionary *element in jsonArray) {
         GADPublication *publication = [[GADPublication alloc] init];
-        publication.publicationId = element[API_PUBLICATION_ID];
-        publication.name = element[API_PUBLICATION_NAME];
+        publication.publicationId = element[API_KEY_PUBLICATION_ID];
+        publication.name = element[API_KEY_PUBLICATION_NAME];
         [publications addObject:publication];
     }
     return publications;

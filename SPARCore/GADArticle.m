@@ -4,16 +4,16 @@ const NSTimeInterval timeoutInterval = 60.0;
 
 @implementation GADArticle
 
-static NSString *const API_ARTICLE_ID = @"id";
-static NSString *const API_AUTHORS = @"authors";
-static NSString *const API_BRIEF = @"brief";
-static NSString *const API_CONTENT = @"content";
-static NSString *const API_DATE_PUBLISHED = @"datePublished";
-static NSString *const API_HEADER_IMAGE = @"headerImage";
-static NSString *const API_PUBLICATION_ID = @"publication";
-static NSString *const API_TITLE = @"title";
+static NSString *const API_KEY_ARTICLE_ID = @"id";
+static NSString *const API_KEY_AUTHORS = @"authors";
+static NSString *const API_KEY_BRIEF = @"brief";
+static NSString *const API_KEY_CONTENT = @"content";
+static NSString *const API_KEY_DATE_PUBLISHED = @"datePublished";
+static NSString *const API_KEY_HEADER_IMAGE = @"headerImage";
+static NSString *const API_KEY_PUBLICATION_ID = @"publication";
+static NSString *const API_KEY_TITLE = @"title";
 
-static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
+static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 + (void) articlesForPublicationId: (NSString *)publicationId
                     nextPageToken: (NSString * _Nullable)nextPageToken
@@ -27,7 +27,7 @@ static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
     
     NSMutableDictionary *token=[NSMutableDictionary new];
     if (nextPageToken) {
-        [token setObject:nextPageToken forKey:API_PAGE_TOKEN_QUERY];
+        [token setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
     }
     
     [super fetchModelsWithParams:queryURL
@@ -53,13 +53,13 @@ static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
     //Map fields of element to fields of article
     GADArticle *article = [[GADArticle alloc] init];
     //datePublished field is a UNIX Timestamp number - converting to NSDate here
-    int timeStamp = (int)dict[API_DATE_PUBLISHED];
+    int timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
     article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-    article.headerImage = [NSURL URLWithString:dict[API_HEADER_IMAGE]];
-    article.publicationId = dict[API_PUBLICATION_ID];
-    article.articleId = dict[API_ARTICLE_ID];
-    article.title = dict[API_TITLE];
-    article.authors = dict[API_AUTHORS];
+    article.headerImage = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+    article.publicationId = dict[API_KEY_PUBLICATION_ID];
+    article.articleId = dict[API_KEY_ARTICLE_ID];
+    article.title = dict[API_KEY_TITLE];
+    article.authors = dict[API_KEY_AUTHORS];
     
     return article;
 }
@@ -83,7 +83,7 @@ static NSString *const API_PAGE_TOKEN_QUERY = @"pageToken";
         jsonDict = [NSJSONSerialization JSONObjectWithData:data
                                                    options:kNilOptions error:&JSONParsingError];
         
-        self.content = [jsonDict valueForKey:API_CONTENT];
+        self.content = [jsonDict valueForKey:API_KEY_CONTENT];
         completion(self, nil);
     }];
     [task resume];
