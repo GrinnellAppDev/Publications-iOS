@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "GADRemoteModel.h"
-#import "GADPublication.h"
+@class GADPublication;
 
 @interface GADArticle : GADRemoteModel
 
@@ -18,15 +18,10 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSURL *url;
 
-+ (void) articlesForPublicationId: (NSString *)publicationId
-                    nextPageToken: (NSString * _Nullable)nextPageToken
-                   withCompletion:(void(^_Nonnull)(NSArray<GADArticle *>
-                                                   *_Nullable articles,
-                                                   NSString *_Nullable token,
-                                                   NSError *_Nullable error))completion;
-
 - (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADArticle *_Nullable article,
                                                        NSError *_Nullable error))completion;
+
++ (NSArray <GADArticle *> *) articlesFromArray: (NSArray *)jsonArray;
 
 + (NSArray <GADArticle *> *) loadDummyArticles;
 

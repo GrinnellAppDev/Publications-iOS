@@ -1,4 +1,5 @@
 #import "GADPublication.h"
+#import "GADArticle.h"
 
 @implementation GADPublication
 
@@ -29,6 +30,27 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
                     return [self publicationsFromArray:jsonArray];
                 }
                completionHandler:completion];
+}
+
+- (void) fetchArticlesWithNextPageToken: (NSString * _Nullable)nextPageToken
+                             Completion:(void(^_Nonnull)(NSArray<GADArticle *>
+                                                         *_Nullable articles,
+                                                         NSString *_Nullable token,
+                                                         NSError *_Nullable error))completion {
+    
+    NSURL *queryURL = [self urlForArticles];
+    
+    NSMutableDictionary *params=[NSMutableDictionary new];
+    if (nextPageToken) {
+        [params setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
+    }
+    
+    [GADRemoteModel fetchModelsWithParams:queryURL
+                          queryParameters:params
+                         modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
+                             return [GADArticle articlesFromArray:jsonArray];
+                         }
+                        completionHandler:completion];
 }
 
 + (NSArray <GADPublication *> *) publicationsFromArray:(NSArray<NSDictionary *> *)jsonArray {

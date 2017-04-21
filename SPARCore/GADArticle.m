@@ -1,4 +1,5 @@
 #import "GADArticle.h"
+#import "GADPublication.h"
 
 const NSTimeInterval timeoutInterval = 60.0;
 
@@ -15,29 +16,6 @@ static NSString *const API_KEY_TITLE = @"title";
 
 static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
-+ (void) articlesForPublicationId: (NSString *)publicationId
-                    nextPageToken: (NSString * _Nullable)nextPageToken
-                   withCompletion:(void(^_Nonnull)(NSArray<GADArticle *>
-                                                   *_Nullable articles,
-                                                   NSString *_Nullable token,
-                                                   NSError *_Nullable error))completion {
-    GADPublication *pub = [GADPublication new];
-    pub.publicationId=publicationId;
-    NSURL *queryURL = [pub urlForArticles];
-    
-    NSMutableDictionary *params=[NSMutableDictionary new];
-    if (nextPageToken) {
-        [params setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
-    }
-    
-    [super fetchModelsWithParams:queryURL
-                          queryParameters:params
-                         modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
-                            return [self articlesFromArray:jsonArray];
-                         }
-                        completionHandler:completion];
-}
-
 + (NSArray <GADArticle *> *) articlesFromArray: (NSArray *)jsonArray {
     
     NSMutableArray <GADArticle *> *articles = [NSMutableArray new];
@@ -50,12 +28,12 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 }
 
 + (GADArticle *) articleFromDictionary: (NSDictionary*)dict {
-    //Map fields of element to fields of article
     GADArticle *article = [GADArticle new];
     //datePublished field is a UNIX Timestamp number - converting to NSDate here
     int timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
     article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
     article.headerImage = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+    article.publication=[GADPublication new];
     article.publication.publicationId = dict[API_KEY_PUBLICATION_ID];
     article.articleId = dict[API_KEY_ARTICLE_ID];
     article.title = dict[API_KEY_TITLE];
@@ -68,10 +46,9 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
                                                        NSError *_Nullable error))completion {
     NSURL *queryURL = [self urlForFullArticle];
     
-    NSMutableURLRequest *req = [NSMutableURLRequest
-                                requestWithURL:queryURL
-                                cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                timeoutInterval:timeoutInterval];
+    NSMutableURLRequest *req=[NSMutableURLRequest requestWithURL:queryURL
+                                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                 timeoutInterval:timeoutInterval];
     [req setHTTPMethod:@"GET"];
     [req setValue:@"application/json" forHTTPHeaderField: @"Content-Type"];
     
@@ -89,7 +66,13 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
         NSError *JSONParsingError;
         jsonDict = [NSJSONSerialization JSONObjectWithData:data
                                                    options:kNilOptions error:&JSONParsingError];
-        
+                                      
+        if (JSONParsingError) {
+            NSLog(@"JSONParsingError: %@", JSONParsingError);
+            completion(nil,JSONParsingError);
+            return;
+        }
+                                      
         self.content = [jsonDict valueForKey:API_KEY_CONTENT];
         completion(self, nil);
     }];
@@ -109,6 +92,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     
     for (int i = 0; i < 10; i++) {
         GADArticle *article = [GADArticle new];
+        article.publication=[GADPublication new];
         article.publication.publicationId = @"8e031545-ba66-11e6-8193-a0999b05c023";
         article.title = [NSString stringWithFormat:@"Testarticle %i", i];
         article.authors = [NSArray arrayWithObjects:@{@"name": authorNames[i], @"email": @"addisemail.edu"}, nil];
