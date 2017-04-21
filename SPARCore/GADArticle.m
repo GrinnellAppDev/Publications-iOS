@@ -4,12 +4,12 @@ const NSTimeInterval timeoutInterval = 60.0;
 
 @implementation GADArticle
 
-static NSString *const API_KEY_ARTICLE_ID = @"id";
 static NSString *const API_KEY_AUTHORS = @"authors";
 static NSString *const API_KEY_BRIEF = @"brief";
 static NSString *const API_KEY_CONTENT = @"content";
 static NSString *const API_KEY_DATE_PUBLISHED = @"datePublished";
 static NSString *const API_KEY_HEADER_IMAGE = @"headerImage";
+static NSString *const API_KEY_ARTICLE_ID = @"id";
 static NSString *const API_KEY_PUBLICATION_ID = @"publication";
 static NSString *const API_KEY_TITLE = @"title";
 
@@ -51,12 +51,12 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 + (GADArticle *) articleFromDictionary: (NSDictionary*)dict {
     //Map fields of element to fields of article
-    GADArticle *article = [[GADArticle alloc] init];
+    GADArticle *article = [GADArticle new];
     //datePublished field is a UNIX Timestamp number - converting to NSDate here
     int timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
     article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
     article.headerImage = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
-    article.publicationId = dict[API_KEY_PUBLICATION_ID];
+    article.publication.publicationId = dict[API_KEY_PUBLICATION_ID];
     article.articleId = dict[API_KEY_ARTICLE_ID];
     article.title = dict[API_KEY_TITLE];
     article.authors = dict[API_KEY_AUTHORS];
@@ -68,11 +68,18 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
                                                        NSError *_Nullable error))completion {
     NSURL *queryURL = [self urlForFullArticle];
     
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:queryURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:timeoutInterval];
+    NSMutableURLRequest *req = [NSMutableURLRequest
+                                requestWithURL:queryURL
+                                cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                timeoutInterval:timeoutInterval];
     [req setHTTPMethod:@"GET"];
     [req setValue:@"application/json" forHTTPHeaderField: @"Content-Type"];
     
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession]dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession]
+                                  dataTaskWithRequest:req
+                                  completionHandler:^(NSData *_Nullable data,
+                                                      NSURLResponse * _Nullable response,
+                                                      NSError *_Nullable error) {
         if (error) {
             NSLog(@"Error: %@", error);
             completion(nil, error);
@@ -90,21 +97,19 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 }
 
 - (NSURL *) urlForFullArticle{
-    GADPublication *pub = [GADPublication new];
-    pub.publicationId=self.publicationId;
-    NSURL *queryURL = [pub urlForArticles];
+    NSURL *queryURL = [self.publication urlForArticles];
     queryURL = [NSURL URLWithString:[self articleId] relativeToURL:queryURL];
     return queryURL;
 }
 
 + (NSArray <GADArticle *> *) loadDummyArticles {
 
-    NSMutableArray <GADArticle *> *articleArray = [[NSMutableArray alloc] init];
+    NSMutableArray <GADArticle *> *articleArray = [NSMutableArray new];
     NSArray <NSString *> *authorNames = @[@"Alex", @"Mitchell", @"Addi", @"Gould", @"Garrett", @"Wang", @"Alex2", @"French", @"Nathan", @"Gifford"];
     
     for (int i = 0; i < 10; i++) {
-        GADArticle *article = [[GADArticle alloc] init];
-        article.publicationId = @"8e031545-ba66-11e6-8193-a0999b05c023";
+        GADArticle *article = [GADArticle new];
+        article.publication.publicationId = @"8e031545-ba66-11e6-8193-a0999b05c023";
         article.title = [NSString stringWithFormat:@"Testarticle %i", i];
         article.authors = [NSArray arrayWithObjects:@{@"name": authorNames[i], @"email": @"addisemail.edu"}, nil];
         article.series = @"ada28c7d-a49f-11e6-b9d3-a0999b05c023";

@@ -12,7 +12,7 @@
 @property (nonatomic, strong) NSDate *datePublished;
 @property (nonatomic, strong) NSURL *headerImage;
 @property (nonatomic, strong) NSString *issue;
-@property (nonatomic, strong) NSString *publicationId;
+@property (nonatomic, strong) GADPublication *publication;
 @property (nonatomic, strong) NSString *series;
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, strong) NSString *title;

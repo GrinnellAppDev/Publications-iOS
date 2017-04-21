@@ -42,6 +42,12 @@ const NSTimeInterval timeoutInterval = 60.0;
         jsonDict = [NSJSONSerialization JSONObjectWithData:data
                                                    options:kNilOptions error:&JSONParsingError];
         
+        if (JSONParsingError) {
+            NSLog(@"JSONParsingError: %@", JSONParsingError);
+            completion(nil,nil,JSONParsingError);
+            return;
+        }
+        
         NSArray *objects=[jsonDict valueForKey:API_ITEMS];
         NSString *token=[jsonDict valueForKey:API_NEXT_PAGE_TOKEN];
         

@@ -17,7 +17,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
-
+/*
 - (void)testJsonParser {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -41,7 +41,7 @@
     XCTAssertEqualObjects(expectedArticle.articleId, returnValues[0].articleId);
     XCTAssertEqualObjects(expectedArticle.title, returnValues[0].title);
 }
-
+*/
 //- (void)testBackendRequest {
 //    NSMutableArray <GADArticle*> *returnValues = [[NSMutableArray <GADArticle*> alloc] init];
 //    [GADArticle articlesFromPublication: @"8e031545-ba66-11e6-8193-a0999b05c023"
