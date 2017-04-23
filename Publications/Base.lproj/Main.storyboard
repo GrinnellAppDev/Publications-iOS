@@ -27,6 +27,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="japanvillage" translatesAutoresizingMaskIntoConstraints="NO" id="YTv-rk-cUb">
+                                            <rect key="frame" x="307" y="19" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="kpl-FG-UTZ"/>
+                                                <constraint firstAttribute="width" secondItem="YTv-rk-cUb" secondAttribute="height" multiplier="1:1" id="mTf-br-GjT"/>
+                                            </constraints>
+                                        </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="japanvillage" translatesAutoresizingMaskIntoConstraints="NO" id="gju-7K-KGo">
                                             <rect key="frame" x="8" y="51" width="28" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -45,24 +52,22 @@
                                             <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Article Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78x-g1-RPa">
-                                            <rect key="frame" x="8" y="19" width="291" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78x-g1-RPa">
+                                            <rect key="frame" x="4" y="19" width="291" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="WlR-nL-hWf"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="japanvillage" translatesAutoresizingMaskIntoConstraints="NO" id="YTv-rk-cUb">
-                                            <rect key="frame" x="307" y="19" width="60" height="60"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="kpl-FG-UTZ"/>
-                                                <constraint firstAttribute="width" secondItem="YTv-rk-cUb" secondAttribute="height" multiplier="1:1" id="mTf-br-GjT"/>
-                                            </constraints>
-                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="YTv-rk-cUb" secondAttribute="trailing" constant="4" id="4Eu-UM-e7H"/>
+                                        <constraint firstItem="78x-g1-RPa" firstAttribute="top" secondItem="YTv-rk-cUb" secondAttribute="top" id="EdP-dc-gwu"/>
                                         <constraint firstItem="YTv-rk-cUb" firstAttribute="centerY" secondItem="drA-Bz-0eD" secondAttribute="centerY" id="PsO-NX-XYl"/>
+                                        <constraint firstItem="YTv-rk-cUb" firstAttribute="leading" secondItem="78x-g1-RPa" secondAttribute="trailing" constant="8" id="s57-dg-tbk"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="78x-g1-RPa" secondAttribute="leading" constant="4" id="xRH-m4-lfy"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
