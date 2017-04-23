@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "GADRemoteModel.h"
-@class GADPublication;
+#import "GADPublication.h"
 
 @interface GADArticle : GADRemoteModel
 

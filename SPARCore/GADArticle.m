@@ -1,5 +1,4 @@
 #import "GADArticle.h"
-#import "GADPublication.h"
 
 const NSTimeInterval timeoutInterval = 60.0;
 
