@@ -106,7 +106,7 @@ class NewsTableViewController: UITableViewController {
     //Maddy's new function
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! NewsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! NewsTableViewCell
         let authorArr = arr[indexPath.row].authors
         let title = arr[indexPath.row].title
         print("TITLE: \(title ?? "no title")")
