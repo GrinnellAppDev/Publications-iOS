@@ -111,9 +111,11 @@ class NewsTableViewController: UITableViewController {
         let title = arr[indexPath.row].title
         print("TITLE: \(title ?? "no title")")
         
-        cell.authorName.text = authorArr
-        //cell.articleTitle.text = arr[indexPath.row].title
+    
+        cell.authorName.text = String("by ") + "\(authorArr ?? "anon")"
         cell.articleTitle.text = title
+        if (title == "Testarticle 0"){
+            cell.articleTitle.text = "This article has a very verbose title so that you can see two lines!"}
         cell.authorImage.image = #imageLiteral(resourceName: "article")
         cell.articleImage.image = #imageLiteral(resourceName: "article")
         //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
@@ -125,6 +127,11 @@ class NewsTableViewController: UITableViewController {
         return cell
     }
     
+    
+    // Changing cell height to 100. Was not working on storyboard
+     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80;
+     }
     
     
     
