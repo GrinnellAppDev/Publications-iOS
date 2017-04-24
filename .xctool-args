@@ -1,0 +1,5 @@
+[
+  "-workspace", "Publications.xcworkspace",
+  "-scheme","App",
+  "-configuration","Debug",
+]
