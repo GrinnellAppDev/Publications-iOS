@@ -1,3 +1,4 @@
 language: objective-c
 xcode_workspace: Publications.xcworkspace
 xcode_scheme: App
+osx_image: xcode8.3
