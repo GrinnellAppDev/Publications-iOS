@@ -1,0 +1,3 @@
+language: objective-c
+xcode_workspace: Publications.xcworkspace
+xcode_scheme: App
