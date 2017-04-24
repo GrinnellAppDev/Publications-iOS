@@ -45,8 +45,8 @@ static NSString *const API_SUFFIX = @"articles";
                             self.content = fullArticle.content;
                             self.authors = fullArticle.authors;
                             __autoreleasing GADArticle *safeself = self; 
-                            if (weakself) {
-                              completion(safeself, nil);
+                            if (safeself) {
+                              completion(&safeself, nil);
                             }
                         }];
 }
