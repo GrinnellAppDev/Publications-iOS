@@ -2,7 +2,6 @@
 
 @implementation GADRemoteModel
 
-//static NSString *apiURL = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/devstable/publications";
 const NSTimeInterval timeoutInterval = 60.0;
 
 + (void) fetchModelsWithParams:(NSURL * _Nonnull)baseURL
