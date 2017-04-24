@@ -1,5 +1,5 @@
-import Answers
 import CoreData
+import Crashlytics
 import Fabric
 import UIKit
 
@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
       
-        Fabric.with([Answers.self])
+        Fabric.with([Answers.self, Crashlytics.self])
         return true
     }
 
