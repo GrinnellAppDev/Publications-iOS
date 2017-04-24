@@ -45,7 +45,7 @@ static NSString *const API_SUFFIX = @"articles";
                             GADArticle *fullArticle = article[0];
                             self.content = fullArticle.content;
                             self.authors = fullArticle.authors;
-                            completion(self, nil);
+                            completion(&self, nil);
                         }];
 }
 
