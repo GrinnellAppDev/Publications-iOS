@@ -3,8 +3,8 @@
 
 @interface GADPublication : GADRemoteModel
 
-@property (nonatomic, strong) NSString *publicationId;
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *_Nonnull publicationId;
+@property (nonatomic, strong) NSString *_Nullable name;
 
 + (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
                         Completion:(void(^_Nonnull)(NSArray<GADPublication *>
@@ -18,6 +18,6 @@
                                                          NSString *_Nullable token,
                                                          NSError *_Nullable error))completion;
 
-- (NSURL *) urlForArticles;
+- (NSURL *_Nonnull) urlForArticles;
 
 @end
