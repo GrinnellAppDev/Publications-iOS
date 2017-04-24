@@ -11,7 +11,7 @@ const NSTimeInterval timeoutInterval = 60.0;
 @implementation GADRemoteModel
 
 + (void) fetchModelsWithParams:(NSURL * _Nonnull)baseURL
-               queryParameters:(NSDictionary * _Nonnull)queryParams
+               queryParameters:(NSDictionary * _Nullable)queryParams
               modelTransformer:(NSArray<GADRemoteModel *>*(^_Nonnull)
                                 (NSArray<NSDictionary *>* _Nonnull objects))modelTransformer
              completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *> *_Nullable models, NSString *_Nullable token, NSError *_Nullable error))completion {
