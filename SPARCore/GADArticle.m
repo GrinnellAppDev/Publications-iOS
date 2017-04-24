@@ -3,25 +3,25 @@
 
 @implementation GADArticle
 
-static NSString *const API_ARTICLE_ID = @"id";
-static NSString *const API_AUTHORS = @"authors";
-static NSString *const API_BRIEF = @"brief";
-static NSString *const API_CONTENT = @"content";
-static NSString *const API_DATE_PUBLISHED = @"datePublished";
-static NSString *const API_HEADER_IMAGE = @"headerImage";
-static NSString *const API_PUBLICATION_ID = @"publication";
-static NSString *const API_TITLE = @"title";
+static NSString *const API_KEY_ARTICLE_ID = @"id";
+static NSString *const API_KEY_AUTHORS = @"authors";
+static NSString *const API_KEY_BRIEF = @"brief";
+static NSString *const API_KEY_CONTENT = @"content";
+static NSString *const API_KEY_DATE_PUBLISHED = @"datePublished";
+static NSString *const API_KEY_HEADER_IMAGE = @"headerImage";
+static NSString *const API_KEY_PUBLICATION_ID = @"publication";
+static NSString *const API_KEY_TITLE = @"title";
 
 static NSString *const API_HOSTNAME = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/";
 static NSString *const API_PREFIX = @"devstable";
 static NSString *const API_PUBLICATION_PATH = @"publications";
-static NSString *const API_ARTICLE_PATH = @"articles";
+static NSString *const API_SUFFIX = @"articles";
 
-+ (void) articlesFromPublication: (NSString *)publicationId
-                                        completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
-                                                                           *_Nullable articles,
-                                                            NSError *_Nullable error))completion {
-    NSURL *queryURL = [GADArticle urlForArticlesFromPublication:publicationId];
++ (void) articlesForPublicationId: (NSString *)publicationId
+                completionHandler:(void(^_Nonnull)(NSArray<GADArticle *>
+                                  *_Nullable articles,
+                                  NSError *_Nullable error))completion {
+    NSURL *queryURL = [GADArticle urlForArticlesWithPublicationId:publicationId];
     
     [GADRemoteModel fetchModelsWithParams:queryURL
                           queryParameters:@{}
@@ -29,26 +29,24 @@ static NSString *const API_ARTICLE_PATH = @"articles";
                             return [GADArticle articlesFromJSON:jsonData];
                          }
                         completionHandler:completion];
-
 }
 
 
-- (void) fetchFulltextWithCompletion: (void(^_Nonnull)(GADRemoteModel * *_Nullable model,
-                                                NSError *_Nullable error))completion {
-    NSURL *queryURL = [GADArticle createURLWithArticle:self.articleId publication:self.publicationId];
+- (void) fetchFulltextWithCompletion: (void(^_Nonnull)(GADArticle * *_Nullable article,
+                                      NSError *_Nullable error))completion {
+    NSURL *queryURL = [self urlForFulltextArticle];
     
     [GADRemoteModel fetchModelsWithParams:queryURL
                           queryParameters:@{}
                          modelTransformer:^(NSData *jsonData){
                              return [GADArticle articlesFromJSON:jsonData];
                          }
-                        completionHandler:^(NSArray <GADArticle *> *_Nullable model, NSError *_Nullable error){
-                            GADArticle *fullArticle = model[0];
+                        completionHandler:^(NSArray <GADArticle *> *_Nullable article, NSError *_Nullable error){
+                            GADArticle *fullArticle = article[0];
                             self.content = fullArticle.content;
                             self.authors = fullArticle.authors;
-                            //completion(); --How should we call the completion handler here?
+                            completion(self, nil);
                         }];
-    
 }
 
 + (NSArray <GADArticle *> *) articlesFromJSON: (NSData *)json {
@@ -56,8 +54,8 @@ static NSString *const API_ARTICLE_PATH = @"articles";
     NSMutableArray <GADArticle *> *articles = [[NSMutableArray alloc] init];
     NSError *error = nil;
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:json
-                                                         options:kNilOptions error:&error];
-    
+                                                         options:kNilOptions
+                                                           error:&error];
     if (error != nil) {
         NSLog(@"Error parsing JSON.");
     }
@@ -66,40 +64,54 @@ static NSString *const API_ARTICLE_PATH = @"articles";
         //Map fields of element to fields of article
         GADArticle *article = [[GADArticle alloc] init];
         //datePublished field is a UNIX Timestamp number - converting to NSDate here
-        int timeStamp = (int)element[API_DATE_PUBLISHED];
+        int timeStamp = (int)element[API_KEY_DATE_PUBLISHED];
+        article.articleId = element[API_KEY_ARTICLE_ID];
+        article.brief = element[API_KEY_BRIEF];
         article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-        article.brief = element[API_BRIEF];
-        article.headerImage = element[API_HEADER_IMAGE];
-        article.publicationId = element[API_PUBLICATION_ID];
-        article.articleId = element[API_ARTICLE_ID];
-        article.title = element[API_TITLE];
-        if (element[API_CONTENT]) {
-            article.content = element[API_CONTENT];
-            article.authors = element[API_AUTHORS];
+        article.headerImage = element[API_KEY_HEADER_IMAGE];
+        article.publicationId = element[API_KEY_PUBLICATION_ID];
+        article.title = element[API_KEY_TITLE];
+        if (element[API_KEY_CONTENT]) {
+            article.authors = element[API_KEY_AUTHORS];
+            article.content = element[API_KEY_CONTENT];
         }
         [articles addObject:article];
     }
     return articles;
 }
 
-+ (NSURL *) baseURL {
++ (NSURL *) baseQueryUrl {
     NSURL *queryURL = [NSURL URLWithString:API_HOSTNAME];
-    queryURL = [NSURL URLWithString:API_PREFIX relativeToURL:queryURL];
+    queryURL = [NSURL URLWithString:API_PREFIX
+                      relativeToURL:queryURL];
     return queryURL;
 }
 
-+ (NSURL *) urlForArticlesFromPublication: (NSString *)publicationId{
-    NSURL *queryURL = [GADArticle baseURL];
-    queryURL = [NSURL URLWithString:API_PUBLICATION_PATH relativeToURL:queryURL];
-    queryURL = [NSURL URLWithString:publicationId relativeToURL:queryURL];
-    queryURL = [NSURL URLWithString:API_ARTICLE_PATH relativeToURL:queryURL];
++ (NSURL *) urlForArticlesWithPublicationId: (NSString *)publicationId{
+    NSURL *queryURL = [GADArticle baseQueryUrl];
+    queryURL = [NSURL URLWithString:API_PUBLICATION_PATH
+                      relativeToURL:queryURL];
+    queryURL = [NSURL URLWithString:publicationId
+                      relativeToURL:queryURL];
+    queryURL = [NSURL URLWithString:API_SUFFIX
+                      relativeToURL:queryURL];
     return queryURL;
 }
 
-+ (NSURL *) createURLWithArticle: (NSString *)articleId publication:(NSString *)publicationId{
-    NSURL *queryURL = [GADArticle urlForArticlesFromPublication:publicationId];
-    queryURL = [NSURL URLWithString:articleId relativeToURL:queryURL];
+- (NSURL *) urlForFulltextArticle {
+    NSURL *queryURL = [GADArticle urlForArticlesWithPublicationId:self.publicationId];
+    queryURL = [NSURL URLWithString:self.articleId
+                      relativeToURL:queryURL];
     return queryURL;
+}
+
+- (void)updateWithArticle:(GADArticle *)newArticle {
+    self.authors = newArticle.authors;
+    self.brief = newArticle.brief;
+    self.content = newArticle.content;
+    self.datePublished = newArticle.datePublished;
+    self.headerImage = newArticle.headerImage;
+    self.title = newArticle.title;
 }
 
 + (NSArray <GADArticle *> *) loadDummyArticles {
@@ -113,7 +125,6 @@ static NSString *const API_ARTICLE_PATH = @"articles";
         article.title = [NSString stringWithFormat:@"Testarticle %i", i];
         article.authors = [NSArray arrayWithObjects:@{@"name": authorNames[i], @"email": @"addisemail.edu"}, nil];
         article.series = @"ada28c7d-a49f-11e6-b9d3-a0999b05c023";
-        //URL needs to change for each article
         article.url = [NSURL URLWithString:@"http://www.thesandb.com/news/shacs-to-offer-funds-for-students-in-need.html"];
         article.tags = [NSArray arrayWithObjects:@"amazing!", @"fantastic!", @"Computer science!", nil];
         article.brief = [NSString stringWithFormat:@"This is very brief %i", i];
