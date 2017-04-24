@@ -1,0 +1,7 @@
+language: objective-c
+xcode_workspace: Publications.xcworkspace
+xcode_scheme: App
+script:
+    - xcodebuild clean build -sdk iphonesimulator -workspace Publications.xcworkspace -scheme App CODE_SIGNING_REQUIRED=NO
+    - xcodebuild clean build -sdk iphonesimulator -workspace Publications.xcworkspace -scheme SPARCore CODE_SIGNING_REQUIRED=NO
+osx_image: xcode8.3
