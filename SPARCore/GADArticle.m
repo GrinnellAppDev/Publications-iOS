@@ -35,7 +35,6 @@ static NSString *const API_SUFFIX = @"articles";
 - (void) fetchFulltextWithCompletion: (void(^_Nonnull)(GADArticle * *_Nullable article,
                                       NSError *_Nullable error))completion {
     NSURL *queryURL = [self urlForFulltextArticle];
-    __weak GADArticle *weakself = self; 
     [GADRemoteModel fetchModelsWithParams:queryURL
                           queryParameters:@{}
                          modelTransformer:^(NSData *jsonData){
@@ -45,8 +44,9 @@ static NSString *const API_SUFFIX = @"articles";
                             GADArticle *fullArticle = article[0];
                             self.content = fullArticle.content;
                             self.authors = fullArticle.authors;
+                            __autoreleasing GADArticle *safeself = self; 
                             if (weakself) {
-                              completion(weakself, nil);
+                              completion(safeself, nil);
                             }
                         }];
 }
