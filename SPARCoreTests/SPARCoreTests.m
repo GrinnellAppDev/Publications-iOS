@@ -44,32 +44,19 @@
 }
 */
 
-- (void)testBackendRequest {
+- (void)testPublicationRequest {
     XCTestExpectation *expectation = [self expectationWithDescription:@"completed"];
     
-    __block NSArray <GADPublication*> *returnPubs = [[NSArray <GADPublication*> alloc] init];
-    __block NSArray <GADArticle*> *returnArticles = [[NSArray <GADArticle*> alloc] init];
-
-    __block NSString *testToken=@"";
-    [GADPublication fetchAllWithNextPageToken:nil Completion:^(NSArray<GADPublication *> * _Nullable publications, NSString * _Nullable token, NSError * _Nullable error) {
+    [GADPublication fetchAllWithNextPageToken:nil
+                                   Completion:^(NSArray<GADPublication *> *
+                                                _Nullable publications,
+                                                NSString * _Nullable token,
+                                                NSError * _Nullable error) {
         XCTAssertNotNil(publications,@"Fail to fetch pubs!");
-        returnPubs=publications;
-        [returnPubs[0] fetchArticlesWithNextPageToken:nil Completion:^(NSArray<GADArticle *> * _Nullable articles, NSString * _Nullable token, NSError * _Nullable error) {
-            XCTAssertNotNil(articles,@"Fail to fetch articles!");
-            returnArticles=articles;
-            testToken=token;
-            [returnPubs[0] fetchArticlesWithNextPageToken:token Completion:^(NSArray<GADArticle *> * _Nullable articles, NSString * _Nullable token, NSError * _Nullable error) {
-                XCTAssertNotNil(articles,@"Fail to use tokens!");
-                [articles[0] fetchFullTextWithCompletion:^(GADArticle * _Nullable article, NSError * _Nullable error) {
-                    XCTAssertNotNil(article,@"Fail to fetch full text!");
-                    NSLog(@"CONTENT!!!!!!!!!!%@",article.content);
-                    [expectation fulfill];
-                }];
-            }];
-        }];
+        [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if(error)
         {
             XCTFail(@"Expectation Failed with error: %@", error);
@@ -77,7 +64,73 @@
     }];
 }
 
+- (void)testArticleRequest {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"completed"];
+    
+    GADPublication *pub=[GADPublication new];
+    pub.publicationId=@"8e031545-ba66-11e6-8193-a0999b05c023";
+    
+    [pub fetchArticlesWithNextPageToken:nil Completion:^(NSArray<GADArticle *> *
+                                                         _Nullable articles,
+                                                         NSString * _Nullable token,
+                                                         NSError * _Nullable error) {
+            XCTAssertNotNil(articles,@"Fail to fetch articles!");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if(error)
+        {
+            XCTFail(@"Expectation Failed with error: %@", error);
+        }
+    }];
+}
 
+- (void)testArticleRequestWithToken {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"completed"];
+    
+    GADPublication *pub=[GADPublication new];
+    pub.publicationId=@"8e031545-ba66-11e6-8193-a0999b05c023";
+    
+    [pub fetchArticlesWithNextPageToken:@"CTsT-hXNEeena95pI9PD9gAAAVsir91v"
+                             Completion:^(NSArray<GADArticle *> *
+                                          _Nullable articles, NSString *
+                                          _Nullable token, NSError *
+                                          _Nullable error) {
+        XCTAssertNotNil(articles,@"Fail to fetch articles with token!");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if(error)
+        {
+            XCTFail(@"Expectation Failed with error: %@", error);
+        }
+    }];
+}
+
+- (void)testFullTextRequest {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"completed"];
+    
+    GADArticle *article = [GADArticle new];
+    article.articleId=@"d3515d1a-ec0c-11e6-b33b-fa2f958eba33";
+    article.publication=[GADPublication new];
+    article.publication.publicationId=@"8e031545-ba66-11e6-8193-a0999b05c023";
+    
+    [article fetchFullTextWithCompletion:^(GADArticle * _Nullable article,
+                                           NSError * _Nullable error) {
+        XCTAssertNotNil(article,@"Fail to fetch full text!");
+        NSLog(@"CONTENT!!!!!!!!!!%@",article.content);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if(error)
+        {
+            XCTFail(@"Expectation Failed with error: %@", error);
+        }
+    }];
+}
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
