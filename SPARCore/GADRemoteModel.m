@@ -37,9 +37,8 @@ const NSTimeInterval timeoutInterval = 60.0;
             return;
         }
         
-        NSDictionary *jsonDict = [NSDictionary new];
         NSError *JSONParsingError;
-        jsonDict = [NSJSONSerialization JSONObjectWithData:data
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
                                                    options:kNilOptions error:&JSONParsingError];
         
         if (JSONParsingError) {
@@ -60,7 +59,7 @@ const NSTimeInterval timeoutInterval = 60.0;
 
 + (NSURL *) baseURL {
     NSURL *queryURL = [NSURL URLWithString:API_HOSTNAME];
-    queryURL = [NSURL URLWithString:API_PREFIX relativeToURL:queryURL];
+    queryURL = [queryURL URLByAppendingPathComponent:API_PREFIX];
     return queryURL;
 }
 

@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "GADRemoteModel.h"
 #import "GADPublication.h"
 

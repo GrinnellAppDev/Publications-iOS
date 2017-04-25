@@ -1,6 +1,6 @@
 #import "GADArticle.h"
 
-const NSTimeInterval timeoutInterval = 60.0;
+static const NSTimeInterval timeoutInterval = 60.0;
 
 @implementation GADArticle
 
@@ -61,9 +61,9 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
             completion(nil, error);
             return;
         }
-        NSDictionary *jsonDict = [NSDictionary new];
+                                      
         NSError *JSONParsingError;
-        jsonDict = [NSJSONSerialization JSONObjectWithData:data
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
                                                    options:kNilOptions error:&JSONParsingError];
                                       
         if (JSONParsingError) {
@@ -80,7 +80,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 - (NSURL *) urlForFullArticle{
     NSURL *queryURL = [self.publication urlForArticles];
-    queryURL = [NSURL URLWithString:[self articleId] relativeToURL:queryURL];
+    queryURL = [queryURL URLByAppendingPathComponent:self.articleId];
     return queryURL;
 }
 

@@ -68,13 +68,13 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 - (NSURL *) urlForArticles{
     NSURL *queryURL = [GADPublication baseURL];
-    queryURL = [NSURL URLWithString:self.publicationId relativeToURL:queryURL];
-    queryURL = [NSURL URLWithString:API_ARTICLE_SUFFIX relativeToURL:queryURL];
+    queryURL = [queryURL URLByAppendingPathComponent:self.publicationId];
+    queryURL = [queryURL URLByAppendingPathComponent:API_ARTICLE_SUFFIX];
     return queryURL;
 }
 
 + (NSURL *)baseURL {
-    return [NSURL URLWithString:API_PUBLICATION_SUFFIX relativeToURL:[super baseURL]];
+    return [[super baseURL] URLByAppendingPathComponent:API_PUBLICATION_SUFFIX];
 }
 
 @end
