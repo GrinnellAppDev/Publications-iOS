@@ -61,7 +61,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
             completion(nil, error);
             return;
         }
-                                      
+
         NSError *JSONParsingError;
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
                                                    options:kNilOptions error:&JSONParsingError];
