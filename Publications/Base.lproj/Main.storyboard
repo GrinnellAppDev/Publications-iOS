@@ -358,6 +358,7 @@
                                     <outlet property="authorImage" destination="BNI-Y9-cGc" id="kwp-Jo-S5S"/>
                                     <outlet property="authorName" destination="VLE-1P-01C" id="ivI-pz-bex"/>
                                     <outlet property="timestamp" destination="qZG-Zt-bcd" id="dhc-FC-bri"/>
+                                    <segue destination="s1W-aW-NDY" kind="show" id="OOz-nu-hcm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -593,7 +594,7 @@
         <image name="japanvillage" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J9s-Lc-sPk"/>
+        <segue reference="OOz-nu-hcm"/>
         <segue reference="od7-2C-roO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
