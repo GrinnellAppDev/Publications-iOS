@@ -70,7 +70,7 @@ static NSString *const API_SUFFIX = @"articles";
         article.articleId = element[API_KEY_ARTICLE_ID];
         article.brief = element[API_KEY_BRIEF];
         article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-        article.headerImage = element[API_KEY_HEADER_IMAGE];
+        article.headerImageURL = [NSURL URLWithString:element[API_KEY_HEADER_IMAGE]];
         article.publicationId = element[API_KEY_PUBLICATION_ID];
         article.title = element[API_KEY_TITLE];
         if (element[API_KEY_CONTENT]) {

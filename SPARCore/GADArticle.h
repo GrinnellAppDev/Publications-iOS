@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "GADRemoteModel.h"
 
 @interface GADArticle : GADRemoteModel
@@ -9,8 +9,9 @@
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSDate *dateEdited;
 @property (nonatomic, strong) NSDate *datePublished;
-@property (nonatomic, strong) NSString *headerImage;
 @property (nonatomic, strong) NSString *issue;
+@property (nonatomic, strong) UIImage *headerImage;
+@property (nonatomic, strong) NSURL *headerImageURL;
 @property (nonatomic, strong) NSString *publicationId;
 @property (nonatomic, strong) NSString *series;
 @property (nonatomic, strong) NSArray *tags;
