@@ -2,6 +2,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    let defaults:UserDefaults = UserDefaults.standard
     var rowSelected = -1;
     var numSections = 1;
     var cellIds = ["aboutSPARCCell", "aboutAppdevCell", "aboutFontsCell"]
@@ -11,6 +12,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaults.set(20, forKey: "font")
         //self.tableView.allowsSelection = true
 
         // Uncomment the following line to preserve selection between presentations
