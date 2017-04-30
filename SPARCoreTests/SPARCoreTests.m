@@ -1,5 +1,9 @@
 #import <XCTest/XCTest.h>
+<<<<<<< HEAD
 #import "GADPublication.h"
+=======
+
+>>>>>>> jsonParsing
 #import "GADArticle.h"
 
 @interface SPARCoreTests : XCTestCase

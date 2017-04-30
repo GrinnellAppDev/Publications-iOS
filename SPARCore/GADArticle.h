@@ -1,3 +1,4 @@
+#import <UIKit/UIKit.h>
 #import "GADRemoteModel.h"
 #import "GADPublication.h"
 
@@ -9,7 +10,8 @@
 @property (nonatomic, strong) NSString * _Nullable content;
 @property (nonatomic, strong) NSDate * _Nullable dateEdited;
 @property (nonatomic, strong) NSDate * _Nullable datePublished;
-@property (nonatomic, strong) NSURL * _Nullable headerImage;
+@property (nonatomic, strong) UIImage * _Nullable headerImage;
+@property (nonatomic, strong) NSURL * _Nullable headerImageURL;
 @property (nonatomic, strong) NSString * _Nullable issue;
 @property (nonatomic, strong) GADPublication * _Nullable publication;
 @property (nonatomic, strong) NSString * _Nullable series;
