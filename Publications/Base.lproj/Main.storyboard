@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3gj-dd-ajm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3gj-dd-ajm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -276,7 +276,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="ccc-eV-guA" kind="relationship" relationship="viewControllers" id="AaV-Ca-zkJ"/>
-                        <segue destination="lrh-nA-FrX" kind="relationship" relationship="viewControllers" id="oYy-Q2-xLw"/>
+                        <segue destination="NeJ-I9-LT3" kind="relationship" relationship="viewControllers" id="oYy-Q2-xLw"/>
                         <segue destination="agT-dF-HRa" kind="relationship" relationship="viewControllers" id="sPa-4p-N8D"/>
                     </connections>
                 </tabBarController>
@@ -284,41 +284,93 @@
             </objects>
             <point key="canvasLocation" x="1170" y="449"/>
         </scene>
-        <!--Bookmark-->
-        <scene sceneID="SFL-89-YRX">
+        <!--Bookmarks-->
+        <scene sceneID="FvB-Ry-NBZ">
             <objects>
-                <viewController id="lrh-nA-FrX" customClass="BookmarkViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3iW-Z3-1WS"/>
-                        <viewControllerLayoutGuide type="bottom" id="Dxy-ID-QTp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vaW-VC-bBq">
+                <tableViewController id="aVX-EW-smJ" customClass="BookmarkViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="T9y-0J-nQq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="japanvillage" translatesAutoresizingMaskIntoConstraints="NO" id="WEy-0R-T8s">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="WEy-0R-T8s" firstAttribute="top" secondItem="vaW-VC-bBq" secondAttribute="top" id="Qyf-xc-IUU"/>
-                            <constraint firstItem="WEy-0R-T8s" firstAttribute="bottom" secondItem="Dxy-ID-QTp" secondAttribute="top" id="b3o-l1-4PR"/>
-                            <constraint firstItem="WEy-0R-T8s" firstAttribute="leading" secondItem="vaW-VC-bBq" secondAttribute="leading" id="bkh-yb-pUT"/>
-                            <constraint firstAttribute="trailing" secondItem="WEy-0R-T8s" secondAttribute="trailing" id="cLX-iE-kBX"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Bookmarks" image="Bookmarks" selectedImage="Bookmarks" id="e1D-0t-yxm"/>
-                    <navigationItem key="navigationItem" title="Bookmark" id="CBz-PW-RcM">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="ixJ-Xd-oLZ"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="menuButton" destination="ixJ-Xd-oLZ" id="3Yr-HM-neL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9sy-Vz-kyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookmarkCell" rowHeight="80" id="u2h-RF-8Eb" customClass="NewsTableViewCell" customModule="Publications" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u2h-RF-8Eb" id="uVs-NT-mbM">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Bb-uG-aej">
+                                            <rect key="frame" x="303" y="9" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="7Bb-uG-aej" secondAttribute="height" multiplier="1:1" id="Km3-kg-fkO"/>
+                                                <constraint firstAttribute="height" constant="60" id="iZD-zs-ika"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BNI-Y9-cGc">
+                                            <rect key="frame" x="12" y="45" width="28" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="BNI-Y9-cGc" secondAttribute="height" multiplier="1:1" id="HS4-gQ-x2b"/>
+                                                <constraint firstAttribute="width" constant="28" id="dNV-Lf-a7N"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo2-AU-loO">
+                                            <rect key="frame" x="10" y="5" width="285" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="d50-4v-8Jt"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLE-1P-01C">
+                                            <rect key="frame" x="52" y="45" width="243" height="14"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZG-Zt-bcd">
+                                            <rect key="frame" x="52" y="59" width="243" height="12"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7Bb-uG-aej" firstAttribute="centerY" secondItem="uVs-NT-mbM" secondAttribute="centerY" id="0s7-vI-cp8"/>
+                                        <constraint firstItem="BNI-Y9-cGc" firstAttribute="top" secondItem="VLE-1P-01C" secondAttribute="top" id="3mJ-RZ-sES"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="7Bb-uG-aej" secondAttribute="trailing" constant="4" id="8oH-Fs-Wmr"/>
+                                        <constraint firstItem="Lo2-AU-loO" firstAttribute="leading" secondItem="uVs-NT-mbM" secondAttribute="leadingMargin" constant="2" id="9Dl-sy-YBQ"/>
+                                        <constraint firstItem="VLE-1P-01C" firstAttribute="top" secondItem="Lo2-AU-loO" secondAttribute="bottom" constant="6" id="C42-K8-gAs"/>
+                                        <constraint firstItem="Lo2-AU-loO" firstAttribute="top" secondItem="7Bb-uG-aej" secondAttribute="top" constant="-4" id="Ngg-JR-OKc"/>
+                                        <constraint firstItem="7Bb-uG-aej" firstAttribute="leading" secondItem="VLE-1P-01C" secondAttribute="trailing" constant="8" id="ULQ-9u-hVc"/>
+                                        <constraint firstItem="qZG-Zt-bcd" firstAttribute="trailing" secondItem="VLE-1P-01C" secondAttribute="trailing" id="fGE-2s-Q08"/>
+                                        <constraint firstItem="VLE-1P-01C" firstAttribute="leading" secondItem="qZG-Zt-bcd" secondAttribute="leading" id="oOl-6Z-BSc"/>
+                                        <constraint firstItem="qZG-Zt-bcd" firstAttribute="top" secondItem="VLE-1P-01C" secondAttribute="bottom" id="ta5-76-OSS"/>
+                                        <constraint firstItem="Lo2-AU-loO" firstAttribute="trailing" secondItem="VLE-1P-01C" secondAttribute="trailing" id="uNY-Aa-5MZ"/>
+                                        <constraint firstItem="Lo2-AU-loO" firstAttribute="leading" secondItem="BNI-Y9-cGc" secondAttribute="leading" constant="-2" id="wMy-lA-mEn"/>
+                                        <constraint firstItem="VLE-1P-01C" firstAttribute="leading" secondItem="BNI-Y9-cGc" secondAttribute="trailing" constant="12" id="ynl-7d-yTV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="articleImage" destination="7Bb-uG-aej" id="0k6-ha-D3y"/>
+                                    <outlet property="articleTitle" destination="Lo2-AU-loO" id="lZa-Kp-44S"/>
+                                    <outlet property="authorImage" destination="BNI-Y9-cGc" id="kwp-Jo-S5S"/>
+                                    <outlet property="authorName" destination="VLE-1P-01C" id="ivI-pz-bex"/>
+                                    <outlet property="timestamp" destination="qZG-Zt-bcd" id="dhc-FC-bri"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aVX-EW-smJ" id="17Z-7A-T6Z"/>
+                            <outlet property="delegate" destination="aVX-EW-smJ" id="V8g-EL-tsV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Bookmarks" id="z9J-hA-0eY"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lOa-cd-iEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2175" y="358"/>
+            <point key="canvasLocation" x="3264.8000000000002" y="357.57121439280365"/>
         </scene>
         <!--Settings-->
         <scene sceneID="iPl-go-Kkx">
@@ -512,6 +564,25 @@
             </objects>
             <point key="canvasLocation" x="2066" y="1175"/>
         </scene>
+        <!--Bookmarks-->
+        <scene sceneID="7wV-VU-0SF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NeJ-I9-LT3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Bookmarks" image="Bookmarks" selectedImage="Bookmarks" id="e1D-0t-yxm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xVt-98-I7Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aVX-EW-smJ" kind="relationship" relationship="rootViewController" id="ShV-KE-Cxn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5dG-Jz-pNJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2173.5999999999999" y="357.57121439280365"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Bookmarks" width="14" height="18"/>
@@ -520,7 +591,6 @@
         <image name="Settings" width="20" height="20"/>
         <image name="article" width="440" height="128"/>
         <image name="japanvillage" width="22" height="22"/>
-        <image name="menu" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="J9s-Lc-sPk"/>
