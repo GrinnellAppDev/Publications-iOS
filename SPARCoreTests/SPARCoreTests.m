@@ -1,6 +1,6 @@
+#import <SPARCore/SPARCore.h>
+
 #import <XCTest/XCTest.h>
-#import "GADPublication.h"
-#import "GADArticle.h"
 
 @interface SPARCoreTests : XCTestCase
 
@@ -22,7 +22,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"completed"];
     
     [GADPublication fetchAllWithNextPageToken:nil
-                                   Completion:^(NSArray<GADPublication *> *
+                                   completion:^(NSArray<GADPublication *> *
                                                 _Nullable publications,
                                                 NSString * _Nullable token,
                                                 NSError * _Nullable error) {
@@ -44,7 +44,7 @@
     GADPublication *pub=[GADPublication new];
     pub.publicationId=@"8e031545-ba66-11e6-8193-a0999b05c023";
     
-    [pub fetchArticlesWithNextPageToken:nil Completion:^(NSArray<GADArticle *> *
+    [pub fetchArticlesWithNextPageToken:nil completion:^(NSArray<GADArticle *> *
                                                          _Nullable articles,
                                                          NSString * _Nullable token,
                                                          NSError * _Nullable error) {
@@ -67,7 +67,7 @@
     pub.publicationId=@"8e031545-ba66-11e6-8193-a0999b05c023";
     
     [pub fetchArticlesWithNextPageToken:@"CTsT-hXNEeena95pI9PD9gAAAVsir91v"
-                             Completion:^(NSArray<GADArticle *> *
+                             completion:^(NSArray<GADArticle *> *
                                           _Nullable articles, NSString *
                                           _Nullable token, NSError *
                                           _Nullable error) {
@@ -103,13 +103,6 @@
         {
             XCTFail(@"Expectation Failed with error: %@", error);
         }
-    }];
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
     }];
 }
 

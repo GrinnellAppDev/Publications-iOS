@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+
 #import "GADRemoteModel.h"
 #import "GADPublication.h"
 
@@ -19,12 +20,16 @@
 @property (nonatomic, strong) NSString * _Nullable title;
 @property (nonatomic, strong) NSURL * _Nullable url;
 
-- (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADArticle *_Nullable article,
+- (void) fetchFullTextWithCompletion:(void(^_Nonnull)(GADArticle *_Nullable article,
                                                        NSError *_Nullable error))completion;
 
-+ (NSArray <GADArticle *> *_Nullable) articlesFromArray: (NSArray *_Nonnull)jsonArray;
++ (instancetype _Nonnull)articleFromDictionary:(NSDictionary *_Nonnull)dict;
++ (NSArray <GADArticle *> *_Nonnull)articlesFromArray:(NSArray<NSDictionary *> *_Nonnull)array;
 
-+ (NSArray <GADArticle *> *_Nonnull) loadDummyArticles;
+/**
+ * dummyArticles is deprecated and will be removed in a future verion of SPARCore
+ */
++ (NSArray <GADArticle *> *_Nonnull)dummyArticles __attribute__((deprecated));
 
 @end
 

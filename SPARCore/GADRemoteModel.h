@@ -2,13 +2,18 @@
 
 @interface GADRemoteModel : NSObject
 
-+ (void) fetchModelsWithURL:(NSURL * _Nonnull)baseURL
+typedef NSString* GADNextPageToken;
+typedef NSArray<GADRemoteModel*>*_Nonnull(^GADModelTransformer)
+                                          (NSArray<NSDictionary *>* _Nonnull objects);
+typedef void (^GADRemoteCompletionHandler)(NSArray<GADRemoteModel *> *_Nullable models,
+                                           GADNextPageToken _Nullable token,
+                                           NSError *_Nullable error);
+
++ (void) fetchModelsWithURL:(NSURL * _Nonnull)url
             queryParameters:(NSDictionary * _Nullable)queryParams
-           modelTransformer:(NSArray<GADRemoteModel *>*_Nonnull(^_Nonnull)
-                             (NSArray<NSDictionary *>* _Nonnull objects))modelTransformer
-          completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *> *_Nullable models,
-                                             NSString *_Nullable token,
-                                             NSError *_Nullable error))completion;
+               nextPageToken:(GADNextPageToken _Nullable)nextPageToken
+           modelTransformer:(GADModelTransformer _Nonnull )modelTransformer
+          completionHandler:(GADRemoteCompletionHandler _Nonnull )completion;
 
 + (NSURL *_Nonnull) baseURL;
 

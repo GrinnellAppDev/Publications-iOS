@@ -28,36 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7463DD401DC3EE5900A5F77A"
-               BuildableName = "PublicationsTests.xctest"
-               BlueprintName = "PublicationsTests"
-               ReferencedContainer = "container:Publications.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7463DD4B1DC3EE5A00A5F77A"
-               BuildableName = "PublicationsUITests.xctest"
-               BlueprintName = "PublicationsUITests"
-               ReferencedContainer = "container:Publications.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA7DCC651E4F75F300C84A73"
-               BuildableName = "SPARCoreTests.xctest"
-               BlueprintName = "SPARCoreTests"
-               ReferencedContainer = "container:Publications.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

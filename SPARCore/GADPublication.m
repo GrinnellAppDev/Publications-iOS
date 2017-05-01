@@ -3,6 +3,7 @@
 
 @implementation GADPublication
 
+#pragma mark - API Constants
 static NSString *const API_PUBLICATION_SUFFIX = @"publications";
 static NSString *const API_ARTICLE_SUFFIX = @"articles";
 
@@ -12,69 +13,53 @@ static NSString *const API_KEY_PUBLICATION_NAME = @"name";
 static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 + (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
-                        Completion:(void(^_Nonnull)
-                                    (NSArray<GADPublication *> *_Nullable publications,
-                                     NSString *_Nullable token,
-                                     NSError *_Nullable error))completion {
-
-    NSURL *queryURL = [self baseURL];
-    
-    NSMutableDictionary *params=[NSMutableDictionary new];
-    if (nextPageToken) {
-        [params setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
-    }
-    
-    [super fetchModelsWithURL:queryURL
-              queryParameters:params
-             modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
-                 return [self publicationsFromArray:jsonArray];
-             }
-            completionHandler:completion];
+                        completion:(GADPublicationsCallback)completion {
+  [super fetchModelsWithURL:[self baseURL]
+            queryParameters:nil
+              nextPageToken:nextPageToken
+           modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
+             return [self publicationsFromArray:jsonArray];
+           }
+          completionHandler:completion];
 }
 
 - (void) fetchArticlesWithNextPageToken: (NSString * _Nullable)nextPageToken
-                             Completion:(void(^_Nonnull)(NSArray<GADArticle *>
-                                                         *_Nullable articles,
-                                                         NSString *_Nullable token,
-                                                         NSError *_Nullable error))completion {
-    
-    NSURL *queryURL = [self urlForArticles];
-    
-    NSMutableDictionary *params=[NSMutableDictionary new];
-    if (nextPageToken) {
-        [params setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
-    }
-    
-    [GADRemoteModel fetchModelsWithURL:queryURL
-                       queryParameters:params
-                      modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
-                          return [GADArticle articlesFromArray:jsonArray];
-                      }
-                     completionHandler:completion];
+                             completion:(GADPublicationsCallback)completion {
+  [GADRemoteModel fetchModelsWithURL:[self urlForArticles]
+                     queryParameters:nil
+                       nextPageToken:nextPageToken
+                    modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
+                      return [GADArticle articlesFromArray:jsonArray];
+                    }
+                   completionHandler:completion];
 }
+
+#pragma mark - Class Object Generators
 
 + (NSArray <GADPublication *> *) publicationsFromArray:(NSArray<NSDictionary *> *)jsonArray {
-
-    NSMutableArray <GADPublication *> *publications = [NSMutableArray new];
-    
-    for (NSDictionary *element in jsonArray) {
-        GADPublication *publication = [GADPublication new];
-        publication.publicationId = element[API_KEY_PUBLICATION_ID];
-        publication.name = element[API_KEY_PUBLICATION_NAME];
-        [publications addObject:publication];
-    }
-    return publications;
+  
+  NSMutableArray <GADPublication *> *publications = [NSMutableArray new];
+  
+  for (NSDictionary *element in jsonArray) {
+    GADPublication *publication = [GADPublication new];
+    publication.publicationId = element[API_KEY_PUBLICATION_ID];
+    publication.name = element[API_KEY_PUBLICATION_NAME];
+    [publications addObject:publication];
+  }
+  return publications;
 }
 
+#pragma mark - URL Generators
+
 - (NSURL *) urlForArticles{
-    NSURL *queryURL = [GADPublication baseURL];
-    queryURL = [queryURL URLByAppendingPathComponent:self.publicationId];
-    queryURL = [queryURL URLByAppendingPathComponent:API_ARTICLE_SUFFIX];
-    return queryURL;
+  NSURL *queryURL = [GADPublication baseURL];
+  queryURL = [queryURL URLByAppendingPathComponent:self.publicationId];
+  queryURL = [queryURL URLByAppendingPathComponent:API_ARTICLE_SUFFIX];
+  return queryURL;
 }
 
 + (NSURL *)baseURL {
-    return [[super baseURL] URLByAppendingPathComponent:API_PUBLICATION_SUFFIX];
+  return [[super baseURL] URLByAppendingPathComponent:API_PUBLICATION_SUFFIX];
 }
 
 @end
