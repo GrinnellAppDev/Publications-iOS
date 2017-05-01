@@ -33,28 +33,12 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 + (GADArticle *) articleFromDictionary: (NSDictionary*)dict {
     GADArticle *article = [GADArticle new];
-    article.articleId = dict[API_KEY_ARTICLE_ID];
-    article.authors = dict[API_KEY_AUTHORS];
-    article.brief = dict[API_KEY_BRIEF];
-    article.content = dict[API_KEY_CONTENT];
-    //datePublished field is a UNIX Timestamp number - converting to NSDate here
-    int timeStamp = (int)dict[API_KEY_DATE_EDITED];
-    article.dateEdited = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-    timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
-    article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-    article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
-    article.issue = dict[API_KEY_ISSUE];
-    article.publication=[GADPublication new];
-    article.publication.publicationId = dict[API_KEY_PUBLICATION_ID];
-    article.series = dict[API_KEY_SERIES];
-    article.tags = dict[API_KEY_TAGS];
-    article.title = dict[API_KEY_TITLE];
-    article.url = dict[API_KEY_URL];
-    
+    [article updateWithDictionary:dict];
     return article;
 }
 
 - (void) updateWithDictionary:(NSDictionary *)dict {
+    self.articleId = dict[API_KEY_ARTICLE_ID];
     self.authors = dict[API_KEY_AUTHORS];
     self.brief = dict[API_KEY_BRIEF];
     self.content = dict[API_KEY_CONTENT];
