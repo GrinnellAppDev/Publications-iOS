@@ -6,15 +6,17 @@ static NSString *const API_PREFIX = @"devstable";
 static NSString *const API_ITEMS = @"items";
 static NSString *const API_NEXT_PAGE_TOKEN = @"nextPageToken";
 
-const NSTimeInterval timeoutInterval = 60.0;
+static const NSTimeInterval timeoutInterval = 60.0;
 
 @implementation GADRemoteModel
 
-+ (void) fetchModelsWithParams:(NSURL * _Nonnull)baseURL
-               queryParameters:(NSDictionary * _Nullable)queryParams
-              modelTransformer:(NSArray<GADRemoteModel *>*(^_Nonnull)
-                                (NSArray<NSDictionary *>* _Nonnull objects))modelTransformer
-             completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *> *_Nullable models, NSString *_Nullable token, NSError *_Nullable error))completion {
++ (void) fetchModelsWithURL:(NSURL * _Nonnull)baseURL
+            queryParameters:(NSDictionary * _Nullable)queryParams
+           modelTransformer:(NSArray<GADRemoteModel *>*(^_Nonnull)
+                             (NSArray<NSDictionary *>* _Nonnull objects))modelTransformer
+          completionHandler:(void(^_Nonnull)(NSArray<GADRemoteModel *> *_Nullable models,
+                                             NSString *_Nullable token,
+                                             NSError *_Nullable error))completion {
     
     NSMutableArray *queryItems = [NSMutableArray<NSURLQueryItem *> new];
     

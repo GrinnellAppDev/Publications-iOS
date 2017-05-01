@@ -4,14 +4,19 @@ static const NSTimeInterval timeoutInterval = 60.0;
 
 @implementation GADArticle
 
+static NSString *const API_KEY_ARTICLE_ID = @"id";
 static NSString *const API_KEY_AUTHORS = @"authors";
 static NSString *const API_KEY_BRIEF = @"brief";
 static NSString *const API_KEY_CONTENT = @"content";
+static NSString *const API_KEY_DATE_EDITED = @"dateEdited";
 static NSString *const API_KEY_DATE_PUBLISHED = @"datePublished";
 static NSString *const API_KEY_HEADER_IMAGE = @"headerImage";
-static NSString *const API_KEY_ARTICLE_ID = @"id";
+static NSString *const API_KEY_ISSUE = @"issue";
 static NSString *const API_KEY_PUBLICATION_ID = @"publication";
+static NSString *const API_KEY_SERIES = @"series";
+static NSString *const API_KEY_TAGS = @"tags";
 static NSString *const API_KEY_TITLE = @"title";
+static NSString *const API_KEY_URL = @"url";
 
 static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
@@ -28,17 +33,44 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 + (GADArticle *) articleFromDictionary: (NSDictionary*)dict {
     GADArticle *article = [GADArticle new];
+    article.articleId = dict[API_KEY_ARTICLE_ID];
+    article.authors = dict[API_KEY_AUTHORS];
+    article.brief = dict[API_KEY_BRIEF];
+    article.content = dict[API_KEY_CONTENT];
     //datePublished field is a UNIX Timestamp number - converting to NSDate here
-    int timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
+    int timeStamp = (int)dict[API_KEY_DATE_EDITED];
+    article.dateEdited = [NSDate dateWithTimeIntervalSince1970: timeStamp];
+    timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
     article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
     article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+    article.issue = dict[API_KEY_ISSUE];
     article.publication=[GADPublication new];
     article.publication.publicationId = dict[API_KEY_PUBLICATION_ID];
-    article.articleId = dict[API_KEY_ARTICLE_ID];
+    article.series = dict[API_KEY_SERIES];
+    article.tags = dict[API_KEY_TAGS];
     article.title = dict[API_KEY_TITLE];
-    article.authors = dict[API_KEY_AUTHORS];
+    article.url = dict[API_KEY_URL];
     
     return article;
+}
+
+- (void) updateWithDictionary:(NSDictionary *)dict {
+    self.authors = dict[API_KEY_AUTHORS];
+    self.brief = dict[API_KEY_BRIEF];
+    self.content = dict[API_KEY_CONTENT];
+    //datePublished field is a UNIX Timestamp number - converting to NSDate here
+    int timeStamp = (int)dict[API_KEY_DATE_EDITED];
+    self.dateEdited = [NSDate dateWithTimeIntervalSince1970: timeStamp];
+    timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
+    self.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
+    self.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+    self.issue = dict[API_KEY_ISSUE];
+    self.publication=[GADPublication new];
+    self.publication.publicationId = dict[API_KEY_PUBLICATION_ID];
+    self.series = dict[API_KEY_SERIES];
+    self.tags = dict[API_KEY_TAGS];
+    self.title = dict[API_KEY_TITLE];
+    self.url = dict[API_KEY_URL];
 }
 
 - (void) fetchFullTextWithCompletion: (void(^_Nonnull)(GADArticle *_Nullable article,
@@ -72,7 +104,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
             return;
         }
                                       
-        self.content = [jsonDict valueForKey:API_KEY_CONTENT];
+        [self updateWithDictionary:jsonDict];
         completion(self, nil);
     }];
     [task resume];
@@ -82,15 +114,6 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     NSURL *queryURL = [self.publication urlForArticles];
     queryURL = [queryURL URLByAppendingPathComponent:self.articleId];
     return queryURL;
-}
-
-- (void)updateWithArticle:(GADArticle *)newArticle {
-    self.authors = newArticle.authors;
-    self.brief = newArticle.brief;
-    self.content = newArticle.content;
-    self.datePublished = newArticle.datePublished;
-    self.headerImage = newArticle.headerImage;
-    self.title = newArticle.title;
 }
 
 + (NSArray <GADArticle *> *) loadDummyArticles {

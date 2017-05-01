@@ -24,12 +24,12 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
         [params setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
     }
     
-    [super fetchModelsWithParams:queryURL
-                 queryParameters:params
-                modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
-                    return [self publicationsFromArray:jsonArray];
-                }
-               completionHandler:completion];
+    [super fetchModelsWithURL:queryURL
+              queryParameters:params
+             modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
+                 return [self publicationsFromArray:jsonArray];
+             }
+            completionHandler:completion];
 }
 
 - (void) fetchArticlesWithNextPageToken: (NSString * _Nullable)nextPageToken
@@ -45,12 +45,12 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
         [params setObject:nextPageToken forKey:API_QUERY_PAGE_TOKEN];
     }
     
-    [GADRemoteModel fetchModelsWithParams:queryURL
-                          queryParameters:params
-                         modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
-                             return [GADArticle articlesFromArray:jsonArray];
-                         }
-                        completionHandler:completion];
+    [GADRemoteModel fetchModelsWithURL:queryURL
+                       queryParameters:params
+                      modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
+                          return [GADArticle articlesFromArray:jsonArray];
+                      }
+                     completionHandler:completion];
 }
 
 + (NSArray <GADPublication *> *) publicationsFromArray:(NSArray<NSDictionary *> *)jsonArray {
