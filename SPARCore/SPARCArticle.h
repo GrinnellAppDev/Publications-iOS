@@ -1,7 +1,8 @@
 #import <UIKit/UIKit.h>
 
 #import "GADRemoteModel.h"
-#import "SPARCPublication.h"
+
+@class SPARCPublication;
 
 @interface SPARCArticle : GADRemoteModel
 
@@ -21,7 +22,7 @@
 @property (nonatomic, strong) NSURL * _Nullable url;
 
 - (void) fetchFullTextWithCompletion:(void(^_Nonnull)(SPARCArticle *_Nullable article,
-                                                       NSError *_Nullable error))completion;
+                                                      NSError *_Nullable error))completion;
 
 + (instancetype _Nonnull)articleFromDictionary:(NSDictionary *_Nonnull)dict;
 + (NSArray <SPARCArticle *> *_Nonnull)articlesFromArray:(NSArray<NSDictionary *> *_Nonnull)array;

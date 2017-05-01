@@ -1,5 +1,7 @@
 #import "SPARCArticle.h"
 
+#import <SPARCore/SPARCore.h>
+
 @implementation SPARCArticle
 
 #pragma mark - API Constants

@@ -1,9 +1,11 @@
 #import "SPARCPublication.h"
-#import "SPARCArticle.h"
+
+#import <SPARCore/SPARCore.h>
 
 @implementation SPARCPublication
 
 #pragma mark - API Constants
+
 static NSString *const API_PUBLICATION_SUFFIX = @"publications";
 static NSString *const API_ARTICLE_SUFFIX = @"articles";
 
@@ -11,6 +13,8 @@ static NSString *const API_KEY_PUBLICATION_ID = @"id";
 static NSString *const API_KEY_PUBLICATION_NAME = @"name";
 
 static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
+
+#pragma mark - Remote Content Fetching
 
 + (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
                         completion:(GADPublicationsCallback)completion {
@@ -23,9 +27,9 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
           completionHandler:completion];
 }
 
-- (void) fetchArticlesWithNextPageToken: (NSString * _Nullable)nextPageToken
+- (void) fetchArticlesWithNextPageToken:(NSString * _Nullable)nextPageToken
                              completion:(GADArticlesCallback)completion {
-  [GADRemoteModel fetchModelsWithURL:[self urlForArticles]
+  [[super class] fetchModelsWithURL:[self urlForArticles]
                      queryParameters:nil
                        nextPageToken:nextPageToken
                     modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
@@ -51,14 +55,14 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 #pragma mark - URL Generators
 
-- (NSURL *) urlForArticles{
+- (NSURL *_Nonnull) urlForArticles{
   NSURL *queryURL = [self.class baseURL];
   queryURL = [queryURL URLByAppendingPathComponent:self.publicationId];
   queryURL = [queryURL URLByAppendingPathComponent:API_ARTICLE_SUFFIX];
   return queryURL;
 }
 
-+ (NSURL *)baseURL {
++ (NSURL *_Nonnull)baseURL {
   return [[super baseURL] URLByAppendingPathComponent:API_PUBLICATION_SUFFIX];
 }
 

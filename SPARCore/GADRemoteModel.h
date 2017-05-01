@@ -5,6 +5,7 @@
 typedef NSString* GADNextPageToken;
 typedef NSArray<GADRemoteModel*>*_Nonnull(^GADModelTransformer)
                                           (NSArray<NSDictionary *>* _Nonnull objects);
+
 typedef void (^GADRemoteCompletionHandler)(NSArray<GADRemoteModel *> *_Nullable models,
                                            GADNextPageToken _Nullable token,
                                            NSError *_Nullable error);
