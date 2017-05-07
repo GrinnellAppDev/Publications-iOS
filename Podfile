@@ -7,6 +7,8 @@ target 'Publications' do
 
   # Pods for Publications
   pod 'SWRevealViewController','~> 2.3'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 target 'SPARCore' do

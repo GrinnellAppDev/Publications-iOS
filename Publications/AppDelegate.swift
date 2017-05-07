@@ -1,5 +1,6 @@
 import CoreData
-import SPARCore
+import Crashlytics
+import Fabric
 import UIKit
 
 @UIApplicationMain
@@ -9,10 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        SPARCDemo.screenPrint(nil)
-        SPARCDemo.screenPrint("Application did finish launching with options")
       
-        // Override point for customization after application launch.
+        Fabric.with([Answers.self, Crashlytics.self])
         return true
     }
 

@@ -1,12 +1,19 @@
 PODS:
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
   - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - SWRevealViewController (~> 2.3)
 
 SPEC CHECKSUMS:
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 39ca5a121e48ab241608ef5fe977d0c6768125ee
+PODFILE CHECKSUM: 2474caf28b4ad9c626ba9c145a611025e0f368da
 
 COCOAPODS: 1.2.0
