@@ -1,3 +1,4 @@
+import SPARCore
 import UIKit
 
 struct newsData {
@@ -13,12 +14,29 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     //var arrayOfArticle = [newsData]()
-    var arr = [GADArticle]()
+    var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arr = GADArticle.loadDummyArticles()
+        //arr = SPARCArticle.loadDummyArticles()
+        SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
+            if let publications = pubsArray
+            {
+                for publication in publications
+                {
+                    publication.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                        if let articles = articlesArray
+                        {
+                            self.arr = articles
+                            self.tableView.reloadData()
+                        }
+                        
+                    })
+                }
+            }
+            
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -111,8 +129,13 @@ class NewsTableViewController: UITableViewController {
         let title = arr[indexPath.row].title
         print("TITLE: \(title ?? "no title")")
         
-    
-        cell.authorName.text = String("by ") + "\(authorArr ?? "anon")"
+        if let authors = authorArr {
+            cell.authorName.text = parseAuthors(authorArr: authors)
+        }
+        else
+        {
+            cell.authorName.text = "by anon"
+        }
         cell.articleTitle.text = title
         if (title == "Testarticle 0"){
             cell.articleTitle.text = "This article has a very verbose title so that you can see two lines!"}
@@ -133,7 +156,15 @@ class NewsTableViewController: UITableViewController {
         return 80;
      }
     
-    
+    func parseAuthors (authorArr:Array<String>) -> String
+    {
+        var authorText = "by "
+        for auth in authorArr
+        {
+            authorText += "\(auth)"
+        }
+        return authorText
+    }
     
     
     
