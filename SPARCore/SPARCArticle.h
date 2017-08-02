@@ -21,11 +21,20 @@
 @property (nonatomic, strong) NSString * _Nullable title;
 @property (nonatomic, strong) NSURL * _Nullable url;
 
+/*
+ @brief For front-end to use. Load dummy data.
+ */
++ (NSArray <SPARCArticle *> *_Nonnull) loadDummyArticles;
+
+/*
+ @brief For front-end to use. 
+ */
 - (void) fetchFullTextWithCompletion:(void(^_Nonnull)(SPARCArticle *_Nullable article,
                                                       NSError *_Nullable error))completion;
 
-+ (instancetype _Nonnull)articleFromDictionary:(NSDictionary *_Nonnull)dict;
+/*
+ @brief For SPARCPublication class to use. Return an array of article instances created from an array of dictionaries.
+ */
 + (NSArray <SPARCArticle *> *_Nonnull)articlesFromArray:(NSArray<NSDictionary *> *_Nonnull)array;
 
 @end
-

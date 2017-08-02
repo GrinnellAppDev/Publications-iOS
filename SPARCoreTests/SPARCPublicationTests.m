@@ -37,4 +37,28 @@
         }
     }];
 }
+
+//Token for testing not available now
+/*
+- (void)testPublicationRequestWithToken {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"completed"];
+    
+    [SPARCPublication fetchAllWithNextPageToken:nil
+                                     completion:^(NSArray<SPARCPublication *> *
+                                                  _Nullable publications,
+                                                  NSString * _Nullable token,
+                                                  NSError * _Nullable error) {
+                                         XCTAssertNotNil(publications,@"Fail to fetch pubs with token!");
+                                         [expectation fulfill];
+                                     }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if(error)
+        {
+            XCTFail(@"Expectation Failed with error: %@", error);
+        }
+    }];
+}
+ */
+
 @end
