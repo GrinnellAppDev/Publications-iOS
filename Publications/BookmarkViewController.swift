@@ -1,4 +1,5 @@
 import UIKit
+import SPARCore
 
 struct bookmarkData {
     let cell: Int!
@@ -12,12 +13,12 @@ struct bookmarkData {
 class BookmarkViewController: UITableViewController {
     @IBOutlet weak var menuButton:UIBarButtonItem!
     
-    var arr = [GADArticle]()
+    var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arr = GADArticle.loadDummyArticles()
+        arr = SPARCArticle.loadDummyArticles()
         
         if revealViewController() != nil {
             menuButton.target = revealViewController()
@@ -48,12 +49,18 @@ class BookmarkViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! NewsTableViewCell
+        //let authorArr = arr[indexPath.row].authors
         let authorArr = arr[indexPath.row].authors
+        var authorNames=""
+        for author in authorArr! {
+            authorNames+=author["name"] as! String
+        }
+        
         let title = arr[indexPath.row].title
         print("TITLE: \(title ?? "no title")")
         
         
-        cell.authorName.text = String("by ") + "\(authorArr ?? "anon")"
+        cell.authorName.text = String("by ") + "\(authorNames)"
         cell.articleTitle.text = title
         if (title == "Testarticle 0"){
             cell.articleTitle.text = "This article has a very verbose title so that you can see two lines!"}
