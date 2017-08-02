@@ -14,30 +14,6 @@ static NSString *const API_KEY_PUBLICATION_NAME = @"name";
 
 static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
-#pragma mark - Remote Content Fetching
-
-+ (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
-                        completion:(GADPublicationsCallback)completion {
-  [super fetchModelsWithURL:[self baseURL]
-            queryParameters:nil
-              nextPageToken:nextPageToken
-           modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
-             return [self publicationsFromArray:jsonArray];
-           }
-          completionHandler:completion];
-}
-
-- (void) fetchArticlesWithNextPageToken:(NSString * _Nullable)nextPageToken
-                             completion:(GADArticlesCallback)completion {
-  [[super class] fetchModelsWithURL:[self urlForArticles]
-                     queryParameters:nil
-                       nextPageToken:nextPageToken
-                    modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
-                      return [SPARCArticle articlesFromArray:jsonArray];
-                    }
-                   completionHandler:completion];
-}
-
 #pragma mark - Class Object Generators
 
 + (NSArray <SPARCPublication *> *) publicationsFromArray:(NSArray<NSDictionary *> *)jsonArray {
@@ -51,6 +27,30 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     [publications addObject:publication];
   }
   return publications;
+}
+
+#pragma mark - Remote Content Fetching
+
++ (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
+                        completion:(GADPublicationsCallback)completion {
+    [super fetchModelsWithURL:[self baseURL]
+              queryParameters:nil
+                nextPageToken:nextPageToken
+             modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
+                 return [self publicationsFromArray:jsonArray];
+             }
+            completionHandler:completion];
+}
+
+- (void) fetchArticlesWithNextPageToken:(NSString * _Nullable)nextPageToken
+                             completion:(GADArticlesCallback)completion {
+    [[super class] fetchModelsWithURL:[self urlForArticles]
+                      queryParameters:nil
+                        nextPageToken:nextPageToken
+                     modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
+                         return [SPARCArticle articlesFromArray:jsonArray];
+                     }
+                    completionHandler:completion];
 }
 
 #pragma mark - URL Generators
