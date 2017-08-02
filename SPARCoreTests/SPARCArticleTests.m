@@ -28,8 +28,8 @@
                                                        _Nullable articles,
                                                        NSString * _Nullable token,
                                                        NSError * _Nullable error) {
-    XCTAssertNotNil(articles,@"Fail to fetch articles!");
-    [expectation fulfill];
+      XCTAssertNotNil(articles,@"Fail to fetch articles!");
+      [expectation fulfill];
   }];
   
   [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
@@ -51,8 +51,8 @@
                                         _Nullable articles, NSString *
                                         _Nullable token, NSError *
                                         _Nullable error) {
-                             XCTAssertNotNil(articles,@"Fail to fetch articles with token!");
-                             [expectation fulfill];
+                               XCTAssertNotNil(articles,@"Fail to fetch articles with token!");
+                               [expectation fulfill];
                            }];
   
   [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
@@ -67,9 +67,9 @@
   XCTestExpectation *expectation = [self expectationWithDescription:@"completed"];
   
   SPARCArticle *article = [SPARCArticle new];
-  article.articleId=@"d3515d1a-ec0c-11e6-b33b-fa2f958eba33";
+  article.articleId=@"01957fd2-15cd-11e7-a76b-de6923d3c3f6";
   article.publication=[SPARCPublication new];
-  article.publication.publicationId=@"8e031545-ba66-11e6-8193-a0999b05c023";
+  article.publication.publicationId=@"s-and-b";
   [article fetchFullTextWithCompletion:^(SPARCArticle * _Nullable article, NSError * _Nullable error) {
     XCTAssertNotNil(article,@"Fail to fetch full text!");
     [expectation fulfill];
