@@ -1,11 +1,3 @@
-//
-//  TextNewsTableViewCell.swift
-//  test4
-//
-//  Created by MikeBook Pro on 2/7/17.
-//  Copyright © 2017 comp. All rights reserved.
-//
-
 import UIKit
 
 class TextNewsTableViewCell: UITableViewCell {
