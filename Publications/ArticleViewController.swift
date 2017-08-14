@@ -1,10 +1,3 @@
-//
-//  ArticleViewController.swift
-//  test4
-//
-//  Created by comp on 02/11/2016.
-//  Copyright © 2016 comp. All rights reserved.
-//
 import Foundation
 import UIKit
 
