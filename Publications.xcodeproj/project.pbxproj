@@ -13,7 +13,11 @@
 		68CCEE0E1E6372B300A7C330 /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = C7EC49CD1E5E4A2B00730C67 /* testArticles.json */; };
 		7463DD331DC3EE5900A5F77A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD311DC3EE5900A5F77A /* Main.storyboard */; };
 		7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD391DC3EE5900A5F77A /* LaunchScreen.storyboard */; };
+		7CD707111E705B59009D592C /* ArticleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD707101E705B59009D592C /* ArticleViewCell.swift */; };
 		8BF28F5C9F4B74E08F59801B /* Pods_Publications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */; };
+		AA1A84081E97EA2200C11887 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */; };
+		AA1A840A1E97EDC900C11887 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */; };
+		AA1A840C1E9808A900C11887 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A840B1E9808A900C11887 /* AboutViewController.swift */; };
 		ABE7CF946E928AFCB09C7477 /* Pods_SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */; };
 		BF1932E81EA47A8800E5D911 /* SPARCPublication.h in Headers */ = {isa = PBXBuildFile; fileRef = BF1932E61EA47A8800E5D911 /* SPARCPublication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF1932E91EA47A8800E5D911 /* SPARCPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1932E71EA47A8800E5D911 /* SPARCPublication.m */; };
@@ -21,14 +25,9 @@
 		C788AD051E50F06700738844 /* SPARCArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* SPARCArticle.m */; };
 		C7EC49CE1E5E4A2B00730C67 /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = C7EC49CD1E5E4A2B00730C67 /* testArticles.json */; };
 		FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD371DC3EE5900A5F77A /* Assets.xcassets */; };
-		FA7DCC4B1E4F730D00C84A73 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD631DC3F3CB00A5F77A /* MenuController.swift */; };
 		FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */; };
 		FA7DCC4D1E4F730D00C84A73 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */; };
-		FA7DCC4E1E4F730D00C84A73 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */; };
-		FA7DCC4F1E4F730D00C84A73 /* PublicationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDC91DC6762B009D0256 /* PublicationsViewController.swift */; };
-		FA7DCC501E4F730D00C84A73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCB1DC6763A009D0256 /* ProfileViewController.swift */; };
 		FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */; };
-		FA7DCC521E4F730D00C84A73 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCF1DC67663009D0256 /* SettingViewController.swift */; };
 		FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */; };
 		FA7DCC561E4F733000C84A73 /* Publications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA6BF14B1E4F653D008FB165 /* Publications.xcdatamodeld */; };
 		FA7DCC581E4F739900C84A73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DCC571E4F739900C84A73 /* AppDelegate.swift */; };
@@ -40,7 +39,6 @@
 		FADAE68C1EB6DE290076E125 /* SPARCPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1932E71EA47A8800E5D911 /* SPARCPublication.m */; };
 		FADAE68D1EB6DE300076E125 /* SPARCArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* SPARCArticle.m */; };
 		FADAE68F1EB6EC880076E125 /* SPARCArticleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FADAE68E1EB6EC880076E125 /* SPARCArticleTests.m */; };
-		FADEDE131E5396B500048D80 /* TextNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEDE121E5396B500048D80 /* TextNewsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,17 +93,16 @@
 		7463DD3A1DC3EE5900A5F77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7463DD3C1DC3EE5900A5F77A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7463DD5F1DC3EEAD00A5F77A /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		7463DD631DC3F3CB00A5F77A /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
-		7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
-		74B0BDC91DC6762B009D0256 /* PublicationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicationsViewController.swift; sourceTree = "<group>"; };
-		74B0BDCB1DC6763A009D0256 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
-		74B0BDCF1DC67663009D0256 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		7CD707101E705B59009D592C /* ArticleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewCell.swift; sourceTree = "<group>"; };
 		9875B68E8CA71B22ECACABE9 /* Pods_SPARCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPARCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B7F5996606B3C5D5769CB5 /* Pods-Publications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.release.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.release.xcconfig"; sourceTree = "<group>"; };
+		AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		AA1A840B1E9808A900C11887 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		AEAC1733BFDE505F1BFFBEE0 /* Pods-Publications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Publications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Publications/Pods-Publications.debug.xcconfig"; sourceTree = "<group>"; };
 		BF1932E61EA47A8800E5D911 /* SPARCPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPARCPublication.h; sourceTree = "<group>"; };
 		BF1932E71EA47A8800E5D911 /* SPARCPublication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPARCPublication.m; sourceTree = "<group>"; };
@@ -122,7 +119,6 @@
 		FA7DCC6D1E4F75F300C84A73 /* SPARCPublicationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPARCPublicationTests.m; sourceTree = "<group>"; };
 		FA7DCC6F1E4F75F300C84A73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADAE68E1EB6EC880076E125 /* SPARCArticleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPARCArticleTests.m; sourceTree = "<group>"; };
-		FADEDE121E5396B500048D80 /* TextNewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextNewsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,13 +231,10 @@
 		FA34ED2E1E4F7C60003651E1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AA1A840B1E9808A900C11887 /* AboutViewController.swift */,
+				AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */,
 				7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */,
-				7463DD691DC3F50F00A5F77A /* PhotoViewController.swift */,
-				74B0BDC91DC6762B009D0256 /* PublicationsViewController.swift */,
-				74B0BDCB1DC6763A009D0256 /* ProfileViewController.swift */,
 				74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */,
-				74B0BDCF1DC67663009D0256 /* SettingViewController.swift */,
-				7463DD631DC3F3CB00A5F77A /* MenuController.swift */,
 				7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */,
 			);
 			name = ViewControllers;
@@ -250,8 +243,9 @@
 		FA34ED2F1E4F7C7D003651E1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7CD707101E705B59009D592C /* ArticleViewCell.swift */,
 				7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */,
-				FADEDE121E5396B500048D80 /* TextNewsTableViewCell.swift */,
+				AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -378,7 +372,7 @@
 				TargetAttributes = {
 					7463DD291DC3EE5900A5F77A = {
 						CreatedOnToolsVersion = 8.1;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					FA7DCC5D1E4F75F300C84A73 = {
@@ -388,6 +382,7 @@
 					FA7DCC651E4F75F300C84A73 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 7Q98U9FSQL;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 7463DD291DC3EE5900A5F77A;
 					};
@@ -584,17 +579,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7DCC581E4F739900C84A73 /* AppDelegate.swift in Sources */,
-				FA7DCC501E4F730D00C84A73 /* ProfileViewController.swift in Sources */,
-				FA7DCC4F1E4F730D00C84A73 /* PublicationsViewController.swift in Sources */,
 				FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */,
+				AA1A840A1E97EDC900C11887 /* SettingsTableViewCell.swift in Sources */,
 				FA7DCC561E4F733000C84A73 /* Publications.xcdatamodeld in Sources */,
-				FA7DCC521E4F730D00C84A73 /* SettingViewController.swift in Sources */,
+				AA1A84081E97EA2200C11887 /* SettingsTableViewController.swift in Sources */,
 				FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */,
+				7CD707111E705B59009D592C /* ArticleViewCell.swift in Sources */,
 				FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */,
-				FA7DCC4E1E4F730D00C84A73 /* PhotoViewController.swift in Sources */,
-				FA7DCC4B1E4F730D00C84A73 /* MenuController.swift in Sources */,
 				FA7DCC4D1E4F730D00C84A73 /* NewsTableViewCell.swift in Sources */,
-				FADEDE131E5396B500048D80 /* TextNewsTableViewCell.swift in Sources */,
+				AA1A840C1E9808A900C11887 /* AboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,6 +761,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -787,6 +781,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -858,7 +853,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications.SPARCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Publications.app/Publications";
 			};
 			name = Debug;
 		};
@@ -874,7 +870,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications.SPARCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Publications.app/Publications";
 			};
 			name = Release;
 		};

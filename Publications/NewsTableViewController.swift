@@ -1,11 +1,4 @@
-//
-//  NewsTableViewController.swift
-//  test4
-//
-//  Created by comp on 28/10/2016.
-//  Copyright © 2016 comp. All rights reserved.
-//
-
+import SPARCore
 import UIKit
 
 struct newsData {
@@ -20,25 +13,37 @@ struct newsData {
 class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    var arrayOfArticle = [newsData]()
+    //var arrayOfArticle = [newsData]()
+    var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arrayOfArticle = [newsData(cell: 1, author: "Mike Zou", title: "Building apps is fun, all the cool kids are doing it.", articleImage: #imageLiteral(resourceName: "westworld"), userImage: #imageLiteral(resourceName: "article"), time: "2 hours ago"),
-                          newsData(cell: 1, author: "Mike Zou", title: "Populating data on a TableViewCell is easy!", articleImage: #imageLiteral(resourceName: "siliconvalley"), userImage: #imageLiteral(resourceName: "article"), time: "12 hours ago"),
-                          newsData(cell: 2, author: "Mike Zou", title: "What am I doing on a Friday night LMAO", articleImage: nil, userImage: #imageLiteral(resourceName: "article"), time: "5 hours ago"),
-                          newsData(cell: 1, author: "Mike Zou", title: "It's a beautiful day and school is cancelled.", articleImage: UIImage(named: "article"), userImage: #imageLiteral(resourceName: "article"), time: "12 hours ago"),
-                          newsData(cell: 2, author: "Mike Zou", title: "I finally made this work!", articleImage: nil, userImage: #imageLiteral(resourceName: "article"), time: "6 hours ago"),
-                          newsData(cell: 1, author: "Mike Zou", title: "Snow storm hits Grinnell and school is cancelled, again.", articleImage: #imageLiteral(resourceName: "himym"), userImage: #imageLiteral(resourceName: "article"), time: "12 hours ago")
-        ]
-        
-        
+        //arr = SPARCArticle.loadDummyArticles()
+        SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
+            if let publications = pubsArray
+            {
+                for publication in publications
+                {
+                    publication.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                        if let articles = articlesArray
+                        {
+                            self.arr = articles
+                            self.tableView.reloadData()
+                        }
+                        
+                    })
+                }
+            }
+            
+        }
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
         if revealViewController() != nil {
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -62,11 +67,27 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return arrayOfArticle.count
+        return arr.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    // Old function
+ /*   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextNewsTableViewCell
+            let authorArr = arr[indexPath.row].authors
+            
+            cell.userName.text = authorArr
+            cell.articleLabel.text = arr[indexPath.row].title
+            cell.profilePic.image = #imageLiteral(resourceName: "article")
+            //cell.timeStamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
+            cell.preservesSuperviewLayoutMargins = false
+            cell.separatorInset = UIEdgeInsets.zero
+            cell.layoutMargins = UIEdgeInsets.zero
         
+        return cell
+        
+        /*
         if arrayOfArticle[indexPath.row].cell == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NewsTableViewCell
             cell.authorLabel.text = arrayOfArticle[indexPath.row].author
@@ -96,9 +117,61 @@ class NewsTableViewController: UITableViewController {
             
             return cell
         }
+        */
+    }*/
+    
+    
+    //Maddy's new function
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! NewsTableViewCell
+        let authorArr = arr[indexPath.row].authors
+        let title = arr[indexPath.row].title
+        print("TITLE: \(title ?? "no title")")
+        
+        if let authors = authorArr {
+            cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, String>>)
+        }
+        else
+        {
+            cell.authorName.text = "by anon"
+        }
+        cell.articleTitle.text = title
+        if (title == "Testarticle 0"){
+            cell.articleTitle.text = "This article has a very verbose title so that you can see two lines!"}
+        cell.authorImage.image = #imageLiteral(resourceName: "article")
+        cell.articleImage.image = #imageLiteral(resourceName: "article")
+        //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
+        return cell
     }
     
+    
+    // Changing cell height to 100. Was not working on storyboard
+     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80;
+     }
+    
+    func parseAuthors (authorArr:Array<Dictionary<String, String>>) -> String
+    {
+        var authorText = "by "
+        for auth in authorArr
+        {
+            authorText += "\(auth["name"] ?? "anonymous")"
+        }
+        return authorText
+    }
+    
+    
+    
+    
+    
+
+    /*
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if arrayOfArticle[indexPath.row].cell == 1 {
             return 243
@@ -107,6 +180,6 @@ class NewsTableViewController: UITableViewController {
         } else {
             return 243
         }
-    }
+    } */
     
 }
