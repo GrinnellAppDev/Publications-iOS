@@ -14,7 +14,7 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     //var arrayOfArticle = [newsData]()
-    var arr = [SPARCArticle]()
+    var arr = [SPARCArticle]();
     
     override func viewDidLoad() {
         super.viewDidLoad()
