@@ -51,6 +51,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
                          return [SPARCArticle articlesFromArray:jsonArray];
                      }
                     completionHandler:completion];
+    
 }
 
 #pragma mark - URL Generators

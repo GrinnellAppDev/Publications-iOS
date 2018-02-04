@@ -38,6 +38,8 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
   timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
   article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
   article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+//fetch image with imageURL
+// and put the image into article.headerImage
   article.issue = dict[API_KEY_ISSUE];
   article.publication=[SPARCPublication new];
   article.publication.publicationId = dict[API_KEY_PUBLICATION_ID];

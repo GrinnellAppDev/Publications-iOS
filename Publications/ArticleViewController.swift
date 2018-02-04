@@ -16,6 +16,11 @@ class ArticleViewController: UITableViewController {
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
     
+    override func viewWillAppear(_ animated: Bool) {
+        // get the font size from userdefault
+        //set the font of the text field
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
