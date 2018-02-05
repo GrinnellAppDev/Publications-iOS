@@ -14,12 +14,12 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     //var arrayOfArticle = [newsData]()
-    var arr = [SPARCArticle]();
+    var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //arr = SPARCArticle.loadDummyArticles()
+//        arr = SPARCArticle.loadDummyArticles()
         SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
             if let publications = pubsArray
             {
@@ -29,13 +29,14 @@ class NewsTableViewController: UITableViewController {
                         if let articles = articlesArray
                         {
                             self.arr = articles
-                            self.tableView.reloadData()
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
                         }
-                        
+
                     })
                 }
             }
-            
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -49,7 +50,6 @@ class NewsTableViewController: UITableViewController {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             revealViewController().rearViewRevealWidth = 220
-            
         }
     }
     
@@ -166,9 +166,24 @@ class NewsTableViewController: UITableViewController {
         return authorText
     }
     
-    
-    
-    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "article"
+        {
+            if let destinationVC = segue.destination as? ArticleViewController,
+                 let articleIndex = tableView.indexPathForSelectedRow?.row
+            {
+                if let title = arr[articleIndex].title {
+                    destinationVC.titleTxt = title
+                }
+                if let text = arr[articleIndex].content {
+                    destinationVC.text = text
+                } else {
+                    destinationVC.text = "I found no article!"
+                }
+            }
+        }
+    } 
     
 
     /*

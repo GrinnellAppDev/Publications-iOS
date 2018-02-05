@@ -6,6 +6,7 @@ class ArticleViewCell: UITableViewCell {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var articleTxt: UITextView!
+    @IBOutlet weak var titleTxt: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
