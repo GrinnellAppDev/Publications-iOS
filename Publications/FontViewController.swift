@@ -10,6 +10,10 @@ import UIKit
 
 class FontViewController: UITableViewController {
 
+    @IBOutlet weak var fontSize: UITextField!
+    
+    var test = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

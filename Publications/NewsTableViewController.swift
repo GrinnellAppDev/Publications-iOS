@@ -176,11 +176,14 @@ class NewsTableViewController: UITableViewController {
                 if let title = arr[articleIndex].title {
                     destinationVC.titleTxt = title
                 }
-                if let text = arr[articleIndex].content {
-                    destinationVC.text = text
-                } else {
-                    destinationVC.text = "I found no article!"
-                }
+//                var articleContent: String = ""
+//                NewsTableViewController.arr[articleIndex].fetchFullText(completion: { (article, err) in
+//                    if (err != nil) {
+//                        articleContent = (article?.content)!
+//                    }
+//                })
+                destinationVC.text = "Loading article..."
+                destinationVC.getArticle = arr[articleIndex];
             }
         }
     } 
