@@ -13,13 +13,14 @@ struct newsData {
 class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
+    let defaults:UserDefaults = UserDefaults.standard
     //var arrayOfArticle = [newsData]()
     var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        arr = SPARCArticle.loadDummyArticles()
+//      arr = SPARCArticle.loadDummyArticles()
         SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
             if let publications = pubsArray
             {
@@ -176,13 +177,8 @@ class NewsTableViewController: UITableViewController {
                 if let title = arr[articleIndex].title {
                     destinationVC.titleTxt = title
                 }
-//                var articleContent: String = ""
-//                NewsTableViewController.arr[articleIndex].fetchFullText(completion: { (article, err) in
-//                    if (err != nil) {
-//                        articleContent = (article?.content)!
-//                    }
-//                })
                 destinationVC.text = "Loading article..."
+                destinationVC.isBookmarkView = false
                 destinationVC.getArticle = arr[articleIndex];
             }
         }

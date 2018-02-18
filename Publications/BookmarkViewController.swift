@@ -13,6 +13,7 @@ struct bookmarkData {
 class BookmarkViewController: UITableViewController {
     @IBOutlet weak var menuButton:UIBarButtonItem!
     
+    let defaults:UserDefaults = UserDefaults.standard
     var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
@@ -27,6 +28,9 @@ class BookmarkViewController: UITableViewController {
             revealViewController().rearViewRevealWidth = 220
         }
         // Do any additional setup after loading the view.
+        // let data = defaults.data(forKey: "bookmarkArticles")
+        //arr = (NSKeyedUnarchiver.unarchiveObject(with: data!) as? [SPARCArticle])!
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,8 +45,7 @@ class BookmarkViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-       // return arr.count
-        return 1;
+        return arr.count
     }
     
     //Dequeue function
@@ -81,16 +84,27 @@ class BookmarkViewController: UITableViewController {
         return 80;
     }
     
-    
-    /*
-     // MARK: - Navigation
+    // MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "bookmark"
+        {
+            // Unarchive the Userdefaults bookmarked articles
+            
+            // Pass bookmarked articles through segue
+            if let destinationVC = segue.destination as? ArticleViewController,
+                let articleIndex = tableView.indexPathForSelectedRow?.row
+            {
+                if let title = arr[articleIndex].title {
+                    destinationVC.titleTxt = title
+                }
+                destinationVC.text = "Loading article..."
+                destinationVC.isBookmarkView = true
+                destinationVC.getArticle = arr[articleIndex];
+            }
+        }
+    }
     
 }
 

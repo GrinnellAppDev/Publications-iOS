@@ -243,7 +243,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <attributedString key="attributedText">
                                                 <fragment>
-                                                    <mutableString key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <attributes>
                                                         <font key="NSFont" size="14" name="Georgia"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
@@ -385,7 +385,7 @@
                                     <outlet property="authorImage" destination="BNI-Y9-cGc" id="kwp-Jo-S5S"/>
                                     <outlet property="authorName" destination="VLE-1P-01C" id="ivI-pz-bex"/>
                                     <outlet property="timestamp" destination="qZG-Zt-bcd" id="dhc-FC-bri"/>
-                                    <segue destination="s1W-aW-NDY" kind="show" id="OOz-nu-hcm"/>
+                                    <segue destination="s1W-aW-NDY" kind="show" identifier="bookmark" id="OOz-nu-hcm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -558,7 +558,6 @@
         <!--FontControl-->
         <scene sceneID="4y0-6d-A0f">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uk8-m6-5h4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="U08-xe-MAD" userLabel="FontControl" customClass="FontViewController" customModule="Publications" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bp3-tI-CT8"/>
@@ -592,6 +591,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Font Setting" id="Enk-KF-3gf"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uk8-m6-5h4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3990" y="1547"/>
         </scene>
@@ -663,7 +663,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="od7-2C-roO"/>
-        <segue reference="J9s-Lc-sPk"/>
+        <segue reference="OOz-nu-hcm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

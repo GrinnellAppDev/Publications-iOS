@@ -10,6 +10,8 @@ struct StretchyHeader {
 
 class ArticleViewController: UITableViewController {
     
+    var isBookmarkView : Bool = false;
+    var isBookmarked : Bool = false
     var getArticle : SPARCArticle?
     var articleImage : UIImage!
     var date : String! = ""
@@ -28,24 +30,33 @@ class ArticleViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.getArticle?.fetchFullText(completion: { (article, err) in
-                self.text = (article?.content!)!
-                self.articleImage = article?.headerImage
-                
-                let formatter = DateFormatter()
-                // initially set the format based on your datepicker date
-                formatter.dateFormat = "MM/dd/yyyy"
-                let dateString = formatter.string(from: (article?.datePublished)!)
-                self.date = dateString
-                
-                // self.author = article?.authors! as? String ?? "Mike"
-                print(article?.content ?? "not working")
-                self.tableView.reloadData()
-            })
+        if (isBookmarkView == false) {
+            DispatchQueue.main.async {
+                self.getArticle?.fetchFullText(completion: { (article, err) in
+                    self.text = (article?.content!)!
+                    self.articleImage = article?.headerImage
+                    
+                    let formatter = DateFormatter()
+                    // initially set the format based on your datepicker date
+                    formatter.dateFormat = "MM/dd/yyyy"
+                    let dateString = formatter.string(from: (article?.datePublished)!)
+                    self.date = dateString
+                    
+                    // self.author = article?.authors! as? String ?? "Mike"
+                    print(article?.content ?? "not working")
+                    self.tableView.reloadData()
+                })
+            }
+        } else {
+            text = defaults.string(forKey: "bookmark")!
         }
         
         // Do any additional setup after loading the view, typically from a nib.
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
+        self.navigationItem.rightBarButtonItem = bookmarkButton
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
+        
         updateView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 600
@@ -89,6 +100,26 @@ class ArticleViewController: UITableViewController {
         cutDirection.addLine(to: CGPoint(x: getHeaderFrame.width, y: getHeaderFrame.height))
         cutDirection.addLine(to: CGPoint(x: 0, y: getHeaderFrame.height ))
         newHeaderLayer.path = cutDirection.cgPath
+    }
+    
+    // Bookmark action
+    @IBAction func bookmark(_ sender: Any) {
+        if (!isBookmarked) {
+            //let encodedData = NSKeyedArchiver.archivedData(withRootObject: text)
+            //defaults.set(encodedData, forKey: "bookmark")
+            
+            defaults.set(text, forKey: "bookmark")
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+            print("Hey it's working!")
+            isBookmarked = true
+        } else {
+            // remove the article from userdefaults
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
+            print("Removing the article from your bookmarks...")
+            isBookmarked = false
+        }
+        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
