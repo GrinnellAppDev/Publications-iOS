@@ -48,7 +48,9 @@ class ArticleViewController: UITableViewController {
                 })
             }
         } else {
-            text = defaults.string(forKey: "bookmark")!
+            let bookmarkArticle = defaults.array(forKey: "bookmark")
+            titleTxt = (bookmarkArticle![0] as? String)!
+            text = (bookmarkArticle![1] as? String)!
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -105,10 +107,11 @@ class ArticleViewController: UITableViewController {
     // Bookmark action
     @IBAction func bookmark(_ sender: Any) {
         if (!isBookmarked) {
+            let bookmarkArticle : [String] = [titleTxt, text]
             //let encodedData = NSKeyedArchiver.archivedData(withRootObject: text)
             //defaults.set(encodedData, forKey: "bookmark")
-            
-            defaults.set(text, forKey: "bookmark")
+            defaults.set(bookmarkArticle, forKey: "bookmark")
+            //defaults.set(text, forKey: "bookmark")
             
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
             print("Hey it's working!")

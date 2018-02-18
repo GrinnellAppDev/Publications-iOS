@@ -45,7 +45,8 @@ class BookmarkViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return arr.count
+        // return arr.count
+        return 1
     }
     
     //Dequeue function
