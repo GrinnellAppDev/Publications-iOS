@@ -48,9 +48,15 @@ class ArticleViewController: UITableViewController {
                 })
             }
         } else {
-            let bookmarkArticle = defaults.array(forKey: "bookmark")
-            titleTxt = (bookmarkArticle![0] as? String)!
-            text = (bookmarkArticle![1] as? String)!
+            DispatchQueue.main.async {
+                self.getArticle?.fetchFullText(completion: { (article, err) in
+                    self.text = "help me fix this bug!!!"
+                    //self.articleImage = article?.headerImage
+                    // self.author = article?.authors! as? String ?? "Mike"
+                    print(article?.content ?? "not working")
+                    self.tableView.reloadData()
+                })
+            }
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -107,17 +113,38 @@ class ArticleViewController: UITableViewController {
     // Bookmark action
     @IBAction func bookmark(_ sender: Any) {
         if (!isBookmarked) {
-            let bookmarkArticle : [String] = [titleTxt, text]
-            //let encodedData = NSKeyedArchiver.archivedData(withRootObject: text)
-            //defaults.set(encodedData, forKey: "bookmark")
-            defaults.set(bookmarkArticle, forKey: "bookmark")
-            //defaults.set(text, forKey: "bookmark")
+
+            // retrieving a value for a key
+            if let data = defaults.data(forKey: "bookmark"),
+                var articleList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle] {
+                articleList.append(getArticle!)
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
+                defaults.set(encodedData, forKey: "bookmark")
+            } else {
+                var bookmarkArticle : [SPARCArticle] = [SPARCArticle]()
+                bookmarkArticle.append(getArticle!)
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: bookmarkArticle)
+                defaults.set(encodedData, forKey: "bookmark")
+            }
             
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
             print("Hey it's working!")
             isBookmarked = true
         } else {
-            // remove the article from userdefaults
+            // remove the article from userdefaults ...
+            // LOOOOOOK HEREEEEEEEEEEE!!!!!
+            let data = defaults.data(forKey: "bookmark")
+            var articleList = NSKeyedUnarchiver.unarchiveObject(with: data!) as! [SPARCArticle]
+            var i : Int = 0
+            while (i < articleList.count) {
+                if (getArticle?.articleId == articleList[i].articleId) {
+                    articleList.remove(at: i)
+                    continue
+                }
+                i += 1
+            }
+            let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
+            defaults.set(encodedData, forKey: "bookmark")
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
             print("Removing the article from your bookmarks...")
             isBookmarked = false

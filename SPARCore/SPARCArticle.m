@@ -157,4 +157,41 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     return articleArray;
 }
 
+#pragma mark - NSCoding
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self.articleId = [decoder decodeObjectForKey:API_KEY_ARTICLE_ID];
+        self.authors = [decoder decodeObjectForKey:API_KEY_AUTHORS];
+        self.brief = [decoder decodeObjectForKey:API_KEY_BRIEF];
+        self.content = [decoder decodeObjectForKey:API_KEY_CONTENT];
+        //datePublished field is a UNIX Timestamp number - converting to NSDate here
+        self.dateEdited = [decoder decodeObjectForKey:API_KEY_DATE_EDITED];
+        self.datePublished = [decoder decodeObjectForKey:API_KEY_DATE_PUBLISHED];
+        //self.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+        self.issue = [decoder decodeObjectForKey:API_KEY_ISSUE];
+        // self.publication=[SPARCPublication new];
+        // self.publication.publicationId = dict[API_KEY_PUBLICATION_ID];
+        self.series = [decoder decodeObjectForKey:API_KEY_SERIES];
+        self.tags = [decoder decodeObjectForKey:API_KEY_TAGS];
+        self.title = [decoder decodeObjectForKey:API_KEY_TITLE];
+        self.url = [decoder decodeObjectForKey:API_KEY_URL];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:_articleId forKey:API_KEY_ARTICLE_ID];
+    [encoder encodeObject:_authors forKey:API_KEY_AUTHORS];
+    [encoder encodeObject:_brief forKey:API_KEY_BRIEF];
+    [encoder encodeObject:_content forKey:API_KEY_CONTENT];
+    [encoder encodeObject:_dateEdited forKey:API_KEY_DATE_EDITED];
+    [encoder encodeObject:_datePublished forKey:API_KEY_DATE_PUBLISHED];
+    [encoder encodeObject:_headerImageURL forKey:API_KEY_HEADER_IMAGE];
+    [encoder encodeObject:_issue forKey:API_KEY_ISSUE];
+    // Ignored publication field. Can add later.
+    [encoder encodeObject:_tags forKey:API_KEY_TAGS];
+    [encoder encodeObject:_title forKey:API_KEY_TITLE];
+    [encoder encodeObject:_url forKey:API_KEY_URL];
+}
+
 @end

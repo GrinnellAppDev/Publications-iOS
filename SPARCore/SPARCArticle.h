@@ -26,6 +26,10 @@
  */
 + (NSArray <SPARCArticle *> *_Nonnull) loadDummyArticles;
 
+- (id)initWithCoder:(NSCoder *)decoder;
+
+- (id)initWithCoder:(NSCoder *)decoder;
+
 /*
  @brief For front-end to use. 
  */

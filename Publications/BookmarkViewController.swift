@@ -16,6 +16,14 @@ class BookmarkViewController: UITableViewController {
     let defaults:UserDefaults = UserDefaults.standard
     var arr = [SPARCArticle]()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let data = defaults.data(forKey: "bookmark")
+        arr = (NSKeyedUnarchiver.unarchiveObject(with: data!) as? [SPARCArticle])!
+        
+        self.tableView.reloadData()   // ...and it is also visible here.
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,9 +36,6 @@ class BookmarkViewController: UITableViewController {
             revealViewController().rearViewRevealWidth = 220
         }
         // Do any additional setup after loading the view.
-        // let data = defaults.data(forKey: "bookmarkArticles")
-        //arr = (NSKeyedUnarchiver.unarchiveObject(with: data!) as? [SPARCArticle])!
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +51,7 @@ class BookmarkViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         // return arr.count
-        return 1
+        return arr.count
     }
     
     //Dequeue function
@@ -56,18 +61,16 @@ class BookmarkViewController: UITableViewController {
         //let authorArr = arr[indexPath.row].authors
         let authorArr = arr[indexPath.row].authors
         var authorNames=""
-        for author in authorArr! {
-            authorNames+=author["name"] as! String
-        }
-        
+//        for author in authorArr! {
+//            authorNames+=author["name"] as! String
+//        }
+//        
         let title = arr[indexPath.row].title
         print("TITLE: \(title ?? "no title")")
         
         
         cell.authorName.text = String("by ") + "\(authorNames)"
-        cell.articleTitle.text = title
-        if (title == "Testarticle 0"){
-            cell.articleTitle.text = "This article has a very verbose title so that you can see two lines!"}
+        cell.articleTitle.text = arr[indexPath.row].title
         cell.authorImage.image = #imageLiteral(resourceName: "article")
         cell.articleImage.image = #imageLiteral(resourceName: "article")
         //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
