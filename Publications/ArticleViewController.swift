@@ -47,23 +47,15 @@ class ArticleViewController: UITableViewController {
                     self.tableView.reloadData()
                 })
             }
+            let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
+            self.navigationItem.rightBarButtonItem = bookmarkButton
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
         } else {
-            DispatchQueue.main.async {
-                self.getArticle?.fetchFullText(completion: { (article, err) in
-                    self.text = "help me fix this bug!!!"
-                    //self.articleImage = article?.headerImage
-                    // self.author = article?.authors! as? String ?? "Mike"
-                    print(article?.content ?? "not working")
-                    self.tableView.reloadData()
-                })
-            }
+            self.text = (self.getArticle?.content)!
         }
         
         // Do any additional setup after loading the view, typically from a nib.
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
-        self.navigationItem.rightBarButtonItem = bookmarkButton
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
         
         updateView()
         tableView.rowHeight = UITableViewAutomaticDimension

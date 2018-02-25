@@ -19,8 +19,6 @@ class NewsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//      arr = SPARCArticle.loadDummyArticles()
         SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
             if let publications = pubsArray
             {
@@ -39,6 +37,7 @@ class NewsTableViewController: UITableViewController {
                 }
             }
         }
+//        arr = SPARCArticle.loadDummyArticles()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -60,6 +59,13 @@ class NewsTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (indexPath.row == arr.count - 1) {
+            var newArr : [SPARCArticle] = SPARCArticle.loadDummyArticles()
+            arr.append(contentsOf: newArr)
+            self.tableView.reloadData()
+        }
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // Return the number of sections.
@@ -70,59 +76,7 @@ class NewsTableViewController: UITableViewController {
         // Return the number of rows in the section.
         return arr.count
     }
-    
-    
-    // Old function
- /*   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextNewsTableViewCell
-            let authorArr = arr[indexPath.row].authors
-            
-            cell.userName.text = authorArr
-            cell.articleLabel.text = arr[indexPath.row].title
-            cell.profilePic.image = #imageLiteral(resourceName: "article")
-            //cell.timeStamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
-            cell.preservesSuperviewLayoutMargins = false
-            cell.separatorInset = UIEdgeInsets.zero
-            cell.layoutMargins = UIEdgeInsets.zero
-        
-        return cell
-        
-        /*
-        if arrayOfArticle[indexPath.row].cell == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NewsTableViewCell
-            cell.authorLabel.text = arrayOfArticle[indexPath.row].author
-            cell.postTitleLabel.text = arrayOfArticle[indexPath.row].title
-            cell.postImageView.image = arrayOfArticle[indexPath.row].articleImage
-            cell.authorImageView.image = arrayOfArticle[indexPath.row].userImage
-            cell.timeStamp.text = arrayOfArticle[indexPath.row].time
-            
-            return cell
-            
-        } else if arrayOfArticle[indexPath.row].cell == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextNewsTableViewCell
-            cell.userName.text = arrayOfArticle[indexPath.row].author
-            cell.articleLabel.text = arrayOfArticle[indexPath.row].title
-            cell.profilePic.image = arrayOfArticle[indexPath.row].userImage
-            cell.timeStamp.text = arrayOfArticle[indexPath.row].time
-            
-            return cell
-            
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NewsTableViewCell
-            cell.authorLabel.text = arrayOfArticle[indexPath.row].author
-            cell.postTitleLabel.text = arrayOfArticle[indexPath.row].title
-            cell.postImageView.image = arrayOfArticle[indexPath.row].articleImage
-            cell.authorImageView.image = arrayOfArticle[indexPath.row].userImage
-            cell.timeStamp.text = arrayOfArticle[indexPath.row].time
-            
-            return cell
-        }
-        */
-    }*/
-    
-    
-    //Maddy's new function
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! NewsTableViewCell
