@@ -18,16 +18,16 @@ class BookmarkViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let data = defaults.data(forKey: "bookmark")
-        arr = (NSKeyedUnarchiver.unarchiveObject(with: data!) as? [SPARCArticle])!
-        
-        self.tableView.reloadData()   // ...and it is also visible here.
+        if let data = defaults.data(forKey: "bookmark") {
+            arr = (NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle])!
+            self.tableView.reloadData()   // ...and it is also visible here.
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arr = SPARCArticle.loadDummyArticles()
+        //arr = SPARCArticle.loadDummyArticles()
         
         if revealViewController() != nil {
             menuButton.target = revealViewController()

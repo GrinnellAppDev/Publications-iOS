@@ -693,6 +693,7 @@
                                 <connections>
                                     <outlet property="publicationLogo" destination="PAW-7R-H6e" id="Lxs-wN-yLn"/>
                                     <outlet property="publicationName" destination="yD4-QH-0O0" id="zjs-FX-syU"/>
+                                    <segue destination="aEb-5O-79k" kind="show" identifier="showPublication" id="p9W-cV-ZwI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -705,7 +706,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8XV-7x-KcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="2004"/>
+            <point key="canvasLocation" x="2442" y="-1146"/>
         </scene>
         <!--Settings-->
         <scene sceneID="gQV-ku-O0B">
@@ -779,6 +780,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="od7-2C-roO"/>
         <segue reference="9jd-k2-WCO"/>
+        <segue reference="p9W-cV-ZwI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

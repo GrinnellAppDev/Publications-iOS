@@ -16,10 +16,9 @@ class PublicationViewController: UITableViewController {
         SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
             if let publications = pubsArray
             {
-
-                  self.arr = publications
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
+                self.arr = publications
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -84,20 +83,15 @@ class PublicationViewController: UITableViewController {
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "article"
-//        {
-//            if let destinationVC = segue.destination as? ArticleViewController,
-//                let articleIndex = tableView.indexPathForSelectedRow?.row
-//            {
-//                if let title = arr[articleIndex].title {
-//                    destinationVC.titleTxt = title
-//                }
-//                destinationVC.text = "Loading article..."
-//                destinationVC.isBookmarkView = false
-//                destinationVC.getArticle = arr[articleIndex];
-//            }
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPublication"
+        {
+            if let destinationVC = segue.destination as? NewsTableViewController,
+                let articleIndex = tableView.indexPathForSelectedRow?.row
+            {
+                destinationVC.publication = arr[articleIndex]
+            }
+        }
+    }
 }
 

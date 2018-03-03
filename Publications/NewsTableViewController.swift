@@ -14,26 +14,37 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     let defaults:UserDefaults = UserDefaults.standard
-    //var arrayOfArticle = [newsData]()
+    var publication : SPARCPublication?
     var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
-            if let publications = pubsArray
-            {
-                for publication in publications
-                {
-                    publication.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
-                        if let articles = articlesArray
-                        {
-                            self.arr = articles
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
+        if (publication != nil) {
+            publication?.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                if let articles = articlesArray
+                    {
+                        self.arr = articles
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
                         }
-
-                    })
+                    }
+                })
+        } else {
+            SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
+                if let publications = pubsArray
+                {
+                    for publication in publications
+                    {
+                        publication.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                            if let articles = articlesArray
+                            {
+                                self.arr = articles
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        })
+                    }
                 }
             }
         }
