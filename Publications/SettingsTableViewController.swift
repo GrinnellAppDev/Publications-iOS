@@ -114,7 +114,7 @@ class SettingsTableViewController: UITableViewController {
         else if segue.identifier == "showFontSetting"
         {
             if let destinationVC = segue.destination as? FontViewController {
-                destinationVC.test = 2
+                //destinationVC.test = 2
             }
         }
     }

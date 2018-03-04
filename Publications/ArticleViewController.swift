@@ -183,6 +183,9 @@ class ArticleViewController: UITableViewController {
         
         cell.articleTxt.text = text
         cell.titleTxt.text = titleTxt
+//        Uncomment below if device font setting needs to be used
+//        let preferredDescriptor = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+//        let font = UIFont(name: "Georgia", size: preferredDescriptor.pointSize)
         let p = CGFloat(defaults.integer(forKey: "font"))
         cell.articleTxt.font = UIFont(name: "Georgia", size: p)
         

@@ -8,14 +8,36 @@
 
 import UIKit
 
-class FontViewController: UITableViewController {
+class FontViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    let defaults:UserDefaults = UserDefaults.standard
 
-    @IBOutlet weak var fontSize: UITextField!
+    @IBOutlet weak var fontPicker: UIPickerView!
+    @IBOutlet weak var fontSize: UILabel!
     
     var test = 1
+    let fontArr = ["12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"]
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return fontArr[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return fontArr.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        fontSize.text = fontArr[row]
+        let size = Int(fontArr[row])
+        defaults.set(size, forKey: "font")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fontSize.text = defaults.string(forKey: "font")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,18 +49,6 @@ class FontViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
     }
 
     /*
