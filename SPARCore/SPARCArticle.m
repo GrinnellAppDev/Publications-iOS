@@ -38,8 +38,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
   timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
   article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
   article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
-//fetch image with imageURL
-// and put the image into article.headerImage
+  article.headerImage = [SPARCArticle getImageFromImageURL:article.headerImageURL];
   article.issue = dict[API_KEY_ISSUE];
   article.publication=[SPARCPublication new];
   article.publication.publicationId = dict[API_KEY_PUBLICATION_ID];
@@ -59,6 +58,15 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
         [articles addObject:article];
     }
     return articles;
+}
+
++ (UIImage * _Nullable) getImageFromImageURL:(NSURL * _Nullable) imageURL {
+    if (imageURL == nil) {
+        return nil;
+    } else {
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        return [[UIImage alloc] initWithData:imageData];
+    }
 }
 
 #pragma mark - Instance Updaters

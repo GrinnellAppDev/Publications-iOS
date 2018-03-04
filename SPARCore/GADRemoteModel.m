@@ -1,8 +1,8 @@
 #import "GADRemoteModel.h"
 
 #pragma mark - API Constants
-static NSString *const API_HOSTNAME = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/";
-static NSString *const API_PREFIX = @"devstable";
+static NSString *const API_HOSTNAME = @"https://appdev.grinnell.edu/api/publications/v1/";
+static NSString *const API_PREFIX = @"";
 
 static NSString *const API_ITEMS = @"items";
 static NSString *const API_NEXT_PAGE_TOKEN = @"nextPageToken";
