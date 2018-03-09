@@ -1,4 +1,5 @@
 import SPARCore
+import CoreLocation
 import UIKit
 
 struct newsData {
@@ -14,11 +15,22 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     let defaults:UserDefaults = UserDefaults.standard
+    var curPageToken : String? = ""
     var publication : SPARCPublication?
     var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Add Refresh Control to Table View
+        let refreshControl = UIRefreshControl()
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        
         if (publication != nil) {
             publication?.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
                 if let articles = articlesArray
@@ -39,6 +51,9 @@ class NewsTableViewController: UITableViewController {
                             if let articles = articlesArray
                             {
                                 self.arr = articles
+                                self.curPageToken = nextPageForArticlesToken!
+                                print("Initial token: ")
+                                print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
                                 DispatchQueue.main.async {
                                     self.tableView.reloadData()
                                 }
@@ -48,7 +63,7 @@ class NewsTableViewController: UITableViewController {
                 }
             }
         }
-//        arr = SPARCArticle.loadDummyArticles()
+        // arr = SPARCArticle.loadDummyArticles()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -71,10 +86,29 @@ class NewsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if (indexPath.row == arr.count - 1) {
-            var newArr : [SPARCArticle] = SPARCArticle.loadDummyArticles()
-            arr.append(contentsOf: newArr)
-            self.tableView.reloadData()
+        print("end of page " + (self.curPageToken ?? "THERE'S NO PAGE TOKEN!"))
+        if (indexPath.row == arr.count - 1 && self.curPageToken != nil) {
+            SPARCPublication.fetchAll(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                if let publications = articlesArray
+                {
+                    for publication in publications
+                    {
+                        publication.fetchArticles(withNextPageToken: self.curPageToken, completion: { (articlesArray, token, error) in
+                            if let articles = articlesArray
+                            {
+                                self.arr.append(contentsOf: articles)
+                                print("We loaded " + String(articles.count) + " articles.")
+                                print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
+                                self.curPageToken = token
+                                print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        })
+                    }
+                }
+            })
         }
     }
     
@@ -91,23 +125,24 @@ class NewsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! NewsTableViewCell
-        let authorArr = arr[indexPath.row].authors
         let title = arr[indexPath.row].title
+        let articleImage = arr[indexPath.row].headerImage
         print("TITLE: \(title ?? "no title")")
-        
+        let authorArr = arr[indexPath.row].authors
         if let authors = authorArr {
             cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, String>>)
-        }
-        else
-        {
+        } else {
             cell.authorName.text = "by anon"
         }
         cell.articleTitle.text = title
-        if (title == "Testarticle 0"){
-            cell.articleTitle.text = "This article has a very verbose title so that you can see two lines!"}
         cell.authorImage.image = #imageLiteral(resourceName: "article")
-        cell.articleImage.image = #imageLiteral(resourceName: "article")
-        //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
+        cell.articleImage.image = articleImage ?? #imageLiteral(resourceName: "JRC")
+        
+        // populate time published info
+        let time = arr[indexPath.row].datePublished as Date!
+        let dateFormatter = DateFormatter()
+        let timeString = dateFormatter.string(from: time!)
+        cell.timestamp.text = timeString.isEmpty ? "published at unknown spacetime coordinates" : timeString
         
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
@@ -147,7 +182,45 @@ class NewsTableViewController: UITableViewController {
                 destinationVC.getArticle = arr[articleIndex];
             }
         }
-    } 
+    }
+    
+    // refresh data
+    func refreshData(_ sender: Any) {
+        if (publication != nil) {
+            publication?.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                if let articles = articlesArray
+                {
+                    self.arr = articles
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            })
+        } else {
+            SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
+                if let publications = pubsArray
+                {
+                    for publication in publications
+                    {
+                        publication.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                            if let articles = articlesArray
+                            {
+                                self.arr = articles
+                                self.curPageToken = nextPageForArticlesToken!
+                                print("Initial token: ")
+                                print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        }
+        print("Finished loading data")
+        self.refreshControl?.endRefreshing()
+    }
     
 
     /*

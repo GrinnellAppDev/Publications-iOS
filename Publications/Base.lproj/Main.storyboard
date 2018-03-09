@@ -175,6 +175,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="News Feed" id="KNm-YY-Wmo"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Nf0-8p-aF1">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdX-FJ-4NC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,12 +212,12 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="Ib6-xo-vAv" firstAttribute="leading" secondItem="LUN-76-4XA" secondAttribute="leading" id="5Sv-I1-bJL"/>
-                                <constraint firstAttribute="trailing" secondItem="Ib6-xo-vAv" secondAttribute="trailing" id="I1R-V8-PXm"/>
-                                <constraint firstAttribute="bottom" secondItem="Ib6-xo-vAv" secondAttribute="bottom" id="Yew-8n-iG5"/>
-                                <constraint firstItem="tPK-Pi-1DN" firstAttribute="centerX" secondItem="Ib6-xo-vAv" secondAttribute="centerX" id="aQJ-KT-uXU"/>
-                                <constraint firstItem="tPK-Pi-1DN" firstAttribute="bottom" secondItem="Ib6-xo-vAv" secondAttribute="bottom" id="itL-ig-V6B"/>
-                                <constraint firstItem="Ib6-xo-vAv" firstAttribute="top" secondItem="LUN-76-4XA" secondAttribute="top" id="jYa-bZ-l4Q"/>
+                                <constraint firstItem="Ib6-xo-vAv" firstAttribute="centerX" secondItem="tPK-Pi-1DN" secondAttribute="centerX" id="0o7-Qv-Hf7"/>
+                                <constraint firstItem="Ib6-xo-vAv" firstAttribute="top" secondItem="LUN-76-4XA" secondAttribute="top" id="IAc-vd-bsh"/>
+                                <constraint firstItem="Ib6-xo-vAv" firstAttribute="leading" secondItem="LUN-76-4XA" secondAttribute="leading" id="SDe-NJ-Xda"/>
+                                <constraint firstAttribute="bottom" secondItem="Ib6-xo-vAv" secondAttribute="bottom" id="cVU-l5-ffn"/>
+                                <constraint firstAttribute="trailing" secondItem="Ib6-xo-vAv" secondAttribute="trailing" id="kvv-KS-QAZ"/>
+                                <constraint firstItem="Ib6-xo-vAv" firstAttribute="bottom" secondItem="tPK-Pi-1DN" secondAttribute="bottom" id="rps-q0-Kjt"/>
                                 <constraint firstItem="tPK-Pi-1DN" firstAttribute="leading" secondItem="LUN-76-4XA" secondAttribute="leading" constant="21" id="svY-Jd-yZP"/>
                             </constraints>
                         </view>
@@ -237,13 +240,17 @@
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="mA0-sV-ba3">
                                             <rect key="frame" x="19" y="12" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="Evh-Nt-YuU"/>
+                                                <constraint firstAttribute="width" constant="20" id="PsQ-tq-gZl"/>
+                                            </constraints>
                                         </imageView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R0h-Km-lCH">
                                             <rect key="frame" x="16" y="38" width="336" height="279"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <attributedString key="attributedText">
                                                 <fragment>
-                                                    <mutableString key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <attributes>
                                                         <font key="NSFont" size="14" name="Georgia"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
@@ -276,6 +283,7 @@
                                     <outlet property="articleIcon" destination="mA0-sV-ba3" id="648-S5-cyG"/>
                                     <outlet property="articleTxt" destination="R0h-Km-lCH" id="ddA-8L-Luz"/>
                                     <outlet property="dateLabel" destination="EGO-iE-jON" id="6lg-R0-TwL"/>
+                                    <outlet property="icon" destination="Ib6-xo-vAv" id="2Ej-ne-xWz"/>
                                     <outlet property="titleTxt" destination="tPK-Pi-1DN" id="pzi-AY-spZ"/>
                                     <outlet property="username" destination="VZ2-60-BbR" id="gCr-KU-Aqp"/>
                                 </connections>

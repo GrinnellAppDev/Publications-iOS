@@ -175,14 +175,27 @@ class ArticleViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "funnyCell", for: indexPath) as! ArticleViewCell
         
-        cell.username.text = "Mike Zou"
-        cell.dateLabel.text = "03/17/2017"
+        // author names
+        cell.username.text = parseAuthors(authorArr: getArticle?.authors as! Array<Dictionary<String, String>>)
+        // author image
+        cell.articleIcon.image = #imageLiteral(resourceName: "appdev")
+        
+        // published time
+        let time = getArticle?.datePublished
+        let dateFormatter = DateFormatter()
+        let timeString = dateFormatter.string(from: time!)
+        cell.dateLabel.text = timeString.isEmpty ? "03/08/2018" : timeString
+        
+        // article main image
+        cell.icon.image = getArticle?.headerImage ?? #imageLiteral(resourceName: "JRC")
         
         cell.articleTxt.isEditable = false;
         cell.articleTxt.isScrollEnabled = false;
         
+        // update article title and content
         cell.articleTxt.text = text
         cell.titleTxt.text = titleTxt
+        
 //        Uncomment below if device font setting needs to be used
 //        let preferredDescriptor = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
 //        let font = UIFont(name: "Georgia", size: preferredDescriptor.pointSize)
@@ -214,6 +227,16 @@ class ArticleViewController: UITableViewController {
 //            return height
 //        }
         return UITableViewAutomaticDimension
+    }
+    
+    func parseAuthors (authorArr:Array<Dictionary<String, String>>) -> String
+    {
+        var authorText = "by "
+        for auth in authorArr
+        {
+            authorText += "\(auth["name"] ?? "anonymous")"
+        }
+        return authorText
     }
     
 //    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
