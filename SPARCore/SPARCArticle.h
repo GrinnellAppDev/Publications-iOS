@@ -28,7 +28,7 @@
 
 - (id)initWithCoder:(NSCoder *)decoder;
 
-- (id)initWithCoder:(NSCoder *)decoder;
+- (void)encodeWithCoder:(NSCoder *)encoder;
 
 /*
  @brief For front-end to use. 

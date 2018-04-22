@@ -13,7 +13,7 @@ class PublicationViewController: UITableViewController {
         super.viewDidLoad()
         
         //      arr = SPARCArticle.loadDummyArticles()
-        SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
+        SPARCPublication.fetchAll(withNextPageToken: nil, nextPageSize: nil) { (pubsArray, nextPageToken, error) in
             if let publications = pubsArray
             {
                 self.arr = publications
@@ -89,7 +89,7 @@ class PublicationViewController: UITableViewController {
             if let destinationVC = segue.destination as? NewsTableViewController,
                 let articleIndex = tableView.indexPathForSelectedRow?.row
             {
-                destinationVC.publication = arr[articleIndex]
+                destinationVC.curPublication = arr[articleIndex]
             }
         }
     }

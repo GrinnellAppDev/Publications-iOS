@@ -18,12 +18,14 @@ typedef void (^GADArticlesCallback)(NSArray<SPARCArticle *> *_Nullable articles,
  @brief For front-end to use. Fetch all publications from database. Optional nextPageToken.
  */
 + (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
+                      nextPageSize:(NSString * _Nullable)nextPageSize
                         completion:(_Nonnull GADPublicationsCallback)completion;
 
 /*
  @brief For front-end to use. Fetch all articles from database for this publication instance. Optional nextPageToken.
  */
 - (void) fetchArticlesWithNextPageToken:(NSString * _Nullable)nextPageToken
+                           nextPageSize:(NSString * _Nullable)nextPageSize
                              completion:(_Nonnull GADArticlesCallback)completion;
 
 /*

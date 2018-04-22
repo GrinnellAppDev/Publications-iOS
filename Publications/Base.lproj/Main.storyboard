@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3gj-dd-ajm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3gj-dd-ajm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AvenirNext.ttc">
-            <string>AvenirNext-Medium</string>
-            <string>AvenirNext-Regular</string>
-        </array>
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue-Bold</string>
-        </array>
-        <array key="HelveticaNeueExtras.ttc">
-            <string>HelveticaNeue-CondensedBold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--News Feed-->
         <scene sceneID="vKT-Lc-Wv1">
@@ -115,10 +103,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="an hour ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6x-GF-fGr">
-                                            <rect key="frame" x="220" y="56" width="73" height="11"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="73" id="Ziz-He-1uL"/>
-                                            </constraints>
+                                            <rect key="frame" x="226.5" y="56" width="66.5" height="11"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -126,7 +111,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Enk-ji-Hbf">
                                             <rect key="frame" x="16" y="49" width="118" height="18"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="118" id="ZJg-xF-89V"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="118" id="ZJg-xF-89V"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -150,6 +135,9 @@
                                         <constraint firstItem="fJG-4Y-nxy" firstAttribute="leading" secondItem="i6x-GF-fGr" secondAttribute="trailing" constant="8" symbolic="YES" id="Gvx-MQ-mJk"/>
                                         <constraint firstItem="Enk-ji-Hbf" firstAttribute="top" secondItem="4X5-XB-tzR" secondAttribute="bottom" constant="16" id="MgV-cZ-9Rf"/>
                                         <constraint firstItem="4X5-XB-tzR" firstAttribute="leading" secondItem="eHH-Dj-AmD" secondAttribute="leadingMargin" id="Mty-0P-ZLT"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Enk-ji-Hbf" secondAttribute="trailing" constant="20" symbolic="YES" id="Vdn-5f-XFW"/>
+                                        <constraint firstItem="i6x-GF-fGr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eHH-Dj-AmD" secondAttribute="leading" constant="20" symbolic="YES" id="cIl-xr-fti"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4X5-XB-tzR" secondAttribute="trailing" constant="20" symbolic="YES" id="dhG-FT-P8v"/>
                                         <constraint firstItem="Enk-ji-Hbf" firstAttribute="baseline" secondItem="i6x-GF-fGr" secondAttribute="baseline" id="hRW-Lw-Q9X"/>
                                         <constraint firstItem="4X5-XB-tzR" firstAttribute="top" secondItem="eHH-Dj-AmD" secondAttribute="topMargin" id="jdA-3x-6er"/>
                                         <constraint firstItem="i6x-GF-fGr" firstAttribute="top" secondItem="4X5-XB-tzR" secondAttribute="bottom" constant="23" id="mdI-G8-Rcq"/>
@@ -176,6 +164,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="News Feed" id="KNm-YY-Wmo"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Nf0-8p-aF1">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
@@ -230,10 +219,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ2-60-BbR">
-                                            <rect key="frame" x="44" y="12" width="102" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="102" id="DhJ-JJ-tuH"/>
-                                            </constraints>
+                                            <rect key="frame" x="44" y="12" width="39.5" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -267,7 +253,9 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VZ2-60-BbR" secondAttribute="trailing" constant="20" symbolic="YES" id="482-mF-WoK"/>
                                         <constraint firstItem="EGO-iE-jON" firstAttribute="top" secondItem="hpw-ih-9qK" secondAttribute="topMargin" constant="1" id="IRB-uS-n40"/>
+                                        <constraint firstItem="EGO-iE-jON" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hpw-ih-9qK" secondAttribute="leading" constant="20" symbolic="YES" id="OCJ-cQ-zTU"/>
                                         <constraint firstItem="VZ2-60-BbR" firstAttribute="centerY" secondItem="mA0-sV-ba3" secondAttribute="centerY" id="OrX-Xj-csQ"/>
                                         <constraint firstItem="VZ2-60-BbR" firstAttribute="leading" secondItem="mA0-sV-ba3" secondAttribute="trailing" constant="5" id="Rnh-Uq-NSh"/>
                                         <constraint firstItem="R0h-Km-lCH" firstAttribute="leading" secondItem="hpw-ih-9qK" secondAttribute="leadingMargin" id="VXm-Kb-cPz"/>

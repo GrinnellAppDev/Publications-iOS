@@ -30,6 +30,7 @@ class ArticleViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.hidesBarsOnTap = true
         if (isBookmarkView == false) {
             DispatchQueue.main.async {
                 self.getArticle?.fetchFullText(completion: { (article, err) in
@@ -43,14 +44,16 @@ class ArticleViewController: UITableViewController {
                     self.date = dateString
                     
                     // self.author = article?.authors! as? String ?? "Mike"
-                    print(article?.content ?? "not working")
+                    print("Text is: " + self.text)
                     self.tableView.reloadData()
                 })
             }
+            
             //Set up bookmark button
             let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
             self.navigationItem.rightBarButtonItem = bookmarkButton
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
+            
             //Check if the article is already bookmarked
             if let data = defaults.data(forKey: "bookmark"),
                 var articleList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle] {
@@ -65,7 +68,14 @@ class ArticleViewController: UITableViewController {
                 }
             }
         } else {
-            self.text = (self.getArticle?.content)!
+            //text = (getArticle?.content)!
+            //articleImage = getArticle?.headerImage
+            
+            //let formatter = DateFormatter()
+            // initially set the format based on your datepicker date
+            //formatter.dateFormat = "MM/dd/yyyy"
+            //let dateString = formatter.string(from: (getArticle?.datePublished)!)
+            //date = dateString
         }
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -175,6 +185,7 @@ class ArticleViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "funnyCell", for: indexPath) as! ArticleViewCell
         
+        navigationController?.hidesBarsOnTap = true
         // author names
         cell.username.text = parseAuthors(authorArr: getArticle?.authors as! Array<Dictionary<String, String>>)
         // author image
@@ -194,6 +205,7 @@ class ArticleViewController: UITableViewController {
         
         // update article title and content
         cell.articleTxt.text = text
+        print("THE ARTICLE TEXT: " + text)
         cell.titleTxt.text = titleTxt
         
 //        Uncomment below if device font setting needs to be used

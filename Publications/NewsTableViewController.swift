@@ -15,24 +15,28 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     let defaults:UserDefaults = UserDefaults.standard
-    var curPageToken : String? = ""
-    var publication : SPARCPublication?
+    var curPageTokens = [String : String]()
+    var curPublication : SPARCPublication?
     var arr = [SPARCArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add Refresh Control to Table View
         let refreshControl = UIRefreshControl()
-        if #available(iOS 10.0, *) {
+        /*if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
         } else {
-            tableView.addSubview(refreshControl)
-        }
+            //tableView.addSubview(refreshControl)
+            tableView.insertSubview(refreshControl, at: 0)
+        }*/
         // Configure Refresh Control
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.refreshControl = refreshControl
+        //tableView.insertSubview(refreshControl, at: 0)
+
         
-        if (publication != nil) {
-            publication?.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+        if (curPublication != nil) {
+            curPublication?.fetchArticles(withNextPageToken: nil, nextPageSize: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
                 if let articles = articlesArray
                     {
                         self.arr = articles
@@ -42,18 +46,29 @@ class NewsTableViewController: UITableViewController {
                     }
                 })
         } else {
-            SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
+            print("herrerere")
+            
+            SPARCPublication.fetchAll(withNextPageToken: nil, nextPageSize: nil, completion: { (pubsArray, nextPageToken, error) in
+                print("herrerere1")
                 if let publications = pubsArray
                 {
+                    print("herrerere2")
+                    
                     for publication in publications
                     {
-                        publication.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                        print("herrerere3")
+
+                        publication.fetchArticles(withNextPageToken: nil, nextPageSize: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
                             if let articles = articlesArray
                             {
-                                self.arr = articles
-                                self.curPageToken = nextPageForArticlesToken!
-                                print("Initial token: ")
-                                print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
+                                print("herrerere4")
+
+                                self.arr += articles
+                                if (nextPageForArticlesToken != nil) {
+                                    self.curPageTokens[publication.name!] = nextPageForArticlesToken
+                                }
+                                //print("Initial token: ")
+                                //print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
                                 DispatchQueue.main.async {
                                     self.tableView.reloadData()
                                 }
@@ -61,7 +76,7 @@ class NewsTableViewController: UITableViewController {
                         })
                     }
                 }
-            }
+            })
         }
         // arr = SPARCArticle.loadDummyArticles()
 
@@ -86,29 +101,51 @@ class NewsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("end of page " + (self.curPageToken ?? "THERE'S NO PAGE TOKEN!"))
-        if (indexPath.row == arr.count - 1 && self.curPageToken != nil) {
-            SPARCPublication.fetchAll(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+        //print("Fetching new data with " + (self.curPageToken ?? "THERE'S NO PAGE TOKEN!"))
+        if (indexPath.row == arr.count - 1) {
+            if (curPublication == nil){
+            SPARCPublication.fetchAll(withNextPageToken: nil, nextPageSize: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
                 if let publications = articlesArray
                 {
                     for publication in publications
                     {
-                        publication.fetchArticles(withNextPageToken: self.curPageToken, completion: { (articlesArray, token, error) in
-                            if let articles = articlesArray
-                            {
-                                self.arr.append(contentsOf: articles)
-                                print("We loaded " + String(articles.count) + " articles.")
-                                print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
-                                self.curPageToken = token
-                                print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
-                                DispatchQueue.main.async {
-                                    self.tableView.reloadData()
+                        if let token = self.curPageTokens[publication.name!] {
+                            publication.fetchArticles(withNextPageToken: token, nextPageSize: "2", completion: { (articlesArray, token, error) in
+                                if let articles = articlesArray
+                                {
+                                    self.arr.append(contentsOf: articles)
+                                    //print("We loaded " + String(articles.count) + " articles.")
+                                    if (token != nil) {
+                                        self.curPageTokens[publication.name!] = token!
+                                    }
+                                    DispatchQueue.main.async {
+                                        self.tableView.reloadData()
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        }
                     }
                 }
             })
+            } else {
+                if let token = self.curPageTokens[(curPublication?.name!)!] {
+                    curPublication?.fetchArticles(withNextPageToken: token, nextPageSize: nil, completion: { (articlesArray, token, error) in
+                        if let articles = articlesArray
+                        {
+                            self.arr.append(contentsOf: articles)
+                            //print("We loaded " + String(articles.count) + " articles.")
+                            if (token != nil) {
+                                self.curPageTokens[(self.curPublication?.name!)!] = token!
+                            }
+                            //self.curPageToken = token
+                            //print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    })
+                }
+            }
         }
     }
     
@@ -132,14 +169,14 @@ class NewsTableViewController: UITableViewController {
         if let authors = authorArr {
             cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, String>>)
         } else {
-            cell.authorName.text = "by anon"
+            cell.authorName.text = "by unknown author"
         }
         cell.articleTitle.text = title
         cell.authorImage.image = #imageLiteral(resourceName: "article")
-        cell.articleImage.image = articleImage ?? #imageLiteral(resourceName: "JRC")
+        cell.articleImage.image = articleImage ?? #imageLiteral(resourceName: "appdev")
         
         // populate time published info
-        let time = arr[indexPath.row].datePublished as Date!
+        let time = arr[indexPath.row].datePublished as Date?
         let dateFormatter = DateFormatter()
         let timeString = dateFormatter.string(from: time!)
         cell.timestamp.text = timeString.isEmpty ? "published at unknown spacetime coordinates" : timeString
@@ -186,31 +223,38 @@ class NewsTableViewController: UITableViewController {
     
     // refresh data
     func refreshData(_ sender: Any) {
-        if (publication != nil) {
-            publication?.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+        if (curPublication != nil) {
+            curPublication?.fetchArticles(withNextPageToken: nil, nextPageSize: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
                 if let articles = articlesArray
                 {
                     self.arr = articles
                     DispatchQueue.main.async {
+                        self.refreshControl?.endRefreshing()
                         self.tableView.reloadData()
+                        print("Finished loading data")
                     }
                 }
             })
         } else {
-            SPARCPublication.fetchAll(withNextPageToken: nil) { (pubsArray, nextPageToken, error) in
+            SPARCPublication.fetchAll(withNextPageToken: nil, nextPageSize: nil) { (pubsArray, nextPageToken, error) in
                 if let publications = pubsArray
                 {
                     for publication in publications
                     {
-                        publication.fetchArticles(withNextPageToken: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
+                        publication.fetchArticles(withNextPageToken: nil, nextPageSize: "2", completion: { (articlesArray, nextPageForArticlesToken, error) in
                             if let articles = articlesArray
                             {
                                 self.arr = articles
-                                self.curPageToken = nextPageForArticlesToken!
-                                print("Initial token: ")
-                                print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
+                                if (nextPageForArticlesToken != nil) {
+                                    self.curPageTokens[publication.name!] = nextPageForArticlesToken!
+                                }
+                                //self.curPageToken = nextPageForArticlesToken!
+                                //print("Initial token: ")
+                                //print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
                                 DispatchQueue.main.async {
+                                    self.refreshControl?.endRefreshing()
                                     self.tableView.reloadData()
+                                    print("Finished loading data")
                                 }
                             }
                         })
@@ -219,7 +263,7 @@ class NewsTableViewController: UITableViewController {
             }
         }
         print("Finished loading data")
-        self.refreshControl?.endRefreshing()
+        //self.refreshControl?.endRefreshing()
     }
     
 

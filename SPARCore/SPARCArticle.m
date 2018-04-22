@@ -27,6 +27,8 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 # pragma mark - Class Object Generators
 
 + (SPARCArticle *) articleFromDictionary: (NSDictionary*)dict {
+  NSLog(@"converting");
+
   SPARCArticle *article = [SPARCArticle new];
   article.articleId = dict[API_KEY_ARTICLE_ID];
   article.authors = dict[API_KEY_AUTHORS];
@@ -37,7 +39,13 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
   article.dateEdited = [NSDate dateWithTimeIntervalSince1970: timeStamp];
   timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
   article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-  article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+    if (dict[API_KEY_HEADER_IMAGE] == [NSNull null]) {
+        article.headerImageURL = nil;
+    } else {
+        article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+        NSLog(@"HEY, FOUND AN IMAGE: %@", article.headerImageURL);
+    }
+    
   article.headerImage = [SPARCArticle getImageFromImageURL:article.headerImageURL];
   article.issue = dict[API_KEY_ISSUE];
   article.publication=[SPARCPublication new];
@@ -54,6 +62,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     NSMutableArray <SPARCArticle *> *articles = [NSMutableArray new];
     
     for (NSDictionary *element in array) {
+        NSLog(@"converting article");
         SPARCArticle *article = [self articleFromDictionary:element];
         [articles addObject:article];
     }
@@ -81,7 +90,14 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     self.dateEdited = [NSDate dateWithTimeIntervalSince1970: timeStamp];
     timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
     self.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-    self.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+    if (dict[API_KEY_HEADER_IMAGE] == [NSNull null]) {
+        self.headerImageURL = nil;
+        NSLog(@"Cannot fetch ANY IMAGE.");
+    } else {
+        self.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+        NSLog(@"HEY, FOUND AN IMAGE: %@", self.headerImageURL);
+    }
+    self.headerImage = [SPARCArticle getImageFromImageURL:self.headerImageURL];
     self.issue = dict[API_KEY_ISSUE];
     self.publication=[SPARCPublication new];
     self.publication.publicationId = dict[API_KEY_PUBLICATION_ID];

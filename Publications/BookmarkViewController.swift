@@ -59,8 +59,8 @@ class BookmarkViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! NewsTableViewCell
         //let authorArr = arr[indexPath.row].authors
-        let authorArr = arr[indexPath.row].authors
-        var authorNames=""
+        //let authorArr = arr[indexPath.row].authors
+        //var authorNames=""
 //        for author in authorArr! {
 //            authorNames+=author["name"] as! String
 //        }
@@ -69,10 +69,10 @@ class BookmarkViewController: UITableViewController {
         print("TITLE: \(title ?? "no title")")
         
         
-        cell.authorName.text = String("by ") + "\(authorNames)"
+        //cell.authorName.text = String("by ") + "\(authorNames)"
         cell.articleTitle.text = arr[indexPath.row].title
-        cell.authorImage.image = #imageLiteral(resourceName: "article")
-        cell.articleImage.image = #imageLiteral(resourceName: "article")
+        cell.authorImage.image = #imageLiteral(resourceName: "appdev")
+        cell.articleImage.image = arr[indexPath.row].headerImage
         //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
         
         cell.preservesSuperviewLayoutMargins = false
@@ -106,6 +106,8 @@ class BookmarkViewController: UITableViewController {
                 destinationVC.text = "Loading article..."
                 destinationVC.isBookmarkView = true
                 destinationVC.getArticle = arr[articleIndex];
+                destinationVC.text = arr[articleIndex].content!
+                destinationVC.articleImage = arr[articleIndex].headerImage
             }
         }
     }
