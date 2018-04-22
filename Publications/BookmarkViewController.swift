@@ -18,6 +18,7 @@ class BookmarkViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //defaults.removeObject(forKey: "bookmark")
         if let data = defaults.data(forKey: "bookmark") {
             arr = (NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle])!
             self.tableView.reloadData()   // ...and it is also visible here.
@@ -26,8 +27,6 @@ class BookmarkViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //arr = SPARCArticle.loadDummyArticles()
         
         if revealViewController() != nil {
             menuButton.target = revealViewController()
@@ -58,23 +57,21 @@ class BookmarkViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! NewsTableViewCell
-        //let authorArr = arr[indexPath.row].authors
-        //let authorArr = arr[indexPath.row].authors
-        //var authorNames=""
-//        for author in authorArr! {
-//            authorNames+=author["name"] as! String
-//        }
-//        
+        let authorArr = arr[indexPath.row].authors
+        var authorNames=""
+        for author in authorArr! {
+            authorNames+=author["name"] as! String
+        }
+        
         let title = arr[indexPath.row].title
         print("TITLE: \(title ?? "no title")")
         
         
-        //cell.authorName.text = String("by ") + "\(authorNames)"
+        cell.authorName.text = String("by ") + "\(authorNames)"
         cell.articleTitle.text = arr[indexPath.row].title
         cell.authorImage.image = #imageLiteral(resourceName: "appdev")
-        cell.articleImage.image = arr[indexPath.row].headerImage
-        //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
-        
+        cell.articleImage.image = arr[indexPath.row].headerImage ?? #imageLiteral(resourceName: "westworld")
+        //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].dateEdited)
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
@@ -103,7 +100,6 @@ class BookmarkViewController: UITableViewController {
                 if let title = arr[articleIndex].title {
                     destinationVC.titleTxt = title
                 }
-                destinationVC.text = "Loading article..."
                 destinationVC.isBookmarkView = true
                 destinationVC.getArticle = arr[articleIndex];
                 destinationVC.text = arr[articleIndex].content!

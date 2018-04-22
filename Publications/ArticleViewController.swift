@@ -30,7 +30,8 @@ class ArticleViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.hidesBarsOnTap = true
+        // navigationController?.hidesBarsOnTap = true
+        // navigationController?.
         if (isBookmarkView == false) {
             DispatchQueue.main.async {
                 self.getArticle?.fetchFullText(completion: { (article, err) in
@@ -129,10 +130,12 @@ class ArticleViewController: UITableViewController {
     // Bookmark action
     @IBAction func bookmark(_ sender: Any) {
         if (!isBookmarked) {
-
             // retrieving a value for a key
             if let data = defaults.data(forKey: "bookmark"),
                 var articleList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle] {
+                if (getArticle?.headerImage == nil) {
+                    print("No image is found!!!")
+                } else { print("article image is found!!")}
                 articleList.append(getArticle!)
                 let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
                 defaults.set(encodedData, forKey: "bookmark")

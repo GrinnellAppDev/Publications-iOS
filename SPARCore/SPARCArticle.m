@@ -191,7 +191,14 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
         //datePublished field is a UNIX Timestamp number - converting to NSDate here
         self.dateEdited = [decoder decodeObjectForKey:API_KEY_DATE_EDITED];
         self.datePublished = [decoder decodeObjectForKey:API_KEY_DATE_PUBLISHED];
-        //self.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+        NSData* imageData = [decoder decodeObjectForKey:API_KEY_HEADER_IMAGE];
+        NSLog(@"imagedataaaaaa %@",imageData);
+        if (imageData == nil) {
+            self.headerImage = nil;
+        } else {
+            self.headerImage = [UIImage imageWithData:imageData];
+            //NSLog(@"image %@",self.headerImage);
+        }
         self.issue = [decoder decodeObjectForKey:API_KEY_ISSUE];
         // self.publication=[SPARCPublication new];
         // self.publication.publicationId = dict[API_KEY_PUBLICATION_ID];
@@ -210,7 +217,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     [encoder encodeObject:_content forKey:API_KEY_CONTENT];
     [encoder encodeObject:_dateEdited forKey:API_KEY_DATE_EDITED];
     [encoder encodeObject:_datePublished forKey:API_KEY_DATE_PUBLISHED];
-    [encoder encodeObject:_headerImageURL forKey:API_KEY_HEADER_IMAGE];
+    [encoder encodeObject:UIImageJPEGRepresentation(_headerImage, 1) forKey:API_KEY_HEADER_IMAGE];
     [encoder encodeObject:_issue forKey:API_KEY_ISSUE];
     // Ignored publication field. Can add later.
     [encoder encodeObject:_tags forKey:API_KEY_TAGS];
