@@ -48,7 +48,6 @@ class ArticleViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
             })
-            
             //Set up bookmark button
             let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
             self.navigationItem.rightBarButtonItem = bookmarkButton
@@ -75,6 +74,25 @@ class ArticleViewController: UITableViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setNewView()
+    }
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                //self.tabBarController?.tabBar.isHidden = true
+                print("Hide")
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                //self.tabBarController?.tabBar.isHidden = false
+                print("Unhide")
+            }, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -177,7 +195,7 @@ class ArticleViewController: UITableViewController {
         // author names
         cell.username.text = parseAuthors(authorArr: getArticle?.authors as! Array<Dictionary<String, String>>)
         // author image
-        cell.articleIcon.image = #imageLiteral(resourceName: "appdev")
+        cell.articleIcon.image = #imageLiteral(resourceName: "s_and_b")
         
         // published time
         let time = getArticle?.datePublished

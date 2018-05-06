@@ -69,8 +69,8 @@ class BookmarkViewController: UITableViewController {
         
         cell.authorName.text = String("by ") + "\(authorNames)"
         cell.articleTitle.text = arr[indexPath.row].title
-        cell.authorImage.image = #imageLiteral(resourceName: "appdev")
-        cell.articleImage.image = arr[indexPath.row].headerImage ?? #imageLiteral(resourceName: "westworld")
+        cell.authorImage.image = #imageLiteral(resourceName: "s_and_b")
+        cell.articleImage.image = arr[indexPath.row].headerImage ?? #imageLiteral(resourceName: "JRC")
         //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].dateEdited)
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero

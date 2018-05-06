@@ -81,6 +81,21 @@ class NewsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            }, completion: nil)
+        }
+    }
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //print("Fetching new data with " + (self.curPageToken ?? "THERE'S NO PAGE TOKEN!"))
@@ -92,11 +107,10 @@ class NewsTableViewController: UITableViewController {
                     for publication in publications
                     {
                         if let token = self.curPageTokens[publication.name!] {
-                            publication.fetchArticles(withNextPageToken: token, nextPageSize: "2", completion: { (articlesArray, token, error) in
+                            publication.fetchArticles(withNextPageToken: token, nextPageSize: "8", completion: { (articlesArray, token, error) in
                                 if let articles = articlesArray
                                 {
                                     self.arr.append(contentsOf: articles)
-                                    //print("We loaded " + String(articles.count) + " articles.")
                                     if (token != nil) {
                                         self.curPageTokens[publication.name!] = token!
                                     }
