@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import SPARCore
 
+// define a struct to hold height of the default headImage.
 struct StretchyHeader {
     
     fileprivate let headerHeight: CGFloat = 170 // the height of the initial image
@@ -16,7 +17,7 @@ class ArticleViewController: UITableViewController {
     var articleImage : UIImage!
     var date : String! = ""
     let defaults:UserDefaults = UserDefaults.standard
-    var titleTxt = "This is a title, you know?"
+    var titleTxt = ""
     var text = "I'm currently loeading. Give me some time..."
     
     var height: CGFloat = 0.0
@@ -33,22 +34,20 @@ class ArticleViewController: UITableViewController {
         // navigationController?.hidesBarsOnTap = true
         // navigationController?.
         if (isBookmarkView == false) {
-            DispatchQueue.main.async {
-                self.getArticle?.fetchFullText(completion: { (article, err) in
-                    self.text = (article?.content!)!
-                    self.articleImage = article?.headerImage
-                    
-                    let formatter = DateFormatter()
-                    // initially set the format based on your datepicker date
-                    formatter.dateFormat = "MM/dd/yyyy"
-                    let dateString = formatter.string(from: (article?.datePublished)!)
-                    self.date = dateString
-                    
-                    // self.author = article?.authors! as? String ?? "Mike"
-                    print("Text is: " + self.text)
+            self.getArticle?.fetchFullText(completion: { (article, err) in
+                self.text = (article?.content!)!
+                self.articleImage = article?.headerImage
+                let formatter = DateFormatter()
+                // initially set the format based on your datepicker date
+                formatter.dateFormat = "MM/dd/yyyy"
+                let dateString = formatter.string(from: (article?.datePublished)!)
+                self.date = dateString
+                // self.author = article?.authors! as? String ?? "Mike"
+                print("Text is: " + self.text)
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
-                })
-            }
+                }
+            })
             
             //Set up bookmark button
             let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
@@ -68,20 +67,7 @@ class ArticleViewController: UITableViewController {
                     i += 1
                 }
             }
-        } else {
-            //text = (getArticle?.content)!
-            //articleImage = getArticle?.headerImage
-            
-            //let formatter = DateFormatter()
-            // initially set the format based on your datepicker date
-            //formatter.dateFormat = "MM/dd/yyyy"
-            //let dateString = formatter.string(from: (getArticle?.datePublished)!)
-            //date = dateString
         }
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        
         updateView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 600
@@ -151,7 +137,6 @@ class ArticleViewController: UITableViewController {
             isBookmarked = true
         } else {
             // remove the article from userdefaults ...
-            // LOOOOOOK HEREEEEEEEEEEE!!!!!
             let data = defaults.data(forKey: "bookmark")
             var articleList = NSKeyedUnarchiver.unarchiveObject(with: data!) as! [SPARCArticle]
             var i : Int = 0
@@ -197,6 +182,7 @@ class ArticleViewController: UITableViewController {
         // published time
         let time = getArticle?.datePublished
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         let timeString = dateFormatter.string(from: time!)
         cell.dateLabel.text = timeString.isEmpty ? "03/08/2018" : timeString
         

@@ -24,7 +24,8 @@
 		C788AD041E50F06700738844 /* SPARCArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* SPARCArticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C788AD051E50F06700738844 /* SPARCArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* SPARCArticle.m */; };
 		C7EC49CE1E5E4A2B00730C67 /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = C7EC49CD1E5E4A2B00730C67 /* testArticles.json */; };
-		FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD371DC3EE5900A5F77A /* Assets.xcassets */; };
+		FA1FD89C209F5854005E22B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA1FD89B209F5854005E22B4 /* Assets.xcassets */; };
+		FA1FD8A0209F5EA5005E22B4 /* SFCompactDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA1FD89F209F5EA4005E22B4 /* SFCompactDisplay-Black.otf */; };
 		FA5270B42039ED5A0027C75B /* PublicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5270B32039ED5A0027C75B /* PublicationViewController.swift */; };
 		FA5270B62039EDEF0027C75B /* PublicationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5270B52039EDEF0027C75B /* PublicationViewCell.swift */; };
 		FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */; };
@@ -42,6 +43,9 @@
 		FADAE68C1EB6DE290076E125 /* SPARCPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1932E71EA47A8800E5D911 /* SPARCPublication.m */; };
 		FADAE68D1EB6DE300076E125 /* SPARCArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* SPARCArticle.m */; };
 		FADAE68F1EB6EC880076E125 /* SPARCArticleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FADAE68E1EB6EC880076E125 /* SPARCArticleTests.m */; };
+		FAF31B62209F61DD0081E435 /* SFCompactDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAF31B61209F61DB0081E435 /* SFCompactDisplay-Regular.otf */; };
+		FAF31B64209F62670081E435 /* SFCompactDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAF31B63209F62650081E435 /* SFCompactDisplay-Medium.otf */; };
+		FAF31B66209F63E80081E435 /* SFCompactText-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAF31B65209F63E70081E435 /* SFCompactText-LightItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +96,6 @@
 		5C60243482D619345316D69A /* Pods-SPARCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPARCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SPARCore/Pods-SPARCore.debug.xcconfig"; sourceTree = "<group>"; };
 		7463DD2A1DC3EE5900A5F77A /* Publications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Publications.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7463DD321DC3EE5900A5F77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7463DD371DC3EE5900A5F77A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7463DD3A1DC3EE5900A5F77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7463DD3C1DC3EE5900A5F77A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7463DD5F1DC3EEAD00A5F77A /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 		C788AD031E50F06700738844 /* SPARCArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPARCArticle.m; sourceTree = "<group>"; };
 		C7EC49CD1E5E4A2B00730C67 /* testArticles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testArticles.json; path = ../SPARCore/testArticles.json; sourceTree = "<group>"; };
 		F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Publications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA1FD89B209F5854005E22B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA1FD89F209F5EA4005E22B4 /* SFCompactDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Black.otf"; sourceTree = "<group>"; };
 		FA5270B32039ED5A0027C75B /* PublicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewController.swift; sourceTree = "<group>"; };
 		FA5270B52039EDEF0027C75B /* PublicationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewCell.swift; sourceTree = "<group>"; };
 		FA6BF14C1E4F653D008FB165 /* Publications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Publications.xcdatamodel; sourceTree = "<group>"; };
@@ -125,6 +130,9 @@
 		FA7DCC6F1E4F75F300C84A73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA97E00F2027E0A4002AB8F0 /* FontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontViewController.swift; sourceTree = "<group>"; };
 		FADAE68E1EB6EC880076E125 /* SPARCArticleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPARCArticleTests.m; sourceTree = "<group>"; };
+		FAF31B61209F61DB0081E435 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
+		FAF31B63209F62650081E435 /* SFCompactDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Medium.otf"; sourceTree = "<group>"; };
+		FAF31B65209F63E70081E435 /* SFCompactText-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactText-LightItalic.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,11 +199,11 @@
 		7463DD2C1DC3EE5900A5F77A /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FA1FD89E209F5E82005E22B4 /* Fonts */,
 				FA34ED2F1E4F7C7D003651E1 /* Cells */,
 				FA34ED2E1E4F7C60003651E1 /* ViewControllers */,
 				FA34ED2D1E4F7C55003651E1 /* Storyboards */,
 				FA34ED2C1E4F7C3A003651E1 /* Internals */,
-				7463DD371DC3EE5900A5F77A /* Assets.xcassets */,
 				FA6BF14B1E4F653D008FB165 /* Publications.xcdatamodeld */,
 			);
 			name = App;
@@ -215,6 +223,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FA1FD89E209F5E82005E22B4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FA1FD89F209F5EA4005E22B4 /* SFCompactDisplay-Black.otf */,
+				FAF31B61209F61DB0081E435 /* SFCompactDisplay-Regular.otf */,
+				FAF31B63209F62650081E435 /* SFCompactDisplay-Medium.otf */,
+				FAF31B65209F63E70081E435 /* SFCompactText-LightItalic.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		FA34ED2C1E4F7C3A003651E1 /* Internals */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +247,7 @@
 		FA34ED2D1E4F7C55003651E1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				FA1FD89B209F5854005E22B4 /* Assets.xcassets */,
 				7463DD311DC3EE5900A5F77A /* Main.storyboard */,
 				7463DD391DC3EE5900A5F77A /* LaunchScreen.storyboard */,
 			);
@@ -425,8 +445,12 @@
 			files = (
 				68CCEE0E1E6372B300A7C330 /* testArticles.json in Resources */,
 				7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */,
-				FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */,
+				FA1FD89C209F5854005E22B4 /* Assets.xcassets in Resources */,
+				FA1FD8A0209F5EA5005E22B4 /* SFCompactDisplay-Black.otf in Resources */,
+				FAF31B66209F63E80081E435 /* SFCompactText-LightItalic.otf in Resources */,
+				FAF31B62209F61DD0081E435 /* SFCompactDisplay-Regular.otf in Resources */,
 				7463DD331DC3EE5900A5F77A /* Main.storyboard in Resources */,
+				FAF31B64209F62670081E435 /* SFCompactDisplay-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

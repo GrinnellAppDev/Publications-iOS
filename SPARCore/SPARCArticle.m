@@ -35,16 +35,21 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
   article.brief = dict[API_KEY_BRIEF];
   article.content = dict[API_KEY_CONTENT];
   //datePublished field is a UNIX Timestamp number - converting to NSDate here
-  int timeStamp = (int)dict[API_KEY_DATE_EDITED];
+  NSString *time = [dict[API_KEY_DATE_EDITED] stringValue];
+  NSString *convertedTime = [time substringToIndex:[time length]-3];
+  int timeStamp = [convertedTime intValue];
   article.dateEdited = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-  timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
+  time = [dict[API_KEY_DATE_PUBLISHED] stringValue];
+  convertedTime = [time substringToIndex:[time length]-3];
+  timeStamp = [convertedTime intValue];
   article.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-    if (dict[API_KEY_HEADER_IMAGE] == [NSNull null]) {
-        article.headerImageURL = nil;
-    } else {
-        article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
-        NSLog(@"HEY, FOUND AN IMAGE: %@", article.headerImageURL);
-    }
+  //Fetching Header image from the URL we pulled from the server
+  if (dict[API_KEY_HEADER_IMAGE] == [NSNull null]) {
+    article.headerImageURL = nil;
+  } else {
+    article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
+    NSLog(@"HEY, FOUND AN IMAGE: %@", article.headerImageURL);
+  }
     
   article.headerImage = [SPARCArticle getImageFromImageURL:article.headerImageURL];
   article.issue = dict[API_KEY_ISSUE];
@@ -86,10 +91,15 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     self.brief = dict[API_KEY_BRIEF];
     self.content = dict[API_KEY_CONTENT];
     //datePublished field is a UNIX Timestamp number - converting to NSDate here
-    int timeStamp = (int)dict[API_KEY_DATE_EDITED];
+    NSString *time = [dict[API_KEY_DATE_EDITED] stringValue];
+    NSString *convertedTime = [time substringToIndex:[time length]-3];
+    int timeStamp = [convertedTime intValue];
     self.dateEdited = [NSDate dateWithTimeIntervalSince1970: timeStamp];
-    timeStamp = (int)dict[API_KEY_DATE_PUBLISHED];
+    time = [dict[API_KEY_DATE_PUBLISHED] stringValue];
+    convertedTime = [time substringToIndex:[time length]-3];
+    timeStamp = [convertedTime intValue];
     self.datePublished = [NSDate dateWithTimeIntervalSince1970: timeStamp];
+    //Pull header image from server
     if (dict[API_KEY_HEADER_IMAGE] == [NSNull null]) {
         self.headerImageURL = nil;
         NSLog(@"Cannot fetch ANY IMAGE.");

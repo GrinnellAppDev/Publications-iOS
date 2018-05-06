@@ -23,6 +23,7 @@ class NewsTableViewController: UITableViewController {
         super.viewDidLoad()
         // Add Refresh Control to Table View
         let refreshControl = UIRefreshControl()
+        //Uncomment code below for compatibility with lower iOS versions
         /*if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
         } else {
@@ -32,8 +33,6 @@ class NewsTableViewController: UITableViewController {
         // Configure Refresh Control
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         self.refreshControl = refreshControl
-        //tableView.insertSubview(refreshControl, at: 0)
-
         
         if (curPublication != nil) {
             curPublication?.fetchArticles(withNextPageToken: nil, nextPageSize: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
@@ -46,23 +45,14 @@ class NewsTableViewController: UITableViewController {
                     }
                 })
         } else {
-            print("herrerere")
-            
             SPARCPublication.fetchAll(withNextPageToken: nil, nextPageSize: nil, completion: { (pubsArray, nextPageToken, error) in
-                print("herrerere1")
                 if let publications = pubsArray
                 {
-                    print("herrerere2")
-                    
                     for publication in publications
                     {
-                        print("herrerere3")
-
                         publication.fetchArticles(withNextPageToken: nil, nextPageSize: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
                             if let articles = articlesArray
                             {
-                                print("herrerere4")
-
                                 self.arr += articles
                                 if (nextPageForArticlesToken != nil) {
                                     self.curPageTokens[publication.name!] = nextPageForArticlesToken
@@ -78,14 +68,6 @@ class NewsTableViewController: UITableViewController {
                 }
             })
         }
-        // arr = SPARCArticle.loadDummyArticles()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         if revealViewController() != nil {
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -133,12 +115,9 @@ class NewsTableViewController: UITableViewController {
                         if let articles = articlesArray
                         {
                             self.arr.append(contentsOf: articles)
-                            //print("We loaded " + String(articles.count) + " articles.")
                             if (token != nil) {
                                 self.curPageTokens[(self.curPublication?.name!)!] = token!
                             }
-                            //self.curPageToken = token
-                            //print(self.curPageToken ?? "THERE'S NO PAGE TOKEN!")
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
                             }
@@ -159,8 +138,8 @@ class NewsTableViewController: UITableViewController {
         return arr.count
     }
 
+    // Set up each tableView cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! NewsTableViewCell
         let title = arr[indexPath.row].title
         let articleImage = arr[indexPath.row].headerImage
@@ -169,27 +148,26 @@ class NewsTableViewController: UITableViewController {
         if let authors = authorArr {
             cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, String>>)
         } else {
-            cell.authorName.text = "by unknown author"
+            cell.authorName.text = "by Anonymous"
         }
         cell.articleTitle.text = title
-        cell.authorImage.image = #imageLiteral(resourceName: "article")
-        cell.articleImage.image = articleImage ?? #imageLiteral(resourceName: "appdev")
-        
+        //cell.authorImage.image = #imageLiteral(resourceName: "s_and_b")
+        cell.articleImage.image = articleImage ?? #imageLiteral(resourceName: "s_and_b")
         // populate time published info
-        let time = arr[indexPath.row].datePublished as Date?
+        let time = arr[indexPath.row].datePublished
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let timeString = dateFormatter.string(from: time!)
         cell.timestamp.text = timeString.isEmpty ? "published at unknown spacetime coordinates" : timeString
-        
+        // Layout settings
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
-        
         return cell
     }
     
     
-    // Changing cell height to 100. Was not working on storyboard
+    // Changing cell height to 80. Was not working on storyboard
      override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80;
      }
@@ -266,8 +244,7 @@ class NewsTableViewController: UITableViewController {
         //self.refreshControl?.endRefreshing()
     }
     
-
-    /*
+    /* NOTE: Legacy function for dealing with two different table cell sizes: with/without header images
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if arrayOfArticle[indexPath.row].cell == 1 {
             return 243
@@ -277,5 +254,4 @@ class NewsTableViewController: UITableViewController {
             return 243
         }
     } */
-    
 }
