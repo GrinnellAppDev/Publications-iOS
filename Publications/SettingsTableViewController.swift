@@ -12,7 +12,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        defaults.set(14, forKey: "font")
+        defaults.set(16, forKey: "font")
         //self.tableView.allowsSelection = true
 
         // Uncomment the following line to preserve selection between presentations

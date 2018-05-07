@@ -31,8 +31,6 @@ class ArticleViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // navigationController?.hidesBarsOnTap = true
-        // navigationController?.
         if (isBookmarkView == false) {
             self.getArticle?.fetchFullText(completion: { (article, err) in
                 self.text = (article?.content!)!
@@ -82,14 +80,12 @@ class ArticleViewController: UITableViewController {
             //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
-                //self.tabBarController?.tabBar.isHidden = true
                 print("Hide")
             }, completion: nil)
             
         } else {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
-                //self.tabBarController?.tabBar.isHidden = false
                 print("Unhide")
             }, completion: nil)
         }
@@ -190,8 +186,6 @@ class ArticleViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "funnyCell", for: indexPath) as! ArticleViewCell
-        
-        navigationController?.hidesBarsOnTap = true
         // author names
         cell.username.text = parseAuthors(authorArr: getArticle?.authors as! Array<Dictionary<String, String>>)
         // author image
