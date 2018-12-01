@@ -160,7 +160,8 @@ class NewsTableViewController: UITableViewController {
         print("TITLE: \(title ?? "no title")")
         let authorArr = arr[indexPath.row].authors
         if let authors = authorArr {
-            cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, Any>>)
+            cell.authorName.text = SPARCArticle.parseAuthors(authors as? Array<Dictionary<String, Any>>)
+            //cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, Any>>)
         } else {
             cell.authorName.text = "by Anonymous"
         }
@@ -186,6 +187,7 @@ class NewsTableViewController: UITableViewController {
         return 80;
      }
     
+    /*
     func parseAuthors (authorArr:Array<Dictionary<String, Any>>) -> String
     {
         var authorText = "by "
@@ -195,6 +197,7 @@ class NewsTableViewController: UITableViewController {
         }
         return authorText
     }
+ */
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

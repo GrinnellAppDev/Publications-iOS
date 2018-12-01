@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSString * _Nullable title;
 @property (nonatomic, strong) NSURL * _Nullable url;
 
++ (NSString *) parseAuthors: (NSArray<NSDictionary<NSString*, id>*>*) authorArr;
+
 /*
  @brief For front-end to use. Load dummy data.
  */

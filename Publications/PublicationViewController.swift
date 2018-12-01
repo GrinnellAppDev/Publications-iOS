@@ -72,6 +72,7 @@ class PublicationViewController: UITableViewController {
         return 80;
     }
     
+    /*
     func parseAuthors (authorArr:Array<Dictionary<String, Any>>) -> String
     {
         var authorText = "by "
@@ -81,6 +82,7 @@ class PublicationViewController: UITableViewController {
         }
         return authorText
     }
+ */
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

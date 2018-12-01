@@ -6,6 +6,21 @@ static const NSTimeInterval timeoutInterval = 60.0;
 
 @implementation SPARCArticle
 
+#pragma mark - Utility Methods
+
++ (NSString *) parseAuthors: (NSArray<NSDictionary<NSString*, id>*>*) authorArr {
+    NSString *authorText = @"by ";
+    for (NSDictionary<NSString*, id> *auth in authorArr) {
+        if ([auth objectForKey:@"name"] != (id)[NSNull null]) {
+            NSString *authorName = [auth objectForKey:@"name"];
+            authorText = [authorText stringByAppendingString:authorName];
+        } else {
+            authorText = [authorText stringByAppendingString:@"Anonymous"];
+        }
+    }
+    return authorText;
+}
+
 #pragma mark - API Constants
 
 static NSString *const API_KEY_ARTICLE_ID = @"id";
