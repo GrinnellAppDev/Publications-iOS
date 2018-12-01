@@ -72,12 +72,12 @@ class PublicationViewController: UITableViewController {
         return 80;
     }
     
-    func parseAuthors (authorArr:Array<Dictionary<String, String>>) -> String
+    func parseAuthors (authorArr:Array<Dictionary<String, Any>>) -> String
     {
         var authorText = "by "
         for auth in authorArr
         {
-            authorText += "\(auth["name"] ?? "anonymous")"
+            authorText += "\(auth["name"] ?? "Anonymous")"
         }
         return authorText
     }

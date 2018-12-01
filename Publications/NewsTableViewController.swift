@@ -160,7 +160,7 @@ class NewsTableViewController: UITableViewController {
         print("TITLE: \(title ?? "no title")")
         let authorArr = arr[indexPath.row].authors
         if let authors = authorArr {
-            cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, String>>)
+            cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, Any>>)
         } else {
             cell.authorName.text = "by Anonymous"
         }
@@ -186,12 +186,12 @@ class NewsTableViewController: UITableViewController {
         return 80;
      }
     
-    func parseAuthors (authorArr:Array<Dictionary<String, String>>) -> String
+    func parseAuthors (authorArr:Array<Dictionary<String, Any>>) -> String
     {
         var authorText = "by "
         for auth in authorArr
         {
-            authorText += "\(auth["name"] ?? "anonymous")"
+            authorText += "\(auth["name"] ?? "Anonymous")"
         }
         return authorText
     }

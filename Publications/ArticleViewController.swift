@@ -187,7 +187,7 @@ class ArticleViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "funnyCell", for: indexPath) as! ArticleViewCell
         // author names
-        cell.username.text = parseAuthors(authorArr: getArticle?.authors as! Array<Dictionary<String, String>>)
+        cell.username.text = parseAuthors(authorArr: getArticle?.authors as! Array<Dictionary<String, Any>>)
         // author image
         cell.articleIcon.image = #imageLiteral(resourceName: "s_and_b")
         
@@ -242,12 +242,12 @@ class ArticleViewController: UITableViewController {
         return UITableViewAutomaticDimension
     }
     
-    func parseAuthors (authorArr:Array<Dictionary<String, String>>) -> String
+    func parseAuthors (authorArr:Array<Dictionary<String, Any>>) -> String
     {
         var authorText = "by "
         for auth in authorArr
         {
-            authorText += "\(auth["name"] ?? "anonymous")"
+            authorText += "\(auth["name"] ?? "Anonymous")"
         }
         return authorText
     }
