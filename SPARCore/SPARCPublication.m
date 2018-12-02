@@ -12,7 +12,9 @@ static NSString *const API_ARTICLE_SUFFIX = @"articles";
 static NSString *const API_KEY_PUBLICATION_ID = @"id";
 static NSString *const API_KEY_PUBLICATION_NAME = @"name";
 
+static NSString *const API_QUERY_PAGE_SIZE = @"pageSize";
 static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
+
 
 #pragma mark - Class Object Generators
 
@@ -32,9 +34,11 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 #pragma mark - Remote Content Fetching
 
 + (void) fetchAllWithNextPageToken:(NSString * _Nullable)nextPageToken
-                        completion:(GADPublicationsCallback)completion {
+                      nextPageSize:(NSString * _Nullable)nextPageSize
+                        completion:(_Nonnull GADPublicationsCallback)completion {
     [super fetchModelsWithURL:[self baseURL]
               queryParameters:nil
+                 nextPageSize:nextPageSize
                 nextPageToken:nextPageToken
              modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
                  return [self publicationsFromArray:jsonArray];
@@ -43,14 +47,17 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 }
 
 - (void) fetchArticlesWithNextPageToken:(NSString * _Nullable)nextPageToken
-                             completion:(GADArticlesCallback)completion {
+                           nextPageSize:(NSString * _Nullable)nextPageSize
+                             completion:(_Nonnull GADArticlesCallback)completion {
     [[super class] fetchModelsWithURL:[self urlForArticles]
                       queryParameters:nil
+                        nextPageSize:nextPageSize
                         nextPageToken:nextPageToken
                      modelTransformer:^(NSArray<NSDictionary *> *jsonArray) {
                          return [SPARCArticle articlesFromArray:jsonArray];
                      }
                     completionHandler:completion];
+    
 }
 
 #pragma mark - URL Generators

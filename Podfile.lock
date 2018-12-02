@@ -9,6 +9,12 @@ DEPENDENCIES:
   - Fabric
   - SWRevealViewController (~> 2.3)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Crashlytics
+    - Fabric
+    - SWRevealViewController
+
 SPEC CHECKSUMS:
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
@@ -16,4 +22,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2474caf28b4ad9c626ba9c145a611025e0f368da
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.3

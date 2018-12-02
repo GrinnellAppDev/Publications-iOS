@@ -1,11 +1,14 @@
 #import "GADRemoteModel.h"
 
 #pragma mark - API Constants
-static NSString *const API_HOSTNAME = @"https://g2j7qs2xs7.execute-api.us-west-2.amazonaws.com/";
-static NSString *const API_PREFIX = @"devstable";
+static NSString *const API_HOSTNAME = @"https://appdev.grinnell.edu/api/publications/v1/";
+static NSString *const API_PREFIX = @"";
 
 static NSString *const API_ITEMS = @"items";
 static NSString *const API_NEXT_PAGE_TOKEN = @"nextPageToken";
+
+static NSString *const API_QUERY_PAGE_SIZE = @"pageSize";
+static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
 static const NSTimeInterval timeoutInterval = 60.0;
 
@@ -15,14 +18,19 @@ static const NSTimeInterval timeoutInterval = 60.0;
 
 + (void) fetchModelsWithURL:(NSURL * _Nonnull)url
             queryParameters:(NSDictionary * _Nullable)queryParams
+               nextPageSize:(GADNextPageSize _Nullable)nextPageSize
               nextPageToken:(GADNextPageToken _Nullable)nextPageToken
            modelTransformer:(GADModelTransformer _Nonnull)modelTransformer
           completionHandler:(GADRemoteCompletionHandler _Nonnull)completion {
   
   NSMutableArray *queryItems = [NSMutableArray<NSURLQueryItem *> new];
   if (nextPageToken) {
-    [queryItems addObject:[NSURLQueryItem queryItemWithName:API_NEXT_PAGE_TOKEN
+    [queryItems addObject:[NSURLQueryItem queryItemWithName:API_QUERY_PAGE_TOKEN
                                                       value:nextPageToken]];
+  }
+  if (nextPageSize) {
+    [queryItems addObject:[NSURLQueryItem queryItemWithName:API_QUERY_PAGE_SIZE
+                                                          value:nextPageSize]];
   }
   for (NSString *key in queryParams) {
     [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:queryParams[key]]];
@@ -57,9 +65,21 @@ static const NSTimeInterval timeoutInterval = 60.0;
     
     NSArray *objects=[jsonDict valueForKey:API_ITEMS];
     NSString *token=[jsonDict valueForKey:API_NEXT_PAGE_TOKEN];
-    
+    NSLog(@"article count: %lu", [objects count]);
+    NSLog(@"page token: %@", token);
+
     NSArray<GADRemoteModel *> *modelObjects = modelTransformer(objects);
-    completion(modelObjects, token, nil);
+    NSLog(@"transformed!");
+    NSLog(@"article count2: %lu", [modelObjects count]);
+
+
+    if ([jsonDict objectForKey:API_NEXT_PAGE_TOKEN] == [NSNull null]) {
+        completion(modelObjects, nil, nil);
+    } else {
+        completion(modelObjects, token, nil);
+    }
+
+
     return;
   }];
   [task resume];

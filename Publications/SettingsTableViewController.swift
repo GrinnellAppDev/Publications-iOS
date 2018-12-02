@@ -12,7 +12,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        defaults.set(20, forKey: "font")
+        defaults.set(16, forKey: "font")
         //self.tableView.allowsSelection = true
 
         // Uncomment the following line to preserve selection between presentations
@@ -109,6 +109,12 @@ class SettingsTableViewController: UITableViewController {
             if let destinationVC = segue.destination as? AboutViewController {
                 destinationVC.pageType = 1
                 print ("HERE")
+            }
+        }
+        else if segue.identifier == "showFontSetting"
+        {
+            if let destinationVC = segue.destination as? FontViewController {
+                //destinationVC.test = 2
             }
         }
     }

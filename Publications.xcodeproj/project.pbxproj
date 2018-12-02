@@ -24,7 +24,10 @@
 		C788AD041E50F06700738844 /* SPARCArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C788AD021E50F06700738844 /* SPARCArticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C788AD051E50F06700738844 /* SPARCArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* SPARCArticle.m */; };
 		C7EC49CE1E5E4A2B00730C67 /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = C7EC49CD1E5E4A2B00730C67 /* testArticles.json */; };
-		FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7463DD371DC3EE5900A5F77A /* Assets.xcassets */; };
+		FA1FD89C209F5854005E22B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA1FD89B209F5854005E22B4 /* Assets.xcassets */; };
+		FA1FD8A0209F5EA5005E22B4 /* SFCompactDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA1FD89F209F5EA4005E22B4 /* SFCompactDisplay-Black.otf */; };
+		FA5270B42039ED5A0027C75B /* PublicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5270B32039ED5A0027C75B /* PublicationViewController.swift */; };
+		FA5270B62039EDEF0027C75B /* PublicationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5270B52039EDEF0027C75B /* PublicationViewCell.swift */; };
 		FA7DCC4C1E4F730D00C84A73 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */; };
 		FA7DCC4D1E4F730D00C84A73 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */; };
 		FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */; };
@@ -36,9 +39,13 @@
 		FA7DCC701E4F75F300C84A73 /* SPARCore.h in Headers */ = {isa = PBXBuildFile; fileRef = FA7DCC601E4F75F300C84A73 /* SPARCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA7DCC731E4F75F300C84A73 /* SPARCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7DCC5E1E4F75F300C84A73 /* SPARCore.framework */; };
 		FA7DCC741E4F75F300C84A73 /* SPARCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA7DCC5E1E4F75F300C84A73 /* SPARCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA97E0102027E0A4002AB8F0 /* FontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97E00F2027E0A4002AB8F0 /* FontViewController.swift */; };
 		FADAE68C1EB6DE290076E125 /* SPARCPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1932E71EA47A8800E5D911 /* SPARCPublication.m */; };
 		FADAE68D1EB6DE300076E125 /* SPARCArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = C788AD031E50F06700738844 /* SPARCArticle.m */; };
 		FADAE68F1EB6EC880076E125 /* SPARCArticleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FADAE68E1EB6EC880076E125 /* SPARCArticleTests.m */; };
+		FAF31B62209F61DD0081E435 /* SFCompactDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAF31B61209F61DB0081E435 /* SFCompactDisplay-Regular.otf */; };
+		FAF31B64209F62670081E435 /* SFCompactDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAF31B63209F62650081E435 /* SFCompactDisplay-Medium.otf */; };
+		FAF31B66209F63E80081E435 /* SFCompactText-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAF31B65209F63E70081E435 /* SFCompactText-LightItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +96,6 @@
 		5C60243482D619345316D69A /* Pods-SPARCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPARCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SPARCore/Pods-SPARCore.debug.xcconfig"; sourceTree = "<group>"; };
 		7463DD2A1DC3EE5900A5F77A /* Publications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Publications.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7463DD321DC3EE5900A5F77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7463DD371DC3EE5900A5F77A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7463DD3A1DC3EE5900A5F77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7463DD3C1DC3EE5900A5F77A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7463DD5F1DC3EEAD00A5F77A /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -110,6 +116,10 @@
 		C788AD031E50F06700738844 /* SPARCArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPARCArticle.m; sourceTree = "<group>"; };
 		C7EC49CD1E5E4A2B00730C67 /* testArticles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testArticles.json; path = ../SPARCore/testArticles.json; sourceTree = "<group>"; };
 		F1DD39AF6937B83A9FA0EA41 /* Pods_Publications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Publications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA1FD89B209F5854005E22B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA1FD89F209F5EA4005E22B4 /* SFCompactDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Black.otf"; sourceTree = "<group>"; };
+		FA5270B32039ED5A0027C75B /* PublicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewController.swift; sourceTree = "<group>"; };
+		FA5270B52039EDEF0027C75B /* PublicationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewCell.swift; sourceTree = "<group>"; };
 		FA6BF14C1E4F653D008FB165 /* Publications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Publications.xcdatamodel; sourceTree = "<group>"; };
 		FA7DCC571E4F739900C84A73 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA7DCC5E1E4F75F300C84A73 /* SPARCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SPARCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,7 +128,11 @@
 		FA7DCC661E4F75F300C84A73 /* SPARCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPARCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7DCC6D1E4F75F300C84A73 /* SPARCPublicationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPARCPublicationTests.m; sourceTree = "<group>"; };
 		FA7DCC6F1E4F75F300C84A73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA97E00F2027E0A4002AB8F0 /* FontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontViewController.swift; sourceTree = "<group>"; };
 		FADAE68E1EB6EC880076E125 /* SPARCArticleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPARCArticleTests.m; sourceTree = "<group>"; };
+		FAF31B61209F61DB0081E435 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
+		FAF31B63209F62650081E435 /* SFCompactDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Medium.otf"; sourceTree = "<group>"; };
+		FAF31B65209F63E70081E435 /* SFCompactText-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactText-LightItalic.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,11 +199,11 @@
 		7463DD2C1DC3EE5900A5F77A /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FA1FD89E209F5E82005E22B4 /* Fonts */,
 				FA34ED2F1E4F7C7D003651E1 /* Cells */,
 				FA34ED2E1E4F7C60003651E1 /* ViewControllers */,
 				FA34ED2D1E4F7C55003651E1 /* Storyboards */,
 				FA34ED2C1E4F7C3A003651E1 /* Internals */,
-				7463DD371DC3EE5900A5F77A /* Assets.xcassets */,
 				FA6BF14B1E4F653D008FB165 /* Publications.xcdatamodeld */,
 			);
 			name = App;
@@ -209,6 +223,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FA1FD89E209F5E82005E22B4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FA1FD89F209F5EA4005E22B4 /* SFCompactDisplay-Black.otf */,
+				FAF31B61209F61DB0081E435 /* SFCompactDisplay-Regular.otf */,
+				FAF31B63209F62650081E435 /* SFCompactDisplay-Medium.otf */,
+				FAF31B65209F63E70081E435 /* SFCompactText-LightItalic.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		FA34ED2C1E4F7C3A003651E1 /* Internals */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +247,7 @@
 		FA34ED2D1E4F7C55003651E1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				FA1FD89B209F5854005E22B4 /* Assets.xcassets */,
 				7463DD311DC3EE5900A5F77A /* Main.storyboard */,
 				7463DD391DC3EE5900A5F77A /* LaunchScreen.storyboard */,
 			);
@@ -232,10 +258,12 @@
 			isa = PBXGroup;
 			children = (
 				AA1A840B1E9808A900C11887 /* AboutViewController.swift */,
+				FA97E00F2027E0A4002AB8F0 /* FontViewController.swift */,
 				AA1A84071E97EA2200C11887 /* SettingsTableViewController.swift */,
+				7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */,
 				7463DD651DC3F43F00A5F77A /* NewsTableViewController.swift */,
 				74B0BDCD1DC6764A009D0256 /* BookmarkViewController.swift */,
-				7483F6181DCAB1D500F97DF0 /* ArticleViewController.swift */,
+				FA5270B32039ED5A0027C75B /* PublicationViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -244,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				7CD707101E705B59009D592C /* ArticleViewCell.swift */,
+				FA5270B52039EDEF0027C75B /* PublicationViewCell.swift */,
 				7463DD671DC3F4B700A5F77A /* NewsTableViewCell.swift */,
 				AA1A84091E97EDC900C11887 /* SettingsTableViewCell.swift */,
 			);
@@ -305,7 +334,6 @@
 				7463DD281DC3EE5900A5F77A /* Resources */,
 				FA7DCC781E4F75F300C84A73 /* Embed Frameworks */,
 				D68CE9C5CE9552561FD9C5B6 /* [CP] Embed Pods Frameworks */,
-				F044BE3E6204C6D7B293723F /* [CP] Copy Pods Resources */,
 				FA156BD41EAEAB5200B3D049 /* ShellScript */,
 			);
 			buildRules = (
@@ -327,7 +355,6 @@
 				FA7DCC5A1E4F75F300C84A73 /* Frameworks */,
 				FA7DCC5B1E4F75F300C84A73 /* Headers */,
 				FA7DCC5C1E4F75F300C84A73 /* Resources */,
-				DE7BD35ABA4257ABDB4B0CBF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,8 +373,6 @@
 				FA7DCC621E4F75F300C84A73 /* Sources */,
 				FA7DCC631E4F75F300C84A73 /* Frameworks */,
 				FA7DCC641E4F75F300C84A73 /* Resources */,
-				B013DB3C627D85E0D5E32FF2 /* [CP] Embed Pods Frameworks */,
-				00C8FE5371E13FB0C8FD00C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -372,6 +397,7 @@
 				TargetAttributes = {
 					7463DD291DC3EE5900A5F77A = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = FC7CAU5645;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -415,8 +441,12 @@
 			files = (
 				68CCEE0E1E6372B300A7C330 /* testArticles.json in Resources */,
 				7463DD3B1DC3EE5900A5F77A /* LaunchScreen.storyboard in Resources */,
-				FA26FF3C1E4F71FB00A346CC /* Assets.xcassets in Resources */,
+				FA1FD89C209F5854005E22B4 /* Assets.xcassets in Resources */,
+				FA1FD8A0209F5EA5005E22B4 /* SFCompactDisplay-Black.otf in Resources */,
+				FAF31B66209F63E80081E435 /* SFCompactText-LightItalic.otf in Resources */,
+				FAF31B62209F61DD0081E435 /* SFCompactDisplay-Regular.otf in Resources */,
 				7463DD331DC3EE5900A5F77A /* Main.storyboard in Resources */,
+				FAF31B64209F62670081E435 /* SFCompactDisplay-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,34 +468,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00C8FE5371E13FB0C8FD00C4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SPARCoreTests/Pods-SPARCoreTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5D971072D143DCCE94ADE9A6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Publications-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7DB69E8C2EC49832DAAAD551 /* [CP] Check Pods Manifest.lock */ = {
@@ -474,28 +492,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SPARCore-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B013DB3C627D85E0D5E32FF2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SPARCoreTests/Pods-SPARCoreTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D68CE9C5CE9552561FD9C5B6 /* [CP] Embed Pods Frameworks */ = {
@@ -504,28 +510,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Publications/Pods-Publications-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Publications/Pods-Publications-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE7BD35ABA4257ABDB4B0CBF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SPARCore/Pods-SPARCore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ECCBA316F3B306E99BCABC8A /* [CP] Check Pods Manifest.lock */ = {
@@ -534,28 +528,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SPARCoreTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F044BE3E6204C6D7B293723F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Publications/Pods-Publications-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FA156BD41EAEAB5200B3D049 /* ShellScript */ = {
@@ -583,11 +565,14 @@
 				AA1A840A1E97EDC900C11887 /* SettingsTableViewCell.swift in Sources */,
 				FA7DCC561E4F733000C84A73 /* Publications.xcdatamodeld in Sources */,
 				AA1A84081E97EA2200C11887 /* SettingsTableViewController.swift in Sources */,
+				FA5270B62039EDEF0027C75B /* PublicationViewCell.swift in Sources */,
 				FA7DCC531E4F730D00C84A73 /* ArticleViewController.swift in Sources */,
 				7CD707111E705B59009D592C /* ArticleViewCell.swift in Sources */,
 				FA7DCC511E4F730D00C84A73 /* BookmarkViewController.swift in Sources */,
 				FA7DCC4D1E4F730D00C84A73 /* NewsTableViewCell.swift in Sources */,
+				FA97E0102027E0A4002AB8F0 /* FontViewController.swift in Sources */,
 				AA1A840C1E9808A900C11887 /* AboutViewController.swift in Sources */,
+				FA5270B42039ED5A0027C75B /* PublicationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +662,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -729,6 +715,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -755,7 +742,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FC7CAU5645;
 				INFOPLIST_FILE = Publications/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -775,7 +762,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FC7CAU5645;
 				INFOPLIST_FILE = Publications/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

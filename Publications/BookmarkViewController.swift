@@ -13,12 +13,20 @@ struct bookmarkData {
 class BookmarkViewController: UITableViewController {
     @IBOutlet weak var menuButton:UIBarButtonItem!
     
+    let defaults:UserDefaults = UserDefaults.standard
     var arr = [SPARCArticle]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //defaults.removeObject(forKey: "bookmark")
+        if let data = defaults.data(forKey: "bookmark") {
+            arr = (NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle])!
+            self.tableView.reloadData()   // ...and it is also visible here.
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        arr = SPARCArticle.loadDummyArticles()
         
         if revealViewController() != nil {
             menuButton.target = revealViewController()
@@ -41,15 +49,14 @@ class BookmarkViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-       // return arr.count
-        return 1;
+        // return arr.count
+        return arr.count
     }
     
     //Dequeue function
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! NewsTableViewCell
-        //let authorArr = arr[indexPath.row].authors
         let authorArr = arr[indexPath.row].authors
         var authorNames=""
         for author in authorArr! {
@@ -61,13 +68,10 @@ class BookmarkViewController: UITableViewController {
         
         
         cell.authorName.text = String("by ") + "\(authorNames)"
-        cell.articleTitle.text = title
-        if (title == "Testarticle 0"){
-            cell.articleTitle.text = "This article has a very verbose title so that you can see two lines!"}
-        cell.authorImage.image = #imageLiteral(resourceName: "article")
-        cell.articleImage.image = #imageLiteral(resourceName: "article")
-        //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].datePublished)
-        
+        cell.articleTitle.text = arr[indexPath.row].title
+        cell.authorImage.image = #imageLiteral(resourceName: "s_and_b")
+        cell.articleImage.image = arr[indexPath.row].headerImage ?? #imageLiteral(resourceName: "JRC")
+        //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].dateEdited)
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
@@ -81,16 +85,28 @@ class BookmarkViewController: UITableViewController {
         return 80;
     }
     
-    
-    /*
-     // MARK: - Navigation
+    // MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "bookmark"
+        {
+            // Unarchive the Userdefaults bookmarked articles
+            
+            // Pass bookmarked articles through segue
+            if let destinationVC = segue.destination as? ArticleViewController,
+                let articleIndex = tableView.indexPathForSelectedRow?.row
+            {
+                if let title = arr[articleIndex].title {
+                    destinationVC.titleTxt = title
+                }
+                destinationVC.isBookmarkView = true
+                destinationVC.getArticle = arr[articleIndex];
+                destinationVC.text = arr[articleIndex].content!
+                destinationVC.articleImage = arr[articleIndex].headerImage
+            }
+        }
+    }
     
 }
 
