@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3gj-dd-ajm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3gj-dd-ajm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -39,14 +37,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gju-7K-KGo">
-                                            <rect key="frame" x="20" y="45" width="28" height="28"/>
+                                            <rect key="frame" x="20" y="46" width="28" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="gju-7K-KGo" secondAttribute="height" multiplier="1:1" id="7mL-GR-eND"/>
                                                 <constraint firstAttribute="height" constant="28" id="RRD-Na-wNN"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3R-9E-E3d">
-                                            <rect key="frame" x="20" y="45" width="229" height="14"/>
+                                            <rect key="frame" x="20" y="46" width="229" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="s9e-pX-dyg"/>
                                             </constraints>
@@ -55,7 +53,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78x-g1-RPa">
-                                            <rect key="frame" x="18" y="5" width="271" height="34"/>
+                                            <rect key="frame" x="18" y="6" width="271" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="WlR-nL-hWf"/>
                                             </constraints>
@@ -64,7 +62,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="an hour ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fun-2B-P9p">
-                                            <rect key="frame" x="20" y="59" width="229" height="14"/>
+                                            <rect key="frame" x="20" y="60" width="229" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="AW7-mj-ZtG"/>
                                             </constraints>
@@ -73,7 +71,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="s_and_b" translatesAutoresizingMaskIntoConstraints="NO" id="YTv-rk-cUb">
-                                            <rect key="frame" x="295" y="7" width="64" height="64"/>
+                                            <rect key="frame" x="295" y="8" width="64" height="64"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="64" id="kpl-FG-UTZ"/>
                                                 <constraint firstAttribute="width" secondItem="YTv-rk-cUb" secondAttribute="height" multiplier="1:1" id="mTf-br-GjT"/>
@@ -114,7 +112,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="an hour ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6x-GF-fGr">
-                                            <rect key="frame" x="226.5" y="56" width="66.5" height="11"/>
+                                            <rect key="frame" x="226.5" y="56" width="66.5" height="10.5"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -135,7 +133,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fJG-4Y-nxy">
-                                            <rect key="frame" x="301" y="9" width="61" height="55"/>
+                                            <rect key="frame" x="301" y="9" width="61" height="54.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="VKE-ux-BBf"/>
                                             </constraints>
@@ -199,7 +197,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="242"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey This is the Title of The Article" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPK-Pi-1DN" userLabel="Title">
-                                    <rect key="frame" x="21" y="159" width="332" height="83"/>
+                                    <rect key="frame" x="21" y="159" width="333" height="83"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="83" id="40s-xm-N3L"/>
                                     </constraints>
@@ -312,6 +310,7 @@
                         <segue destination="ccc-eV-guA" kind="relationship" relationship="viewControllers" id="AaV-Ca-zkJ"/>
                         <segue destination="NeJ-I9-LT3" kind="relationship" relationship="viewControllers" id="oYy-Q2-xLw"/>
                         <segue destination="agT-dF-HRa" kind="relationship" relationship="viewControllers" id="sPa-4p-N8D"/>
+                        <segue destination="o75-LU-Ayk" kind="relationship" relationship="viewControllers" id="7jX-4F-pnW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNR-6x-eaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -335,14 +334,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BNI-Y9-cGc">
-                                            <rect key="frame" x="20" y="45" width="28" height="28"/>
+                                            <rect key="frame" x="20" y="46" width="28" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="BNI-Y9-cGc" secondAttribute="height" multiplier="1:1" id="HS4-gQ-x2b"/>
                                                 <constraint firstAttribute="width" constant="28" id="dNV-Lf-a7N"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo2-AU-loO">
-                                            <rect key="frame" x="18" y="5" width="269" height="34"/>
+                                            <rect key="frame" x="18" y="6" width="269" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="d50-4v-8Jt"/>
                                             </constraints>
@@ -351,19 +350,19 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLE-1P-01C">
-                                            <rect key="frame" x="60" y="45" width="227" height="14"/>
+                                            <rect key="frame" x="60" y="46" width="227" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZG-Zt-bcd">
-                                            <rect key="frame" x="60" y="59" width="227" height="12"/>
+                                            <rect key="frame" x="60" y="60" width="227" height="12"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Bb-uG-aej">
-                                            <rect key="frame" x="295" y="7" width="64" height="64"/>
+                                            <rect key="frame" x="295" y="8" width="64" height="64"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="7Bb-uG-aej" secondAttribute="height" multiplier="1:1" id="Km3-kg-fkO"/>
                                                 <constraint firstAttribute="height" constant="64" id="iZD-zs-ika"/>
@@ -791,7 +790,7 @@
         <image name="Profile" width="20" height="20"/>
         <image name="Publications" width="22" height="18"/>
         <image name="Settings" width="20" height="20"/>
-        <image name="appdev" width="387" height="402"/>
+        <image name="appdev" width="92.879997253417969" height="96.480003356933594"/>
         <image name="article" width="440" height="128"/>
         <image name="s_and_b" width="400" height="400"/>
         <image name="sparc" width="342" height="340"/>
