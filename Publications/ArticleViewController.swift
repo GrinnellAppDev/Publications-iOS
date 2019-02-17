@@ -22,16 +22,14 @@ class ArticleViewController: UITableViewController {
     var height: CGFloat = 0.0
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
-    var articleURL = "www.google.com"
+    var articleURL = "http://www.thesandb.com"
     
     @IBAction func shareButtonTapped(_ sender: Any) {
     
-        let someText:String = articleURL
+        let someText:String = titleTxt + " - Read more at " + articleURL
         let sharedObjects:[AnyObject] = [someText as AnyObject]
         let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
-        
-        //activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.mail]
         
         self.present(activityViewController, animated: true, completion: nil)
     }
