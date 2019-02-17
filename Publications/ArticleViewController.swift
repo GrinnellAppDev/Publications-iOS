@@ -19,10 +19,23 @@ class ArticleViewController: UITableViewController {
     let defaults:UserDefaults = UserDefaults.standard
     var titleTxt = ""
     var text = "I'm currently loeading. Give me some time..."
-    
     var height: CGFloat = 0.0
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
+    var articleURL = "www.google.com"
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+    
+        let someText:String = articleURL
+        let sharedObjects:[AnyObject] = [someText as AnyObject]
+        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        //activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.mail]
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         // get the font size from userdefault
