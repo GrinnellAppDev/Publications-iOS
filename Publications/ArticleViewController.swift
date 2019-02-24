@@ -11,6 +11,7 @@ struct StretchyHeader {
 
 class ArticleViewController: UITableViewController {
     
+    var isArticleOpen : Bool = false
     var isBookmarkView : Bool = false;
     var isBookmarked : Bool = false
     var getArticle : SPARCArticle?
@@ -18,11 +19,18 @@ class ArticleViewController: UITableViewController {
     var date : String! = ""
     let defaults:UserDefaults = UserDefaults.standard
     var titleTxt = ""
-    var text = "I'm currently loeading. Give me some time..."
+    var text = "I'm currently loading. Give me some time..."
     
     var height: CGFloat = 0.0
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
+    
+    var startTime = DispatchTime(uptimeNanoseconds: 0)
+    var endTime = DispatchTime(uptimeNanoseconds: 0)
+    var timeInterval : Double = 0.0
+    
+  //  var startTime = 0.0
+    //var endTime = 0.0
     
     override func viewWillAppear(_ animated: Bool) {
         // get the font size from userdefault
@@ -64,10 +72,25 @@ class ArticleViewController: UITableViewController {
                     i += 1
                 }
             }
+            
+            startTime = DispatchTime.now()
+            
         }
+        
         updateView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 600
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+       
+        endTime = DispatchTime.now()
+        
+        let nanoTime = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
+        timeInterval = Double(nanoTime) / 1_000_000_000
+        
+        print("Time Interval = \(timeInterval) seconds")
+        
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -210,6 +233,7 @@ class ArticleViewController: UITableViewController {
         print("THE ARTICLE TEXT: " + text)
         cell.titleTxt.text = titleTxt
         
+        
 //        Uncomment below if device font setting needs to be used
 //        let preferredDescriptor = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
 //        let font = UIFont(name: "Georgia", size: preferredDescriptor.pointSize)
@@ -307,3 +331,4 @@ class ArticleViewController: UITableViewController {
     }
 }
  */
+

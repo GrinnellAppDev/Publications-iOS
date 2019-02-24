@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController{
 
     let defaults:UserDefaults = UserDefaults.standard
     var rowSelected = -1;
@@ -9,6 +9,9 @@ class SettingsTableViewController: UITableViewController {
     var settingsLabels = ["About SPARC", "About AppDev", "Change article font size"];
     
     var cellDequeueCount = 0;
+    
+    var haveReadDictionary: [String:Int] = [:]
+    defaults.setValue(haveReadDictionary, forKey: "haveReadDictionary")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,5 +121,4 @@ class SettingsTableViewController: UITableViewController {
             }
         }
     }
-
 }
