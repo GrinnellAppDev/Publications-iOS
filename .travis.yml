@@ -2,6 +2,7 @@ language: objective-c
 xcode_workspace: Publications.xcworkspace
 xcode_scheme: App
 before_install:
+    - gem install bundler
     - gem install cocoapods
 script:
     - xcodebuild clean build -sdk iphonesimulator -workspace Publications.xcworkspace -scheme App CODE_SIGNING_REQUIRED=NO
