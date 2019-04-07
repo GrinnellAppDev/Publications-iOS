@@ -15,7 +15,7 @@ target 'Publications' do
   pod 'FBSDKShareKit'
   pod 'FBSDKPlacesKit'
   pod 'FBSDKMessengerShareKit'
-  pod 'Flurry-iOS-SDK'
+  # pod 'Flurry-iOS-SDK'
 end
 
 target 'SPARCore' do
