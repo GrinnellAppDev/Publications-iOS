@@ -9,12 +9,6 @@ target 'Publications' do
   pod 'SWRevealViewController','~> 2.3'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'FacebookSDK'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'FBSDKShareKit'
-  pod 'FBSDKPlacesKit'
-  pod 'FBSDKMessengerShareKit'
   pod 'Flurry-iOS-SDK'
 end
 
