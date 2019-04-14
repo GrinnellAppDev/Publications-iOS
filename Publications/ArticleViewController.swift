@@ -19,10 +19,21 @@ class ArticleViewController: UITableViewController {
     let defaults:UserDefaults = UserDefaults.standard
     var titleTxt = ""
     var text = "I'm currently loeading. Give me some time..."
-    
     var height: CGFloat = 0.0
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
+    var articleURL = "http://www.thesandb.com"
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+    
+        let someText:String = titleTxt + " - Read more at " + articleURL
+        let sharedObjects:[AnyObject] = [someText as AnyObject]
+        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         // get the font size from userdefault
