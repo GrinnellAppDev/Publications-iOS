@@ -251,6 +251,12 @@ class NewsTableViewController: UITableViewController {
                                 DispatchQueue.main.async {
                                     self.refreshControl?.endRefreshing()
                                     self.tableView.reloadData()
+                                    for title in articles {
+                                        var dict = self.defaults.object(forKey: "haveReadDictionary") as! Dictionary <String, Double>
+                                        if dict.contains(where: (key: title as! String, value: readTime)), {
+                                        hasBeenRead = true
+                                    }
+                                    }
                                     print("Finished loading data")
                                 }
                             }
