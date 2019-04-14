@@ -10,6 +10,7 @@ target 'Publications' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'Flurry-iOS-SDK'
+
 end
 
 target 'SPARCore' do
