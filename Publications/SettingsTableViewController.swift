@@ -10,8 +10,7 @@ class SettingsTableViewController: UITableViewController{
     
     var cellDequeueCount = 0;
     
-    var haveReadDictionary: [String:Int] = [:]
-    defaults.setValue(haveReadDictionary, forKey: "haveReadDictionary")
+    var haveReadDictionary: [String:Double] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +24,8 @@ class SettingsTableViewController: UITableViewController{
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        defaults.setValue(haveReadDictionary, forKey: "haveReadDictionary")
+        print(haveReadDictionary)
     }
 
     override func didReceiveMemoryWarning() {

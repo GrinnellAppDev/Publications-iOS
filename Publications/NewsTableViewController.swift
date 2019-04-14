@@ -9,6 +9,8 @@ struct newsData {
     let articleImage: UIImage? //there may not be an article image.
     let userImage: UIImage!
     let time: String!
+    let hasBeenRead: Bool!
+    let readTime: Double!
 }
 
 class NewsTableViewController: UITableViewController {

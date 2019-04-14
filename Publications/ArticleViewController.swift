@@ -20,6 +20,7 @@ class ArticleViewController: UITableViewController {
     let defaults:UserDefaults = UserDefaults.standard
     var titleTxt = ""
     var text = "I'm currently loading. Give me some time..."
+    var textLength : Int = 0
     
     var height: CGFloat = 0.0
     var headerView: UIView!
@@ -28,6 +29,7 @@ class ArticleViewController: UITableViewController {
     var startTime = DispatchTime(uptimeNanoseconds: 0)
     var endTime = DispatchTime(uptimeNanoseconds: 0)
     var timeInterval : Double = 0.0
+    var predictedReadingTime: Double = 0.0
     
   //  var startTime = 0.0
     //var endTime = 0.0
@@ -83,14 +85,24 @@ class ArticleViewController: UITableViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-       
+        textLength = text.count  // counts characters
         endTime = DispatchTime.now()
+        
+        predictedReadingTime = Double(textLength) / (275.0 * 6)
+            // 275 is the average number of read words per minute
+            // 6 is the average number of characters per word
         
         let nanoTime = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
         timeInterval = Double(nanoTime) / 1_000_000_000
         
         print("Time Interval = \(timeInterval) seconds")
         
+        if (timeInterval > predictedReadingTime) {
+            var dict = defaults.object(forKey: "haveReadDictionary") as! Dictionary <String, Double>
+            dict[titleTxt] = timeInterval
+            defaults.setValue(dict, forKey: "haveReadDictionary")
+        }
+        print(titleTxt)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
