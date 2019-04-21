@@ -21,10 +21,21 @@ class ArticleViewController: UITableViewController {
     var titleTxt = ""
     var text = "I'm currently loading. Give me some time..."
     var textLength : Int = 0
-    
     var height: CGFloat = 0.0
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
+    var articleURL = "http://www.thesandb.com"
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+    
+        let someText:String = titleTxt + " - Read more at " + articleURL
+        let sharedObjects:[AnyObject] = [someText as AnyObject]
+        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     
     var startTime = DispatchTime(uptimeNanoseconds: 0)
     var endTime = DispatchTime(uptimeNanoseconds: 0)
