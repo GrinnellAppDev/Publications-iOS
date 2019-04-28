@@ -9,7 +9,6 @@ target 'Publications' do
   pod 'SWRevealViewController','~> 2.3'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'FacebookSDK'
 end
 
 target 'SPARCore' do
