@@ -49,6 +49,8 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
   article.authors = dict[API_KEY_AUTHORS];
   article.brief = dict[API_KEY_BRIEF];
   article.content = dict[API_KEY_CONTENT];
+    NSLog(@"%@", article.content);
+
   //datePublished field is a UNIX Timestamp number - converting to NSDate here
   NSString *time = [dict[API_KEY_DATE_EDITED] stringValue];
   NSString *convertedTime = [time substringToIndex:[time length]-3];
@@ -101,10 +103,15 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 #pragma mark - Instance Updaters
 
 - (void) updateWithDictionary:(NSDictionary *)dict {
+    NSLog(@"updating");
+
     self.articleId = dict[API_KEY_ARTICLE_ID];
     self.authors = dict[API_KEY_AUTHORS];
     self.brief = dict[API_KEY_BRIEF];
     self.content = dict[API_KEY_CONTENT];
+    NSLog(@"printing contenttt");
+
+    //NSLog(@"%@", self.content);
     //datePublished field is a UNIX Timestamp number - converting to NSDate here
     NSString *time = [dict[API_KEY_DATE_EDITED] stringValue];
     NSString *convertedTime = [time substringToIndex:[time length]-3];

@@ -7,7 +7,26 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    private func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        /*guard let url : URL = userActivity.webpageURL else { return false}
+        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return false}
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if (urlComponents.path == "/iostest/1"){
+            let controller = storyboard.instantiateViewController(withIdentifier: "test1")
+            self.window?.rootViewController = controller
+            return true
+        } else if (urlComponents.path == "/iostest/2") {
+            let controller = storyboard.instantiateViewController(withIdentifier: "test2")
+            self.window?.rootViewController = controller
+            return true
+        } */
+        
+        return true //false
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
       

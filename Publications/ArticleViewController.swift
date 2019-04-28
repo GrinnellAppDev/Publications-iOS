@@ -44,7 +44,9 @@ class ArticleViewController: UITableViewController {
         super.viewDidLoad()
         if (isBookmarkView == false) {
             self.getArticle?.fetchFullText(completion: { (article, err) in
-                self.text = (article?.content!)!
+                //self.text = (article?.content!)!
+                self.text = "hhh"
+
                 self.articleImage = article?.headerImage
                 let formatter = DateFormatter()
                 // initially set the format based on your datepicker date

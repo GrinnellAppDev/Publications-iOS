@@ -91,6 +91,7 @@
 		07DBC69A1E6CA477005CECDB /* GADRemoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADRemoteModel.m; sourceTree = "<group>"; };
 		0A0C2C1A6E9AFB8CAE0C2C35 /* Pods-SPARCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPARCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SPARCoreTests/Pods-SPARCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		2E4B7A606C592C091CC6D785 /* Pods_SPARCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPARCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30D33D0022762D8200B0D76A /* Publications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Publications.entitlements; path = Publications/Publications.entitlements; sourceTree = "<group>"; };
 		34E556C7C718DC75C6BB785C /* Pods-SPARCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPARCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SPARCoreTests/Pods-SPARCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		41F948B420585C287B279280 /* Pods-SPARCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPARCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-SPARCore/Pods-SPARCore.release.xcconfig"; sourceTree = "<group>"; };
 		5C60243482D619345316D69A /* Pods-SPARCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPARCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SPARCore/Pods-SPARCore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +179,7 @@
 		7463DD211DC3EE5900A5F77A = {
 			isa = PBXGroup;
 			children = (
+				30D33D0022762D8200B0D76A /* Publications.entitlements */,
 				7463DD2C1DC3EE5900A5F77A /* App */,
 				FA7DCC5F1E4F75F300C84A73 /* SPARCore */,
 				7463DD2B1DC3EE5900A5F77A /* Products */,
@@ -397,9 +399,14 @@
 				TargetAttributes = {
 					7463DD291DC3EE5900A5F77A = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 479QYREFPY;
+						DevelopmentTeam = WVT626CQLL;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 					FA7DCC5D1E4F75F300C84A73 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -744,7 +751,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 479QYREFPY;
+				CODE_SIGN_ENTITLEMENTS = Publications/Publications.entitlements;
+				DEVELOPMENT_TEAM = WVT626CQLL;
 				INFOPLIST_FILE = Publications/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -764,7 +772,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 479QYREFPY;
+				CODE_SIGN_ENTITLEMENTS = Publications/Publications.entitlements;
+				DEVELOPMENT_TEAM = WVT626CQLL;
 				INFOPLIST_FILE = Publications/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
