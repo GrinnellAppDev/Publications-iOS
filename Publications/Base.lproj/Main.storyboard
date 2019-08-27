@@ -291,7 +291,13 @@
                             <outlet property="delegate" destination="s1W-aW-NDY" id="PDn-3x-zb5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Article" id="ZPg-Z0-1oR"/>
+                    <navigationItem key="navigationItem" title="Article" id="ZPg-Z0-1oR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="xog-fY-slA">
+                            <connections>
+                                <action selector="shareButtonTapped:" destination="s1W-aW-NDY" id="W0a-2F-ohz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ECy-BG-UeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
