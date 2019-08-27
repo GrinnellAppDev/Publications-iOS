@@ -2,15 +2,13 @@ PODS:
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - Fabric (1.9.0)
-  - Flurry-iOS-SDK (9.3.1):
-    - Flurry-iOS-SDK/FlurrySDK (= 9.3.1)
   - Flurry-iOS-SDK/FlurrySDK (9.3.1)
   - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric
-  - Flurry-iOS-SDK
+  - Flurry-iOS-SDK/FlurrySDK
   - SWRevealViewController (~> 2.3)
 
 SPEC REPOS:
@@ -26,6 +24,6 @@ SPEC CHECKSUMS:
   Flurry-iOS-SDK: 5d782d740c5e95389c327d38245b3db4bb471fd7
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 0ebeaa10ccd0016fdbc6691cec20260904980026
+PODFILE CHECKSUM: 000d5a4ae21a82586b1e90bcc3554353aa67eae6
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5
