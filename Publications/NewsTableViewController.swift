@@ -209,7 +209,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     // refresh data
-    func refreshData(_ sender: Any) {
+    @objc func refreshData(_ sender: Any) {
         if (curPublication != nil) {
             curPublication?.fetchArticles(withNextPageToken: nil, nextPageSize: nil, completion: { (articlesArray, nextPageForArticlesToken, error) in
                 if let articles = articlesArray
