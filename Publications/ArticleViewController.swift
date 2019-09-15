@@ -58,7 +58,7 @@ class ArticleViewController: UITableViewController {
                 }
             })
             //Set up bookmark button
-            let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
+            let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
             self.navigationItem.rightBarButtonItem = bookmarkButton
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
             
@@ -77,7 +77,7 @@ class ArticleViewController: UITableViewController {
             }
         }
         updateView()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
     }
     
@@ -89,13 +89,13 @@ class ArticleViewController: UITableViewController {
         
         if(velocity.y>0) {
             //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
-            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
                 print("Hide")
             }, completion: nil)
             
         } else {
-            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
                 print("Unhide")
             }, completion: nil)
@@ -111,7 +111,7 @@ class ArticleViewController: UITableViewController {
         tableView.backgroundColor = UIColor.white
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.addSubview(headerView)
         newHeaderLayer = CAShapeLayer()
         newHeaderLayer.fillColor = UIColor.black.cgColor
@@ -251,7 +251,7 @@ class ArticleViewController: UITableViewController {
 //        if (UITableViewAutomaticDimension <= height) {
 //            return height
 //        }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     /*

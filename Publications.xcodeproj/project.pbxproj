@@ -398,7 +398,7 @@
 					7463DD291DC3EE5900A5F77A = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = WVT626CQLL;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 					};
 					FA7DCC5D1E4F75F300C84A73 = {
@@ -511,7 +511,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Publications/Pods-Publications-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Publications/Pods-Publications-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
 				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
 			);
@@ -522,7 +522,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Publications/Pods-Publications-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Publications/Pods-Publications-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ECCBA316F3B306E99BCABC8A /* [CP] Check Pods Manifest.lock */ = {
@@ -756,7 +756,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -775,7 +775,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
