@@ -42,6 +42,10 @@ class ArticleViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateView()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
+        
         if (isBookmarkView == false) {
             self.getArticle?.fetchFullText(completion: { (article, err) in
                 self.text = (article?.content!)!
@@ -52,19 +56,19 @@ class ArticleViewController: UITableViewController {
                 let dateString = formatter.string(from: (article?.datePublished)!)
                 self.date = dateString
                 // self.author = article?.authors! as? String ?? "Mike"
-                print("Text is: " + self.text)
+                //print("Text is: " + self.text)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             })
             //Set up bookmark button
-            let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
+            let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
             self.navigationItem.rightBarButtonItem = bookmarkButton
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
             
             //Check if the article is already bookmarked
             if let data = defaults.data(forKey: "bookmark"),
-                var articleList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle] {
+                let articleList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle] {
                 var i : Int = 0
                 while (i < articleList.count) {
                     if (getArticle?.articleId == articleList[i].articleId) {
@@ -76,9 +80,7 @@ class ArticleViewController: UITableViewController {
                 }
             }
         }
-        updateView()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 600
+        
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -89,15 +91,15 @@ class ArticleViewController: UITableViewController {
         
         if(velocity.y>0) {
             //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
-            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
-                print("Hide")
+                //print("Hide")
             }, completion: nil)
             
         } else {
-            UIView.animate(withDuration: 2.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
-                print("Unhide")
+                //print("Unhide")
             }, completion: nil)
         }
     }
@@ -111,7 +113,7 @@ class ArticleViewController: UITableViewController {
         tableView.backgroundColor = UIColor.white
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.addSubview(headerView)
         newHeaderLayer = CAShapeLayer()
         newHeaderLayer.fillColor = UIColor.black.cgColor
@@ -158,7 +160,7 @@ class ArticleViewController: UITableViewController {
             }
             
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
-            print("Hey it's working!")
+            //print("Hey it's working!")
             isBookmarked = true
         } else {
             // remove the article from userdefaults ...
@@ -199,6 +201,7 @@ class ArticleViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "funnyCell", for: indexPath) as! ArticleViewCell
         // author names
         cell.username.text = SPARCArticle.parseAuthors(getArticle?.authors as? Array<Dictionary<String, Any>>)
+        print("author: "+cell.username.text!)
         //cell.username.text = parseAuthors(authorArr: getArticle?.authors as! Array<Dictionary<String, Any>>)
         // author image
         cell.articleIcon.image = #imageLiteral(resourceName: "s_and_b")
@@ -218,7 +221,7 @@ class ArticleViewController: UITableViewController {
         
         // update article title and content
         cell.articleTxt.text = text
-        print("THE ARTICLE TEXT: " + text)
+        //print("THE ARTICLE TEXT: " + text)
         cell.titleTxt.text = titleTxt
         
 //        Uncomment below if device font setting needs to be used
@@ -241,7 +244,7 @@ class ArticleViewController: UITableViewController {
      //   cell.userImageView.image = UIImage(named: rowData["imageName"]!)
       //  cell.postImageView.image = UIImage(named: rowData["postImageName"]!)
         
-        print(height)
+        //print(height)
         return cell
     }
    
@@ -251,7 +254,7 @@ class ArticleViewController: UITableViewController {
 //        if (UITableViewAutomaticDimension <= height) {
 //            return height
 //        }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     /*

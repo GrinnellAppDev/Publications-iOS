@@ -10,14 +10,21 @@ static const NSTimeInterval timeoutInterval = 60.0;
 
 + (NSString *) parseAuthors: (NSArray<NSDictionary<NSString*, id>*>*) authorArr {
     NSString *authorText = @"by ";
+    if ([authorArr count] == 0) {
+        authorText = [authorText stringByAppendingString:@"Anonymous"];
+        return authorText;
+    }
     for (NSDictionary<NSString*, id> *auth in authorArr) {
-        if ([auth objectForKey:@"name"] != (id)[NSNull null]) {
+        //NSLog(@"%@", [auth objectForKey:@"name"]);
+        if ([auth objectForKey:@"name"] != (id)[NSNull null] ||
+            ![[auth objectForKey:@"name"]  isEqual: @""]) {
             NSString *authorName = [auth objectForKey:@"name"];
             authorText = [authorText stringByAppendingString:authorName];
         } else {
             authorText = [authorText stringByAppendingString:@"Anonymous"];
         }
     }
+    
     return authorText;
 }
 
@@ -42,7 +49,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 # pragma mark - Class Object Generators
 
 + (SPARCArticle *) articleFromDictionary: (NSDictionary*)dict {
-  NSLog(@"converting");
+  //NSLog(@"converting");
 
   SPARCArticle *article = [SPARCArticle new];
   article.articleId = dict[API_KEY_ARTICLE_ID];
@@ -63,7 +70,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     article.headerImageURL = nil;
   } else {
     article.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
-    NSLog(@"HEY, FOUND AN IMAGE: %@", article.headerImageURL);
+    //NSLog(@"HEY, FOUND AN IMAGE: %@", article.headerImageURL);
   }
     
   article.headerImage = [SPARCArticle getImageFromImageURL:article.headerImageURL];
@@ -82,7 +89,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     NSMutableArray <SPARCArticle *> *articles = [NSMutableArray new];
     
     for (NSDictionary *element in array) {
-        NSLog(@"converting article");
+        //NSLog(@"converting article");
         SPARCArticle *article = [self articleFromDictionary:element];
         [articles addObject:article];
     }
@@ -120,7 +127,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
         NSLog(@"Cannot fetch ANY IMAGE.");
     } else {
         self.headerImageURL = [NSURL URLWithString:dict[API_KEY_HEADER_IMAGE]];
-        NSLog(@"HEY, FOUND AN IMAGE: %@", self.headerImageURL);
+        //NSLog(@"HEY, FOUND AN IMAGE: %@", self.headerImageURL);
     }
     self.headerImage = [SPARCArticle getImageFromImageURL:self.headerImageURL];
     self.issue = dict[API_KEY_ISSUE];
@@ -217,7 +224,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
         self.dateEdited = [decoder decodeObjectForKey:API_KEY_DATE_EDITED];
         self.datePublished = [decoder decodeObjectForKey:API_KEY_DATE_PUBLISHED];
         NSData* imageData = [decoder decodeObjectForKey:API_KEY_HEADER_IMAGE];
-        NSLog(@"imagedataaaaaa %@",imageData);
+        //NSLog(@"imagedataaaaaa %@",imageData);
         if (imageData == nil) {
             self.headerImage = nil;
         } else {
