@@ -2,14 +2,6 @@ import SPARCore
 import CoreLocation
 import UIKit
 
-struct newsData {
-    let cell: Int!
-    let author: String!
-    let title: String!
-    let articleImage: UIImage? //there may not be an article image.
-    let userImage: UIImage!
-    let time: String!
-}
 
 class NewsTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -242,6 +234,15 @@ class NewsTableViewController: UITableViewController {
                                 self.arr = articles
                                 if (nextPageForArticlesToken != nil) {
                                     self.curPageTokens[publication.name!] = nextPageForArticlesToken!
+                                }
+                                
+                                // Check for articles that have been previously read
+                                for article in articles {
+                                    let title = article.title!
+                                    var dict = self.defaults.object(forKey: "haveReadDictionary") as! Dictionary <String, Double>
+                                    if dict[title] != nil {
+                                        article.hasBeenRead = 1
+                                    }
                                 }
                                 //self.curPageToken = nextPageForArticlesToken!
                                 //print("Initial token: ")

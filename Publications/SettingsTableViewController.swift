@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController{
 
     let defaults:UserDefaults = UserDefaults.standard
     var rowSelected = -1;
@@ -10,6 +10,8 @@ class SettingsTableViewController: UITableViewController {
     var settingsLabels = ["About SPARC", "About AppDev"];
     
     var cellDequeueCount = 0;
+    
+    var haveReadDictionary: [String:Double] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,8 @@ class SettingsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        defaults.setValue(haveReadDictionary, forKey: "haveReadDictionary")
+        print(haveReadDictionary)
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,5 +123,4 @@ class SettingsTableViewController: UITableViewController {
             }
         }
     }
-
 }
