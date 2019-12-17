@@ -66,12 +66,17 @@ class BookmarkViewController: UITableViewController {
         let title = arr[indexPath.row].title
         print("TITLE: \(title ?? "no title")")
         
-        
         cell.authorName.text = String("by ") + "\(authorNames)"
         cell.articleTitle.text = arr[indexPath.row].title
         cell.authorImage.image = #imageLiteral(resourceName: "s_and_b")
         cell.articleImage.image = arr[indexPath.row].headerImage ?? #imageLiteral(resourceName: "JRC")
-        //cell.timestamp.text = DateFormatter.string(arr[indexPath.row].dateEdited)
+        
+        let time = arr[indexPath.row].datePublished
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let timeString = dateFormatter.string(from: time!)
+        cell.timestamp.text = timeString.isEmpty ? "published at unknown spacetime coordinates" : timeString
+
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero

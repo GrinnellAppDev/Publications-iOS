@@ -58,7 +58,6 @@ class PublicationViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! PublicationViewCell
         cell.publicationName.text = arr[indexPath.row].name
-        
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
