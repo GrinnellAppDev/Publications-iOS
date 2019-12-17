@@ -52,6 +52,10 @@ class ArticleViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateView()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
+        
         if (isBookmarkView == false) {
             self.getArticle?.fetchFullText(completion: { (article, err) in
                 self.text = (article?.content!)!
@@ -62,7 +66,7 @@ class ArticleViewController: UITableViewController {
                 let dateString = formatter.string(from: (article?.datePublished)!)
                 self.date = dateString
                 // self.author = article?.authors! as? String ?? "Mike"
-                print("Text is: " + self.text)
+                //print("Text is: " + self.text)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -89,10 +93,6 @@ class ArticleViewController: UITableViewController {
             startTime = DispatchTime.now()
             
         }
-        
-        updateView()
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 600
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -132,13 +132,13 @@ class ArticleViewController: UITableViewController {
             //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
             UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
-                print("Hide")
+                //print("Hide")
             }, completion: nil)
             
         } else {
             UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
-                print("Unhide")
+                //print("Unhide")
             }, completion: nil)
         }
     }
@@ -199,7 +199,7 @@ class ArticleViewController: UITableViewController {
             }
             
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
-            print("Hey it's working!")
+            //print("Hey it's working!")
             isBookmarked = true
         } else {
             // remove the article from userdefaults ...
@@ -240,6 +240,7 @@ class ArticleViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "funnyCell", for: indexPath) as! ArticleViewCell
         // author names
         cell.username.text = SPARCArticle.parseAuthors(getArticle?.authors as? Array<Dictionary<String, Any>>)
+        print("author: "+cell.username.text!)
         //cell.username.text = parseAuthors(authorArr: getArticle?.authors as! Array<Dictionary<String, Any>>)
         // author image
         cell.articleIcon.image = #imageLiteral(resourceName: "s_and_b")
@@ -259,7 +260,7 @@ class ArticleViewController: UITableViewController {
         
         // update article title and content
         cell.articleTxt.text = text
-        print("THE ARTICLE TEXT: " + text)
+        //print("THE ARTICLE TEXT: " + text)
         cell.titleTxt.text = titleTxt
         
         
@@ -283,7 +284,7 @@ class ArticleViewController: UITableViewController {
      //   cell.userImageView.image = UIImage(named: rowData["imageName"]!)
       //  cell.postImageView.image = UIImage(named: rowData["postImageName"]!)
         
-        print(height)
+        //print(height)
         return cell
     }
    

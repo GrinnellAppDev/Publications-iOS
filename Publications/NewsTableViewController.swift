@@ -149,7 +149,7 @@ class NewsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! NewsTableViewCell
         let title = arr[indexPath.row].title
         let articleImage = arr[indexPath.row].headerImage
-        print("TITLE: \(title ?? "no title")")
+        //print("TITLE: \(title ?? "no title")")
         let authorArr = arr[indexPath.row].authors
         if let authors = authorArr {
             cell.authorName.text = SPARCArticle.parseAuthors(authors as? Array<Dictionary<String, Any>>)

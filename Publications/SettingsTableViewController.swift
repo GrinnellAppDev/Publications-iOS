@@ -6,7 +6,8 @@ class SettingsTableViewController: UITableViewController{
     var rowSelected = -1;
     var numSections = 1;
     var cellIds = ["aboutSPARCCell", "aboutAppdevCell", "aboutFontsCell"]
-    var settingsLabels = ["About SPARC", "About AppDev", "Change article font size"];
+    //var settingsLabels = ["About SPARC", "About AppDev", "Change article font size"];
+    var settingsLabels = ["About SPARC", "About AppDev"];
     
     var cellDequeueCount = 0;
     
