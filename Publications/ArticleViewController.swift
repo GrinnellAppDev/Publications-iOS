@@ -95,11 +95,14 @@ class ArticleViewController: UITableViewController {
         }
     }
     
+    
     override func viewWillDisappear(_ animated: Bool) {
-        textLength = text.count  // counts characters
+        //textLength = text.count  // counts characters
+        textLength = text.numberOfWords
         endTime = DispatchTime.now()
         
-        predictedReadingTime = Double(textLength) / (275.0 * 6)
+        predictedReadingTime = Double(textLength) / 275.0
+//        predictedReadingTime = Double(textLength) / (275.0 * 6)
             // 275 is the average number of read words per minute
             // 6 is the average number of characters per word
         
@@ -296,69 +299,21 @@ class ArticleViewController: UITableViewController {
 //        }
         return UITableView.automaticDimension
     }
-    
-    /*
-    func parseAuthors (authorArr:Array<Dictionary<String, Any>>) -> String
-    {
-        var authorText = "by "
-        for auth in authorArr
-        {
-            authorText += "\(auth["name"] ?? "Anonymous")"
-        }
-        return authorText
-    }
- */
-    
-//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        let screenSize = UIScreen.main.bounds
-//        let height = screenSize.height
-//        if (UITableViewAutomaticDimension <= height) {
-//            return height
-//        }
-//        return UITableViewAutomaticDimension
-//    }
 }
-    /*
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-      //  articleName.text = "Welcome to the all-new SPARC App"
-       // lblText.text = self.text
-       // lblText.isEditable = false
-       // lblText.isScrollEnabled = false
-       // articlePic.image = #imageLiteral(resourceName: "JRC")
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
-       // self.navigationItem.title = "Article"
-     
-        
-    }
-    
-    func updateView(){
-        
-    }
-    
- 
-    /* ScrollView Layout
-    override func viewDidLayoutSubviews() {
-        let contentSize = lblText.sizeThatFits(lblText.bounds.size)
-        var frame = lblText.frame
-        frame.size.height = contentSize.height
-        lblText.frame = frame
-        
-        let aspectRatioTextViewConstraint = NSLayoutConstraint(item: lblText, attribute: .height, relatedBy: .equal, toItem: lblText, attribute: .width, multiplier: lblText.bounds.height/lblText.bounds.width, constant: 1)
-        lblText.addConstraint(aspectRatioTextViewConstraint)
-    }
-    */
-  
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
- */
 
+extension String {
+    var numberOfWords: Int {
+        let inputRange = CFRangeMake(0, utf16.count)
+        let flag = UInt(kCFStringTokenizerUnitWord)
+        let locale = CFLocaleCopyCurrent()
+        let tokenizer = CFStringTokenizerCreate(kCFAllocatorDefault, self as CFString, inputRange, flag, locale)
+        var tokenType = CFStringTokenizerAdvanceToNextToken(tokenizer)
+        var count = 0
+
+        while tokenType != [] {
+            count += 1
+            tokenType = CFStringTokenizerAdvanceToNextToken(tokenizer)
+        }
+        return count
+    }
+}
