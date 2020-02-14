@@ -5,7 +5,7 @@ import SPARCore
 // define a struct to hold height of the default headImage.
 struct StretchyHeader {
     
-    fileprivate let headerHeight: CGFloat = 170 // the height of the initial image
+    fileprivate let headerHeight: CGFloat = 350 // the height of the initial image
     
 }
 
@@ -268,7 +268,7 @@ class ArticleViewController: UITableViewController {
 //        let preferredDescriptor = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
 //        let font = UIFont(name: "Georgia", size: preferredDescriptor.pointSize)
         let p = CGFloat(defaults.integer(forKey: "font"))
-        cell.articleTxt.font = UIFont(name: "Georgia", size: p)
+        cell.articleTxt.font = UIFont(name: "Helvetica", size: p)
         
 //        height = cell.articleTxt.bounds.height
 //        

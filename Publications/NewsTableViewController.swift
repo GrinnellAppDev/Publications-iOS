@@ -11,8 +11,11 @@ class NewsTableViewController: UITableViewController {
     var curPublication : SPARCPublication?
     var arr = [SPARCArticle]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // Add Refresh Control to Table View
         let refreshControl = UIRefreshControl()
         //Uncomment code below for compatibility with lower iOS versions
@@ -68,6 +71,7 @@ class NewsTableViewController: UITableViewController {
         }
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,7 +91,6 @@ class NewsTableViewController: UITableViewController {
             }, completion: nil)
         }
     }
-    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //print("Fetching new data with " + (self.curPageToken ?? "THERE'S NO PAGE TOKEN!"))
@@ -148,9 +151,10 @@ class NewsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! NewsTableViewCell
         let title = arr[indexPath.row].title
-        let articleImage = arr[indexPath.row].headerImage
+        let bigImage = arr[indexPath.row].headerImage
         //print("TITLE: \(title ?? "no title")")
         let authorArr = arr[indexPath.row].authors
+        let article = arr[indexPath.row].content
         if let authors = authorArr {
             cell.authorName.text = SPARCArticle.parseAuthors(authors as? Array<Dictionary<String, Any>>)
             //cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, Any>>)
@@ -158,8 +162,9 @@ class NewsTableViewController: UITableViewController {
             cell.authorName.text = "by Anonymous"
         }
         cell.articleTitle.text = title
-        //cell.authorImage.image = #imageLiteral(resourceName: "s_and_b")
-        cell.articleImage.image = articleImage ?? #imageLiteral(resourceName: "s_and_b")
+        cell.bigImage.image = #imageLiteral(resourceName: "s_and_b")
+        cell.bigImage.image = bigImage ?? #imageLiteral(resourceName: "s_and_b")
+        cell.article.text = article
         // populate time published info
         let time = arr[indexPath.row].datePublished
         let dateFormatter = DateFormatter()
@@ -176,7 +181,7 @@ class NewsTableViewController: UITableViewController {
     
     // Changing cell height to 80. Was not working on storyboard
      override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80;
+        return 450;
      }
     
     /*

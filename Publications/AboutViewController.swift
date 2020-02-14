@@ -4,10 +4,10 @@ class AboutViewController: UIViewController {
     
     var pageType = -1;
     
-    var aboutImages = [#imageLiteral(resourceName: "sparc"), #imageLiteral(resourceName: "appdev")];
-    var aboutTitles = ["About SPARC", "About AppDev", "Change article font size"];
-    var aboutEmails = ["[sparc]", "[appdev]"];
-    var aboutTexts = ["The Student Publication and Radio Committee (SPARC) funds the publication of all student media projects on campus. The Student Activity Fee provides SPARC with its budget, with which the SPARC Executive and committee fund both long-running and single-edition student publications at the beginning of each semester. The Executive is comprised of the elected SPARC Chair and Vice-Chair positions, as well as the hired SPARC Treasurer and Assistant Treasurer, and the Committee consists of the Media Heads of each applying publication in addition to SPARC's Media Coordinator.", "Grinnell AppDev is a student organiztion dedicated to creating software applications to serve both students and the larger Grinnell community. We believe that a collaborative and engaging creation environment not only produces the best applications but also provides valuable experience and skillsets for Grinnell graduates to take with them on any careet path. Since 2012 Grinnell AppDev has trained the next generation of programmers and entrepreneurs to create and publicize a wide variety of products"];
+    var aboutImages = [#imageLiteral(resourceName: "s_and_b"), #imageLiteral(resourceName: "appdev")];
+    var aboutTitles = ["About S&B", "About AppDev", "Change article font size"];
+    var aboutEmails = ["[thesanddb]", "[appdev]"];
+    var aboutTexts = ["The Scarlet and Black is a weekly student-run newspaper that covers different facets of life at Grinnell College and in the town of Grinnell. \n\nFor advertising opportunities, please contact sandbands@grinnell.edu. \n\nFor general information, please email newspapr@grinnell.edu", "Grinnell AppDev is a student-based mobile application development team from Grinnell College that designs, develops, and deploys mobile applications on the iOS and Android platforms. We come from different backgrounds, and parts of the world. Each one of us is an irreplacable part of the team that brings something unique and valuable to the team. \n\nWe are commited to bringing high quality applications to our campus and the rest of the world.\n\nGrinnell Appdev is strongly committed to a collaborative programming process.  Check out our code on GitHub: https://github.com/GrinnellAppDev"];
 
     @IBOutlet weak var aboutImage: UIImageView!
     @IBOutlet weak var aboutTitle: UILabel!

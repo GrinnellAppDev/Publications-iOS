@@ -4,6 +4,7 @@ class PublicationViewCell: UITableViewCell {
     @IBOutlet weak var publicationName:UILabel!
     @IBOutlet weak var publicationLogo:UIImageView!
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

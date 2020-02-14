@@ -15,7 +15,8 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var authorImage: UIImageView!
     @IBOutlet weak var articleImage: UIImageView!     
-    
+    @IBOutlet weak var bigImage: UIImageView!
+    @IBOutlet weak var article: UILabel!
     
     
     override func awakeFromNib() {

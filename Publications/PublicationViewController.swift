@@ -8,7 +8,12 @@ class PublicationViewController: UITableViewController {
     let defaults:UserDefaults = UserDefaults.standard
     //var arrayOfArticle = [newsData]()
     var arr = [SPARCPublication]()
-    
+    override func viewWillAppear(_ animated: Bool) {
+
+        self.tabBarController?.navigationItem.title = "Profile Settings"
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,7 +73,7 @@ class PublicationViewController: UITableViewController {
     
     // Changing cell height to 100. Was not working on storyboard
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80;
+        return 400;
     }
     
     /*

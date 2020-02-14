@@ -7,7 +7,7 @@ class SettingsTableViewController: UITableViewController{
     var numSections = 1;
     var cellIds = ["aboutSPARCCell", "aboutAppdevCell", "aboutFontsCell"]
     //var settingsLabels = ["About SPARC", "About AppDev", "Change article font size"];
-    var settingsLabels = ["About SPARC", "About AppDev"];
+    var settingsLabels = ["About The Scarlet and Black", "About AppDev", "Change Your Font Size"];
     
     var cellDequeueCount = 0;
     
@@ -33,6 +33,10 @@ class SettingsTableViewController: UITableViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // Changing cell height to 80. Was not working on storyboard
+     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90;
+     }
 
     // MARK: - Table view data source
 
@@ -119,7 +123,7 @@ class SettingsTableViewController: UITableViewController{
         else if segue.identifier == "showFontSetting"
         {
             if let destinationVC = segue.destination as? FontViewController {
-                //destinationVC.test = 2
+                destinationVC.test = 2
             }
         }
     }

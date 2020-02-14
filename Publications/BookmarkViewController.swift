@@ -5,7 +5,7 @@ struct bookmarkData {
     let cell: Int!
     let author: String!
     let title: String!
-    let articleImage: UIImage? //there may not be an article image.
+    let bigImage: UIImage? //there may not be an article image.
     let userImage: UIImage!
     let time: String!
 }
@@ -52,6 +52,7 @@ class BookmarkViewController: UITableViewController {
         // return arr.count
         return arr.count
     }
+  
     
     //Dequeue function
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,8 +69,10 @@ class BookmarkViewController: UITableViewController {
         
         cell.authorName.text = String("by ") + "\(authorNames)"
         cell.articleTitle.text = arr[indexPath.row].title
-        cell.authorImage.image = #imageLiteral(resourceName: "s_and_b")
-        cell.articleImage.image = arr[indexPath.row].headerImage ?? #imageLiteral(resourceName: "JRC")
+        cell.bigImage.image = #imageLiteral(resourceName: "s_and_b")
+        cell.bigImage.image = arr[indexPath.row].headerImage ?? #imageLiteral(resourceName: "s_and_b")
+        cell.article.text = ""
+        
         
         let time = arr[indexPath.row].datePublished
         let dateFormatter = DateFormatter()
@@ -87,7 +90,7 @@ class BookmarkViewController: UITableViewController {
     
     // Changing cell height to 80. Was not working on storyboard
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80;
+        return 450;
     }
     
     // MARK: - Navigation
