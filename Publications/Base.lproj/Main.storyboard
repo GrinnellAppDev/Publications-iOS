@@ -260,7 +260,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <attributedString key="attributedText">
                                                 <fragment>
-                                                    <mutableString key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <attributes>
                                                         <font key="NSFont" size="14" name="Helvetica"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
@@ -355,7 +355,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo2-AU-loO">
-                                            <rect key="frame" x="9" y="255" width="366" height="71"/>
+                                            <rect key="frame" x="25" y="255" width="350" height="71"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="71" id="d50-4v-8Jt"/>
                                             </constraints>
@@ -432,7 +432,6 @@
                                         <constraint firstItem="qZG-Zt-bcd" firstAttribute="leading" secondItem="uVs-NT-mbM" secondAttribute="leading" constant="9" id="b43-GJ-jOq"/>
                                         <constraint firstItem="VLE-1P-01C" firstAttribute="leading" secondItem="uVs-NT-mbM" secondAttribute="leading" constant="9" id="bA3-DA-SVL"/>
                                         <constraint firstItem="qZG-Zt-bcd" firstAttribute="trailing" secondItem="VLE-1P-01C" secondAttribute="trailing" id="fGE-2s-Q08"/>
-                                        <constraint firstItem="Lo2-AU-loO" firstAttribute="leading" secondItem="uVs-NT-mbM" secondAttribute="leading" constant="9" id="ghR-vw-z2w"/>
                                         <constraint firstItem="Zgo-cM-YeG" firstAttribute="leading" secondItem="uVs-NT-mbM" secondAttribute="leading" id="iDF-T6-Lvq"/>
                                         <constraint firstItem="VLE-1P-01C" firstAttribute="leading" secondItem="qZG-Zt-bcd" secondAttribute="leading" id="oOl-6Z-BSc"/>
                                         <constraint firstItem="Lo2-AU-loO" firstAttribute="top" secondItem="VLE-1P-01C" secondAttribute="bottom" constant="9" id="tKV-Xe-TFi"/>
@@ -699,7 +698,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <attributes>
                                             <font key="NSFont" size="15" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
