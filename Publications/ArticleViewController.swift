@@ -25,6 +25,8 @@ class ArticleViewController: UITableViewController {
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
     var articleURL = "http://www.thesandb.com"
+    let images = [#imageLiteral(resourceName: "Image-15"), #imageLiteral(resourceName: "Image-16"),#imageLiteral(resourceName: "Image-3"),#imageLiteral(resourceName: "Image-2"),#imageLiteral(resourceName: "Image"),#imageLiteral(resourceName: "Image-10"),#imageLiteral(resourceName: "Image-9"),#imageLiteral(resourceName: "siliconvalley"),#imageLiteral(resourceName: "Image-4"),#imageLiteral(resourceName: "Image-1"),#imageLiteral(resourceName: "Image-14"),#imageLiteral(resourceName: "Image-8"),#imageLiteral(resourceName: "Image-13"),#imageLiteral(resourceName: "Image-6"),#imageLiteral(resourceName: "Image-12"),#imageLiteral(resourceName: "Image-11")]
+    let randomNumber: Int = Int(arc4random_uniform(16))
     
     @IBAction func shareButtonTapped(_ sender: Any) {
     
@@ -253,7 +255,7 @@ class ArticleViewController: UITableViewController {
         cell.dateLabel.text = timeString.isEmpty ? "03/08/2018" : timeString
         
         // article main image
-        cell.icon.image = getArticle?.headerImage ?? #imageLiteral(resourceName: "JRC")
+        cell.icon.image = getArticle?.headerImage ?? images[randomNumber]
         
         cell.articleTxt.isEditable = false;
         cell.articleTxt.isScrollEnabled = false;
