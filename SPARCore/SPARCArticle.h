@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSString * _Nullable series;
 @property (nonatomic, strong) NSArray * _Nullable tags;
 @property (nonatomic, strong) NSString * _Nullable title;
-@property (nonatomic, strong) NSURL * _Nullable url;
+@property (nonatomic, strong) NSString * _Nullable url;
 @property (nonatomic) NSInteger hasBeenRead;
 
 + (NSString *) parseAuthors: (NSArray<NSDictionary<NSString*, id>*>*) authorArr;

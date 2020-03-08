@@ -24,19 +24,63 @@ class ArticleViewController: UITableViewController {
     var height: CGFloat = 0.0
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
-    var articleURL = "http://www.thesandb.com"
+    var articleURL : String! = "www.thesandb.com"
     let images = [#imageLiteral(resourceName: "Image-15"), #imageLiteral(resourceName: "Image-16"),#imageLiteral(resourceName: "Image-3"),#imageLiteral(resourceName: "Image-2"),#imageLiteral(resourceName: "Image"),#imageLiteral(resourceName: "Image-10"),#imageLiteral(resourceName: "Image-9"),#imageLiteral(resourceName: "siliconvalley"),#imageLiteral(resourceName: "Image-4"),#imageLiteral(resourceName: "Image-1"),#imageLiteral(resourceName: "Image-14"),#imageLiteral(resourceName: "Image-8"),#imageLiteral(resourceName: "Image-13"),#imageLiteral(resourceName: "Image-6"),#imageLiteral(resourceName: "Image-12"),#imageLiteral(resourceName: "Image-11")]
     let randomNumber: Int = Int(arc4random_uniform(16))
     
     @IBAction func shareButtonTapped(_ sender: Any) {
     
-        let someText:String = titleTxt + " - Read more at " + articleURL
+        let someText:String = titleTxt + " - Read more at " + articleURL + " Shared from Publications (Developed by Grinnell AppDev)"
         let sharedObjects:[AnyObject] = [someText as AnyObject]
         let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         
         self.present(activityViewController, animated: true, completion: nil)
     }
+    
+    @IBAction func bookmarkButtonTapped(_ sender: Any) {
+        if (!isBookmarked) {
+            // retrieving a value for a key
+            if let data = defaults.data(forKey: "bookmark"),
+                var articleList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle] {
+                if (getArticle?.headerImage == nil) {
+                    print("No image is found!!!")
+                } else { print("article image is found!!")}
+                articleList.append(getArticle!)
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
+                defaults.set(encodedData, forKey: "bookmark")
+            } else {
+                var bookmarkArticle : [SPARCArticle] = [SPARCArticle]()
+                bookmarkArticle.append(getArticle!)
+                print("Adding the article to your bookmarks...")
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: bookmarkArticle)
+                defaults.set(encodedData, forKey: "bookmark")
+            }
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+            //print("Hey it's working!")
+            isBookmarked = true
+        } else {
+            // remove the article from userdefaults ...
+            let data = defaults.data(forKey: "bookmark")
+            var articleList = NSKeyedUnarchiver.unarchiveObject(with: data!) as! [SPARCArticle]
+            var i : Int = 0
+            while (i < articleList.count) {
+                if (getArticle?.articleId == articleList[i].articleId) {
+                    articleList.remove(at: i)
+                    continue
+                }
+                i += 1
+            }
+            let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
+            defaults.set(encodedData, forKey: "bookmark")
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
+            print("Removing the article from your bookmarks...")
+            isBookmarked = false
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
+        }
+    }
+    
     
     
     var startTime = DispatchTime(uptimeNanoseconds: 0)
@@ -67,16 +111,13 @@ class ArticleViewController: UITableViewController {
                 formatter.dateFormat = "MM/dd/yyyy"
                 let dateString = formatter.string(from: (article?.datePublished)!)
                 self.date = dateString
-                // self.author = article?.authors! as? String ?? "Mike"
-                //print("Text is: " + self.text)
+                self.articleURL = article?.url ?? "www.thesandb.com"
+                print("frontend " + (article?.url ?? "URL ERROR"))
+
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             })
-            //Set up bookmark button
-            let bookmarkButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.bookmarks, target: self, action: #selector(bookmark(_:)))
-            self.navigationItem.rightBarButtonItem = bookmarkButton
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
             
             //Check if the article is already bookmarked
             if let data = defaults.data(forKey: "bookmark"),
@@ -84,8 +125,8 @@ class ArticleViewController: UITableViewController {
                 var i : Int = 0
                 while (i < articleList.count) {
                     if (getArticle?.articleId == articleList[i].articleId) {
-                        isBookmarked = true
-                        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+                        self.isBookmarked = true
+                        self.navigationItem.rightBarButtonItems?[0].tintColor = UIColor.red
                         break
                     }
                     i += 1

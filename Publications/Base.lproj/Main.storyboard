@@ -308,11 +308,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Article" id="ZPg-Z0-1oR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="xog-fY-slA">
-                            <connections>
-                                <action selector="shareButtonTapped:" destination="s1W-aW-NDY" id="W0a-2F-ohz"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="bookmarks" id="fTN-OJ-Bgy">
+                                <connections>
+                                    <action selector="bookmarkButtonTapped:" destination="s1W-aW-NDY" id="Vbb-ak-Zex"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="xog-fY-slA">
+                                <connections>
+                                    <action selector="shareButtonTapped:" destination="s1W-aW-NDY" id="W0a-2F-ohz"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ECy-BG-UeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
