@@ -9,6 +9,8 @@ class NewsTableViewController: UITableViewController {
     let defaults:UserDefaults = UserDefaults.standard
     var curPageTokens = [String : String]()
     var curPublication : SPARCPublication?
+    let images = [#imageLiteral(resourceName: "Image-15"), #imageLiteral(resourceName: "Image-16"),#imageLiteral(resourceName: "Image-3"),#imageLiteral(resourceName: "Image-2"),#imageLiteral(resourceName: "Image"),#imageLiteral(resourceName: "Image-10"),#imageLiteral(resourceName: "Image-9"),#imageLiteral(resourceName: "siliconvalley"),#imageLiteral(resourceName: "Image-4"),#imageLiteral(resourceName: "Image-1"),#imageLiteral(resourceName: "Image-14"),#imageLiteral(resourceName: "Image-8"),#imageLiteral(resourceName: "Image-13"),#imageLiteral(resourceName: "Image-6"),#imageLiteral(resourceName: "Image-12"),#imageLiteral(resourceName: "Image-11")]
+    let randomNumber: Int = Int(arc4random_uniform(16))
     var arr = [SPARCArticle]()
     
     
@@ -146,12 +148,15 @@ class NewsTableViewController: UITableViewController {
         // Return the number of rows in the section.
         return arr.count
     }
+    func generateRandomImage()-> UIImage{
+        return images[randomNumber]
+    }
 
     // Set up each tableView cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! NewsTableViewCell
         let title = arr[indexPath.row].title
-        let bigImage = arr[indexPath.row].headerImage
+        let bigImage = arr[indexPath.row].headerImage ?? nil
         //print("TITLE: \(title ?? "no title")")
         let authorArr = arr[indexPath.row].authors
         let article = arr[indexPath.row].content
@@ -163,7 +168,7 @@ class NewsTableViewController: UITableViewController {
         }
         cell.articleTitle.text = title
         cell.bigImage.image = #imageLiteral(resourceName: "s_and_b")
-        cell.bigImage.image = bigImage ?? #imageLiteral(resourceName: "s_and_b")
+        cell.bigImage.image = bigImage ?? images[((indexPath.row+1)*randomNumber)%16]
         cell.article.text = article
         // populate time published info
         let time = arr[indexPath.row].datePublished

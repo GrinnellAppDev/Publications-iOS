@@ -31,8 +31,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="441"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRC" translatesAutoresizingMaskIntoConstraints="NO" id="gju-7K-KGo">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRC" translatesAutoresizingMaskIntoConstraints="NO" id="gju-7K-KGo">
                                             <rect key="frame" x="0.0" y="11" width="375" height="204"/>
+                                            <edgeInsets key="layoutMargins" top="8" left="8" bottom="36" right="8"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="4"/>
@@ -383,7 +384,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRC" translatesAutoresizingMaskIntoConstraints="NO" id="Zgo-cM-YeG">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRC" translatesAutoresizingMaskIntoConstraints="NO" id="Zgo-cM-YeG">
                                             <rect key="frame" x="0.0" y="9" width="375" height="204"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
