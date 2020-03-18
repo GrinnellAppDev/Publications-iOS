@@ -9,14 +9,22 @@ class NewsTableViewController: UITableViewController {
     let defaults:UserDefaults = UserDefaults.standard
     var curPageTokens = [String : String]()
     var curPublication : SPARCPublication?
-    let images = [#imageLiteral(resourceName: "Image-15"), #imageLiteral(resourceName: "Image-16"),#imageLiteral(resourceName: "Image-3"),#imageLiteral(resourceName: "Image-2"),#imageLiteral(resourceName: "Image"),#imageLiteral(resourceName: "Image-10"),#imageLiteral(resourceName: "Image-9"),#imageLiteral(resourceName: "siliconvalley"),#imageLiteral(resourceName: "Image-4"),#imageLiteral(resourceName: "Image-1"),#imageLiteral(resourceName: "Image-14"),#imageLiteral(resourceName: "Image-8"),#imageLiteral(resourceName: "Image-13"),#imageLiteral(resourceName: "Image-6"),#imageLiteral(resourceName: "Image-12"),#imageLiteral(resourceName: "Image-11")]
-    let randomNumber: Int = Int(arc4random_uniform(16))
+    let images = [#imageLiteral(resourceName: "Image-15"),#imageLiteral(resourceName: "Image-16"),#imageLiteral(resourceName: "Image-3"),#imageLiteral(resourceName: "Image-2"),#imageLiteral(resourceName: "Image"),#imageLiteral(resourceName: "Image-10"),#imageLiteral(resourceName: "Image-9"),#imageLiteral(resourceName: "siliconvalley"),#imageLiteral(resourceName: "Image-4"),#imageLiteral(resourceName: "Image-1"),#imageLiteral(resourceName: "Image-14"),#imageLiteral(resourceName: "Image-8"),#imageLiteral(resourceName: "Image-13"),#imageLiteral(resourceName: "Image-6"),#imageLiteral(resourceName: "Image-12"),#imageLiteral(resourceName: "Image-11")]
     var arr = [SPARCArticle]()
+    var haveReadDict : Dictionary <String, Double> = Dictionary <String, Double>()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if (defaults.object(forKey: "haveReadDictionary") == nil) {
+            defaults.set(Dictionary <String, Double>(), forKey: "haveReadDictionary")
+        } else {
+            haveReadDict = defaults.object(forKey: "haveReadDictionary") as! Dictionary <String, Double>
+        }
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // Add Refresh Control to Table View
         let refreshControl = UIRefreshControl()
@@ -93,6 +101,7 @@ class NewsTableViewController: UITableViewController {
             }, completion: nil)
         }
     }
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //print("Fetching new data with " + (self.curPageToken ?? "THERE'S NO PAGE TOKEN!"))
@@ -148,9 +157,6 @@ class NewsTableViewController: UITableViewController {
         // Return the number of rows in the section.
         return arr.count
     }
-    func generateRandomImage()-> UIImage{
-        return images[randomNumber]
-    }
 
     // Set up each tableView cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -159,17 +165,19 @@ class NewsTableViewController: UITableViewController {
         let bigImage = arr[indexPath.row].headerImage ?? nil
         //print("TITLE: \(title ?? "no title")")
         let authorArr = arr[indexPath.row].authors
-        let article = arr[indexPath.row].content
         if let authors = authorArr {
             cell.authorName.text = SPARCArticle.parseAuthors(authors as? Array<Dictionary<String, Any>>)
-            //cell.authorName.text = parseAuthors(authorArr: authors as! Array<Dictionary<String, Any>>)
         } else {
             cell.authorName.text = "by Anonymous"
         }
         cell.articleTitle.text = title
         cell.bigImage.image = #imageLiteral(resourceName: "s_and_b")
-        cell.bigImage.image = bigImage ?? images[((indexPath.row+1)*randomNumber)%16]
-        cell.article.text = article
+        cell.bigImage.image = bigImage ?? images[(indexPath.row)%16]
+        var minutes = "\(arr[indexPath.row].minutes ?? " ") min read"
+        if haveReadDict[title!] != nil {
+            minutes = "Finished Reading"
+        }
+        cell.article.text =  minutes
         // populate time published info
         let time = arr[indexPath.row].datePublished
         let dateFormatter = DateFormatter()
@@ -244,15 +252,6 @@ class NewsTableViewController: UITableViewController {
                                 self.arr = articles
                                 if (nextPageForArticlesToken != nil) {
                                     self.curPageTokens[publication.name!] = nextPageForArticlesToken!
-                                }
-                                
-                                // Check for articles that have been previously read
-                                for article in articles {
-                                    let title = article.title!
-                                    var dict = self.defaults.object(forKey: "haveReadDictionary") as! Dictionary <String, Double>
-                                    if dict[title] != nil {
-                                        article.hasBeenRead = 1
-                                    }
                                 }
                                 //self.curPageToken = nextPageForArticlesToken!
                                 //print("Initial token: ")

@@ -178,7 +178,7 @@
 		7463DD211DC3EE5900A5F77A = {
 			isa = PBXGroup;
 			children = (
-				7463DD2C1DC3EE5900A5F77A /* App */,
+				7463DD2C1DC3EE5900A5F77A /* Publications */,
 				FA7DCC5F1E4F75F300C84A73 /* SPARCore */,
 				7463DD2B1DC3EE5900A5F77A /* Products */,
 				CEAD1DDB13489766275CE60E /* Pods */,
@@ -196,7 +196,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7463DD2C1DC3EE5900A5F77A /* App */ = {
+		7463DD2C1DC3EE5900A5F77A /* Publications */ = {
 			isa = PBXGroup;
 			children = (
 				FA1FD89E209F5E82005E22B4 /* Fonts */,
@@ -206,7 +206,6 @@
 				FA34ED2C1E4F7C3A003651E1 /* Internals */,
 				FA6BF14B1E4F653D008FB165 /* Publications.xcdatamodeld */,
 			);
-			name = App;
 			path = Publications;
 			sourceTree = "<group>";
 		};
@@ -751,7 +750,7 @@
 				INFOPLIST_FILE = Publications/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.publications.appdev.grinnell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
@@ -771,7 +770,7 @@
 				INFOPLIST_FILE = Publications/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.publications.appdev.grinnell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Publications/Bridging-Header.h";
@@ -799,7 +798,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications.SPARCore;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.SPARCore.publications.appdev.grinnell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -824,7 +823,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.publications.SPARCore;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.SPARCore.publications.appdev.grinnell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = NO;

@@ -25,7 +25,7 @@ class ArticleViewController: UITableViewController {
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
     var articleURL : String! = "www.thesandb.com"
-    let images = [#imageLiteral(resourceName: "Image-15"), #imageLiteral(resourceName: "Image-16"),#imageLiteral(resourceName: "Image-3"),#imageLiteral(resourceName: "Image-2"),#imageLiteral(resourceName: "Image"),#imageLiteral(resourceName: "Image-10"),#imageLiteral(resourceName: "Image-9"),#imageLiteral(resourceName: "siliconvalley"),#imageLiteral(resourceName: "Image-4"),#imageLiteral(resourceName: "Image-1"),#imageLiteral(resourceName: "Image-14"),#imageLiteral(resourceName: "Image-8"),#imageLiteral(resourceName: "Image-13"),#imageLiteral(resourceName: "Image-6"),#imageLiteral(resourceName: "Image-12"),#imageLiteral(resourceName: "Image-11")]
+    let images = [#imageLiteral(resourceName: "Image-15"),#imageLiteral(resourceName: "Image-16"),#imageLiteral(resourceName: "Image-3"),#imageLiteral(resourceName: "Image-2"),#imageLiteral(resourceName: "Image"),#imageLiteral(resourceName: "Image-10"),#imageLiteral(resourceName: "Image-9"),#imageLiteral(resourceName: "siliconvalley"),#imageLiteral(resourceName: "Image-4"),#imageLiteral(resourceName: "Image-1"),#imageLiteral(resourceName: "Image-14"),#imageLiteral(resourceName: "Image-8"),#imageLiteral(resourceName: "Image-13"),#imageLiteral(resourceName: "Image-6"),#imageLiteral(resourceName: "Image-12"),#imageLiteral(resourceName: "Image-11")]
     let randomNumber: Int = Int(arc4random_uniform(16))
     
     @IBAction func shareButtonTapped(_ sender: Any) {
@@ -43,21 +43,19 @@ class ArticleViewController: UITableViewController {
             // retrieving a value for a key
             if let data = defaults.data(forKey: "bookmark"),
                 var articleList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle] {
-                if (getArticle?.headerImage == nil) {
-                    print("No image is found!!!")
-                } else { print("article image is found!!")}
-                articleList.append(getArticle!)
+                articleList.insert(getArticle!, at: 0)
                 let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
                 defaults.set(encodedData, forKey: "bookmark")
             } else {
                 var bookmarkArticle : [SPARCArticle] = [SPARCArticle]()
-                bookmarkArticle.append(getArticle!)
+                bookmarkArticle.insert(getArticle!, at: 0)
                 print("Adding the article to your bookmarks...")
                 let encodedData = NSKeyedArchiver.archivedData(withRootObject: bookmarkArticle)
                 defaults.set(encodedData, forKey: "bookmark")
             }
             
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+            //self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+            self.navigationItem.rightBarButtonItem?.style =  UIBarButtonItem.Style.done
             //print("Hey it's working!")
             isBookmarked = true
         } else {
@@ -74,22 +72,16 @@ class ArticleViewController: UITableViewController {
             }
             let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
             defaults.set(encodedData, forKey: "bookmark")
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
             print("Removing the article from your bookmarks...")
             isBookmarked = false
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
+            self.navigationItem.rightBarButtonItem?.style =  UIBarButtonItem.Style.plain
         }
     }
-    
-    
     
     var startTime = DispatchTime(uptimeNanoseconds: 0)
     var endTime = DispatchTime(uptimeNanoseconds: 0)
     var timeInterval : Double = 0.0
     var predictedReadingTime: Double = 0.0
-    
-  //  var startTime = 0.0
-    //var endTime = 0.0
     
     override func viewWillAppear(_ animated: Bool) {
         // get the font size from userdefault
@@ -126,32 +118,36 @@ class ArticleViewController: UITableViewController {
                 while (i < articleList.count) {
                     if (getArticle?.articleId == articleList[i].articleId) {
                         self.isBookmarked = true
-                        self.navigationItem.rightBarButtonItems?[0].tintColor = UIColor.red
+                        self.navigationItem.rightBarButtonItem?.style =  UIBarButtonItem.Style.done
                         break
                     }
                     i += 1
                 }
             }
-            
-            startTime = DispatchTime.now()
-            
+        } else {
+            self.navigationItem.rightBarButtonItem?.style =  UIBarButtonItem.Style.done
+            self.isBookmarked = true
         }
+        startTime = DispatchTime.now()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         textLength = text.count  // counts characters
         endTime = DispatchTime.now()
         
-        predictedReadingTime = Double(textLength) / (275.0 * 6)
+        predictedReadingTime = Double(textLength) / (275.0 * 6) * 60 * 0.5
             // 275 is the average number of read words per minute
             // 6 is the average number of characters per word
         
         let nanoTime = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
         timeInterval = Double(nanoTime) / 1_000_000_000
         
+        print(textLength)
         print("Time Interval = \(timeInterval) seconds")
+        print("Predicted = \(predictedReadingTime) seconds")
         
         if (timeInterval > predictedReadingTime) {
+            print("READ!!")
             if (defaults.object(forKey: "haveReadDictionary") == nil) {
                 var dict = [String:Double]()
                 dict[titleTxt] = timeInterval
@@ -162,7 +158,7 @@ class ArticleViewController: UITableViewController {
                 defaults.setValue(dict, forKey: "haveReadDictionary")
             }
         }
-        print(titleTxt)
+        //print(titleTxt)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -221,49 +217,6 @@ class ArticleViewController: UITableViewController {
         cutDirection.addLine(to: CGPoint(x: 0, y: getHeaderFrame.height ))
         newHeaderLayer.path = cutDirection.cgPath
     }
-    
-    // Bookmark action
-    @IBAction func bookmark(_ sender: Any) {
-        if (!isBookmarked) {
-            // retrieving a value for a key
-            if let data = defaults.data(forKey: "bookmark"),
-                var articleList = NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle] {
-                if (getArticle?.headerImage == nil) {
-                    print("No image is found!!!")
-                } else { print("article image is found!!")}
-                articleList.append(getArticle!)
-                let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
-                defaults.set(encodedData, forKey: "bookmark")
-            } else {
-                var bookmarkArticle : [SPARCArticle] = [SPARCArticle]()
-                bookmarkArticle.append(getArticle!)
-                let encodedData = NSKeyedArchiver.archivedData(withRootObject: bookmarkArticle)
-                defaults.set(encodedData, forKey: "bookmark")
-            }
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
-            //print("Hey it's working!")
-            isBookmarked = true
-        } else {
-            // remove the article from userdefaults ...
-            let data = defaults.data(forKey: "bookmark")
-            var articleList = NSKeyedUnarchiver.unarchiveObject(with: data!) as! [SPARCArticle]
-            var i : Int = 0
-            while (i < articleList.count) {
-                if (getArticle?.articleId == articleList[i].articleId) {
-                    articleList.remove(at: i)
-                    continue
-                }
-                i += 1
-            }
-            let encodedData = NSKeyedArchiver.archivedData(withRootObject: articleList)
-            defaults.set(encodedData, forKey: "bookmark")
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blue
-            print("Removing the article from your bookmarks...")
-            isBookmarked = false
-        }
-        
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -310,24 +263,13 @@ class ArticleViewController: UITableViewController {
 //        Uncomment below if device font setting needs to be used
 //        let preferredDescriptor = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
 //        let font = UIFont(name: "Georgia", size: preferredDescriptor.pointSize)
-        let p = CGFloat(defaults.integer(forKey: "font"))
+        var p = CGFloat(defaults.integer(forKey: "font"))
+        print(p)
+        if p==0.0 {
+            p=16.0
+        }
         cell.articleTxt.font = UIFont(name: "Helvetica", size: p)
-        
-//        height = cell.articleTxt.bounds.height
-//        
-//        let newSize = cell.articleTxt.sizeThatFits(CGSize(width: 352, height: CGFloat.greatestFiniteMagnitude))
-//        var newFrame = cell.articleTxt.frame
-//        newFrame.size = CGSize(width: 352, height: max(newSize.height, height))
-//        cell.articleTxt.frame = newFrame
-//        height = newFrame.size.height
-        
-    //    let rowData = data.postArray[indexPath.row]
-   //     cell.dateLabel.text = rowData["date"]
-    //    cell.usernameLabel.text = rowData["name"]
-     //   cell.userImageView.image = UIImage(named: rowData["imageName"]!)
-      //  cell.postImageView.image = UIImage(named: rowData["postImageName"]!)
-        
-        //print(height)
+
         return cell
     }
    

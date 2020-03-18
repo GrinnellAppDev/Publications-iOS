@@ -20,7 +20,8 @@
 @property (nonatomic, strong) NSArray * _Nullable tags;
 @property (nonatomic, strong) NSString * _Nullable title;
 @property (nonatomic, strong) NSString * _Nullable url;
-@property (nonatomic) NSInteger hasBeenRead;
+@property (nonatomic, strong) NSString * _Nullable minutes;
+
 
 + (NSString *) parseAuthors: (NSArray<NSDictionary<NSString*, id>*>*) authorArr;
 

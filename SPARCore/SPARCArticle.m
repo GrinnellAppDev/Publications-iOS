@@ -43,6 +43,7 @@ static NSString *const API_KEY_SERIES = @"series";
 static NSString *const API_KEY_TAGS = @"tags";
 static NSString *const API_KEY_TITLE = @"title";
 static NSString *const API_KEY_URL = @"url";
+static NSString *const API_KEY_MINUTES = @"readTimeMinutes";
 
 static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
 
@@ -81,6 +82,9 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     article.tags = dict[API_KEY_TAGS];
     article.title = dict[API_KEY_TITLE];
     article.url = dict[API_KEY_URL];
+    NSNumber *min= dict[API_KEY_MINUTES];
+    article.minutes = [[NSString alloc] initWithFormat:@"%@",min];
+    NSLog(@"MINUTES %@",article.minutes);
     return article;
 }
 
@@ -238,6 +242,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
         self.tags = [decoder decodeObjectForKey:API_KEY_TAGS];
         self.title = [decoder decodeObjectForKey:API_KEY_TITLE];
         self.url = [decoder decodeObjectForKey:API_KEY_URL];
+        self.minutes = [decoder decodeObjectForKey:API_KEY_MINUTES];
     }
     return self;
 }
@@ -255,6 +260,7 @@ static NSString *const API_QUERY_PAGE_TOKEN = @"pageToken";
     [encoder encodeObject:_tags forKey:API_KEY_TAGS];
     [encoder encodeObject:_title forKey:API_KEY_TITLE];
     [encoder encodeObject:_url forKey:API_KEY_URL];
+    [encoder encodeObject:_minutes forKey:API_KEY_MINUTES];
 }
 
 @end

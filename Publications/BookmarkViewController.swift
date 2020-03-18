@@ -15,14 +15,23 @@ class BookmarkViewController: UITableViewController {
     
     let defaults:UserDefaults = UserDefaults.standard
     var arr = [SPARCArticle]()
+    let images = [#imageLiteral(resourceName: "Image-15"),#imageLiteral(resourceName: "Image-16"),#imageLiteral(resourceName: "Image-3"),#imageLiteral(resourceName: "Image-2"),#imageLiteral(resourceName: "Image"),#imageLiteral(resourceName: "Image-10"),#imageLiteral(resourceName: "Image-9"),#imageLiteral(resourceName: "siliconvalley"),#imageLiteral(resourceName: "Image-4"),#imageLiteral(resourceName: "Image-1"),#imageLiteral(resourceName: "Image-14"),#imageLiteral(resourceName: "Image-8"),#imageLiteral(resourceName: "Image-13"),#imageLiteral(resourceName: "Image-6"),#imageLiteral(resourceName: "Image-12"),#imageLiteral(resourceName: "Image-11")]
+    var haveReadDict : Dictionary <String, Double> = Dictionary <String, Double>()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //defaults.removeObject(forKey: "bookmark")
         if let data = defaults.data(forKey: "bookmark") {
             arr = (NSKeyedUnarchiver.unarchiveObject(with: data) as? [SPARCArticle])!
-            self.tableView.reloadData()   // ...and it is also visible here.
         }
+        
+        if (defaults.object(forKey: "haveReadDictionary") == nil) {
+            defaults.set(Dictionary <String, Double>(), forKey: "haveReadDictionary")
+        } else {
+            haveReadDict = defaults.object(forKey: "haveReadDictionary") as! Dictionary <String, Double>
+        }
+        
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -59,20 +68,24 @@ class BookmarkViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! NewsTableViewCell
         let authorArr = arr[indexPath.row].authors
-        var authorNames=""
-        for author in authorArr! {
-            authorNames+=author["name"] as! String
+        if let authors = authorArr {
+            cell.authorName.text = SPARCArticle.parseAuthors(authors as? Array<Dictionary<String, Any>>)
+        } else {
+            cell.authorName.text = "by Anonymous"
         }
         
         let title = arr[indexPath.row].title
         print("TITLE: \(title ?? "no title")")
-        
-        cell.authorName.text = String("by ") + "\(authorNames)"
         cell.articleTitle.text = arr[indexPath.row].title
         cell.bigImage.image = #imageLiteral(resourceName: "s_and_b")
-        cell.bigImage.image = arr[indexPath.row].headerImage ?? #imageLiteral(resourceName: "s_and_b")
-        cell.article.text = ""
-        
+        let bigImage = arr[indexPath.row].headerImage ?? nil
+        cell.bigImage.image = bigImage ?? images[(indexPath.row)%16]
+
+        var minutes = "\(arr[indexPath.row].minutes ?? " ") min read"
+        if haveReadDict[title!] != nil {
+            minutes = "Finished Reading"
+        }
+        cell.article.text =  minutes
         
         let time = arr[indexPath.row].datePublished
         let dateFormatter = DateFormatter()
