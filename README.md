@@ -7,7 +7,7 @@ Never miss a campus update!
 
 ## Get GCPublications
 
-GCPublications is available for download at the following locations:
+GCPublications is available for download at the following location:
 
 * [iOS](https://apps.apple.com/kr/app/gcpublications/id1503284438)
 
